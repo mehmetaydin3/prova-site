@@ -1,4 +1,16 @@
 {
+  "_note": "null = NOT FILLED YET. build.py --publish refuses while any value is null, and GitHub Pages stays off until every one is filled (founder, 2026-10-06).",
+  "_sources": "ENTITY NAME, SUPPORT EMAIL, POSTAL ADDRESS, STATE, REPORT DAYS: the founder. EMAIL PROVIDER: the SMTP choice. BACKUP DAYS, LOG DAYS: the Supabase plan. DATE: the publication day.",
   "WEBSITE": "https://mehmetaydin3.github.io/prova-site",
-  "REGION": "the United States (AWS us-west-1, Northern California)"
+  "REGION": "the United States (AWS us-west-1, Northern California)",
+  "COPYRIGHT AGENT": "our copyright agent",
+  "ENTITY NAME": null,
+  "SUPPORT EMAIL": null,
+  "POSTAL ADDRESS": null,
+  "STATE": null,
+  "REPORT DAYS": null,
+  "EMAIL PROVIDER": null,
+  "BACKUP DAYS": null,
+  "LOG DAYS": null,
+  "DATE": null
 }

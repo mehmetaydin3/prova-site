@@ -4,7 +4,15 @@ The public privacy policy, terms of service and support page for the Prova app,
 served by GitHub Pages from `docs/` at https://mehmetaydin3.github.io/prova-site.
 The app links to `/privacy`, `/terms` and `/support` (`AppLinks.website`).
 
-**Status: draft.** GitHub Pages is off until every placeholder is filled.
+**Status: draft.** GitHub Pages is off until every placeholder is filled:
+the founder's legal values, the email provider (SMTP) and the Supabase plan's
+backup and log retention. `null` in `values.json` means not filled yet.
+
+## Before the App Store release
+
+- Register a DMCA designated agent with the US Copyright Office. Until then the
+  terms say "our copyright agent" at the support email.
+- Redesign the site to match the app, after the app's design finesse pass.
 
 ## Editing
 
