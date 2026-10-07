@@ -223,7 +223,7 @@ def main():
         landing = (HERE / "index.html").read_text()
         landing = landing.replace('href="docs/', 'href="')
         (out / "index.html").write_text(landing)
-        for file in ("site.css", "site.js", "metronome.js"):
+        for file in ("site.css", "site.js"):
             shutil.copyfile(HERE / file, out / file)
         for directory in ("assets", "shared"):
             shutil.copytree(HERE / directory, out / directory, dirs_exist_ok=True,

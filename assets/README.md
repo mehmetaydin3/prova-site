@@ -15,7 +15,7 @@ All screenshot and film evidence is actual native app capture of fictional demo 
 
 Journey-audit demo provenance was checked against `~/prova/.claude/journey-audit/wt/Prova/Prova/Core/Repositories/ShowcaseStudio.swift`: fixed fictional identities and seeded studio, no network account. The archive is `archive/journey-audit-wt-4b69437` (`3e30e37`). These are historical captures, not freshly approved launch captures. Inconsistent seeded musical details and older navigation/daily-goal/gradient treatments remain authentic; they must not be mistaken for approved final app styling or advertised features.
 
-The feedback waveform is generated browser illustration, explicitly labelled “Browser demonstration · no audio.” It is not extracted from an actual take. The feedback sample has no audio. The optional browser metronome synthesizes its tool click using the native algorithm; it is not a student recording. All screenshot evidence can be enlarged.
+The only browser sample uses two illustrative timestamped replies, explicitly labelled “browser example, no audio.” These are not comments extracted from the actual conversation. No waveform or synthetic audio is presented. Screenshot crops highlight genuine app details; full screenshots remain available.
 
 ## Exact replacement captures needed
 
