@@ -1,0 +1,250 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prova The Week</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap">
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+/* Direction B · The week. Light-first, editorial and calm: lavender-white canvas, a soft serif for
+   headings, and the seven days between two lessons as the page's spine. A single line draws down the
+   page as the reader scrolls, and each day's beat sits on it. The product appears as real stills and
+   paper-like note cards; nothing is pinned, nothing loops. Tokens: ../shared/tokens.css (../TOKENS.md).
+   Adaptation: Fraunces for headings only (TOKENS.md §7). Light and dark both designed. */
+:root { --line: var(--border); --spine: 2px; }
+:root[data-face="display"] { --font-display: "Fraunces", "Iowan Old Style", "Palatino", Georgia, serif; }  /* off by default: the site keeps the system stack (brand system, approved) */
+html { scroll-behavior: smooth; }
+h1, h2, h3 { font-weight: var(--weight-medium); letter-spacing: -0.01em; font-variation-settings: "opsz" 120; }
+h1 { font-size: var(--text-display-xl); line-height: 1.02; }
+h2 { font-size: var(--text-display); line-height: 1.08; }
+h3 { font-size: var(--text-title2); font-weight: var(--weight-semibold); font-family: var(--font-body); letter-spacing: -0.01em; }
+.wrap { max-width: var(--container-max); margin: 0 auto; padding-inline: var(--page-margin); }
+.narrow { max-width: var(--readable-max); }
+.lede { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--text-secondary); line-height: var(--leading-prose); }
+
+/* Nav: quiet, the mark at rest beside the name (the Downbeat's Today ending, proposed for PR 10) */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--canvas) 86%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: var(--border-hairline) solid var(--line); }
+.nav .wrap { display: flex; align-items: center; gap: var(--sp-lg); min-height: 60px; }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-weight: var(--weight-semibold); }
+.mark { width: 28px; height: 28px; border-radius: 22.4%; background: var(--night); display: grid; place-items: center; overflow: hidden; flex: none; }
+.mark img { width: 61%; height: auto; }
+.nav nav { margin-left: auto; display: flex; gap: var(--sp-lg); font-size: var(--text-subhead); }
+.nav nav a { color: var(--text-secondary); text-decoration: none; } .nav nav a:hover { color: var(--text); }
+@media (max-width: 720px) { .nav nav { display: none; } }
+
+/* Hero: the headline on the left, the real Today screen on the right, no frame theatre */
+.hero { padding-block: clamp(48px, 8vw, 96px) clamp(32px, 6vw, 64px); }
+.herostage { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(24px, 5vw, 64px); align-items: center; padding: clamp(28px, 5vw, 56px); }  /* the home header is the night stage */
+.face { font: inherit; font-size: var(--text-footnote); color: var(--text-secondary); background: none; border: var(--border-hairline) solid var(--border); border-radius: var(--r-pill); padding: 4px 12px; min-height: 32px; cursor: pointer; } .face:hover { color: var(--text); }
+
+.hero .copy { display: grid; gap: var(--sp-xl); }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+.hero .meta { font-size: var(--text-subhead); color: var(--text-secondary); display: flex; flex-wrap: wrap; gap: var(--sp-md) var(--sp-xl); }
+.shot { justify-self: center; width: min(320px, 100%); display: grid; gap: var(--sp-sm); }
+.shot img { border-radius: 36px; border: var(--border-hairline) solid var(--line); box-shadow: var(--shadow-raised); width: 100%; height: auto; }
+.shot figcaption { font-size: var(--text-footnote); color: var(--text-secondary); text-align: center; }
+@media (max-width: 860px) { .herostage { grid-template-columns: 1fr; } }
+
+/* The week: a spine down the left (centre on wide screens), days as beats on it */
+.week { padding-block: var(--sp-section); border-top: var(--border-hairline) solid var(--line); }
+.week .intro { display: grid; gap: var(--sp-lg); margin-bottom: clamp(40px, 6vw, 72px); }
+.spine { position: relative; display: grid; gap: clamp(32px, 6vw, 80px); padding-left: 44px; }
+.spine::before { content: ""; position: absolute; left: 13px; top: 8px; bottom: 8px; width: var(--spine); background: var(--line); border-radius: 1px; }
+.spine::after { content: ""; position: absolute; left: 13px; top: 8px; width: var(--spine); height: calc(var(--progress, 0) * (100% - 16px)); background: var(--primary); border-radius: 1px; transition: height .1s linear; }
+.day { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+.day::before { content: ""; position: absolute; left: -38px; top: 10px; width: 16px; height: 16px; border-radius: 50%; background: var(--canvas); border: var(--border-thick) solid var(--line); transition: border-color var(--m-standard) var(--e-standard), background var(--m-standard) var(--e-standard); }
+.day.lit::before { border-color: var(--primary); background: var(--primary); }
+.day .text { display: grid; gap: var(--sp-md); }
+.day .when { font-family: var(--font-display); font-size: var(--text-title); font-weight: var(--weight-medium); color: var(--primary); font-variation-settings: "opsz" 48; }
+.day .who { font-family: var(--font-mono); font-size: var(--text-caption); letter-spacing: .12em; text-transform: uppercase; color: var(--text-secondary); }
+.day p { color: var(--text-secondary); max-width: 46ch; line-height: var(--leading-prose); }
+.day .art { justify-self: stretch; }
+@media (max-width: 760px) { .day { grid-template-columns: 1fr; } }
+
+/* Paper: the product moments as note-like cards built from the tokens */
+.paper { background: var(--surface); border: var(--border-hairline) solid var(--line); border-radius: var(--r-xl); box-shadow: var(--shadow-card); padding: var(--sp-xl); display: grid; gap: var(--sp-md); font-size: var(--text-subhead); }
+.paper .t { font-weight: var(--weight-semibold); font-size: var(--text-headline); display: flex; justify-content: space-between; gap: var(--sp-md); align-items: baseline; }
+.paper .m { color: var(--text-secondary); font-size: var(--text-footnote); }
+.list { display: grid; gap: var(--sp-sm); }
+.list div { display: flex; gap: var(--sp-sm); align-items: center; }
+.list i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--field-border); flex: none; }
+.list i.done { background: var(--success); border-color: var(--success); }
+.attach { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-sm); }
+.attach div { padding: var(--sp-md); border-radius: var(--r-md); background: var(--canvas); border: var(--border-hairline) solid var(--line); display: grid; gap: 2px; }
+.attach b { font-weight: var(--weight-semibold); font-size: var(--text-footnote); }
+.staff { display: grid; gap: 7px; padding: 12px 8px; background: #fff; border-radius: var(--r-sm); border: var(--border-hairline) solid #D8D4E4; }
+.staff span { height: 1px; background: #2B2838; display: block; }
+.strip { display: grid; grid-template-columns: auto 1fr auto; gap: var(--sp-md); align-items: center; padding: var(--sp-md); border-radius: var(--r-md); background: var(--canvas); border: var(--border-hairline) solid var(--line); }
+.timer { font-family: var(--font-mono); font-size: 28px; font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
+.rec { width: 36px; height: 36px; border-radius: 50%; background: var(--record); box-shadow: 0 0 0 5px rgba(229,72,77,.16); }
+.wave { display: flex; align-items: center; gap: 3px; height: 56px; }
+.wave b { flex: 1; background: var(--border); border-radius: 2px; min-height: 4px; }
+.wave b.p { background: var(--primary); }
+.wave b.pin { background: var(--accent); }
+.note { display: grid; grid-template-columns: auto 1fr; gap: var(--sp-md); padding: var(--sp-md) var(--sp-lg); border-radius: var(--r-md); background: var(--canvas); border: var(--border-hairline) solid var(--line); }
+.note b { font-family: var(--font-mono); font-weight: var(--weight-medium); color: var(--accent-text); font-variant-numeric: tabular-nums; }
+.quick { display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+.queue { display: grid; gap: var(--sp-xs); }
+.queue .row { display: grid; grid-template-columns: auto 1fr auto; gap: var(--sp-md); align-items: center; padding: var(--sp-sm) 0; border-bottom: var(--border-hairline) solid var(--line); min-height: var(--row-min); }
+.queue .row:last-child { border-bottom: 0; }
+.queue .n { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-secondary); font-size: var(--text-footnote); }
+.since { display: grid; gap: var(--sp-sm); }
+.since .row { display: flex; justify-content: space-between; gap: var(--sp-md); padding-block: 6px; border-bottom: var(--border-hairline) solid var(--line); }
+.since .row:last-child { border-bottom: 0; }
+.since b { font-family: var(--font-mono); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
+.days { display: flex; gap: 6px; } .days i { width: 22px; height: 22px; border-radius: var(--r-xs); background: var(--border); } .days i.y { background: var(--success); }
+
+/* A pull quote on the spine's last beat */
+.pull { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: var(--weight-medium); line-height: 1.25; max-width: 26ch; font-variation-settings: "opsz" 72; }
+
+/* Safety as a letter to parents */
+.letter { padding-block: var(--sp-section); border-top: var(--border-hairline) solid var(--line); background: var(--surface); }
+.letter .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.letter .body { display: grid; gap: var(--sp-lg); }
+.letter .body p { line-height: var(--leading-prose); max-width: 60ch; }
+.letter .signoff { font-family: var(--font-display); font-size: var(--text-title2); font-variation-settings: "opsz" 48; }
+.facts { display: grid; gap: var(--sp-sm); }
+.fact { display: grid; grid-template-columns: 28px 1fr; gap: var(--sp-md); padding: var(--sp-lg); border-radius: var(--r-lg); background: var(--canvas); border: var(--border-hairline) solid var(--line); align-items: start; }
+.fact .k { width: 28px; height: 28px; border-radius: var(--r-sm); background: rgba(31,182,166,.14); color: var(--success-text); display: grid; place-items: center; font-weight: var(--weight-semibold); font-size: var(--text-footnote); }
+.fact b { display: block; font-weight: var(--weight-semibold); }
+.fact span { color: var(--text-secondary); font-size: var(--text-subhead); }
+@media (max-width: 860px) { .letter .wrap { grid-template-columns: 1fr; } }
+
+/* Pricing and beta */
+.pricing { padding-block: var(--sp-section); border-top: var(--border-hairline) solid var(--line); }
+.pricing .wrap { display: grid; gap: var(--sp-xxl); }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--sp-lg); }
+.plan { padding: var(--sp-xl); border-radius: var(--r-xl); background: var(--surface); border: var(--border-hairline) solid var(--line); display: grid; gap: var(--sp-md); align-content: start; }
+.plan .price { font-family: var(--font-display); font-size: 2.4rem; font-weight: var(--weight-medium); line-height: 1; font-variation-settings: "opsz" 72; }
+.plan .price small { font-family: var(--font-body); font-size: var(--text-subhead); color: var(--text-secondary); }
+.plan ul { margin: 0; padding-left: 18px; color: var(--text-secondary); font-size: var(--text-subhead); display: grid; gap: var(--sp-xs); }
+.plan.hi { border-color: var(--primary); }
+.beta { padding-block: var(--sp-section); border-top: var(--border-hairline) solid var(--line); }
+.beta .wrap { display: grid; gap: var(--sp-xl); justify-items: start; }
+.beta form { display: flex; flex-wrap: wrap; gap: var(--sp-sm); width: 100%; }
+.beta input { flex: 1 1 240px; max-width: var(--form-max); min-height: var(--button-height); }
+.beta .ok { color: var(--success-text); font-size: var(--text-subhead); min-height: 1.5em; }
+.band { height: 4px; width: 180px; border-radius: 2px; background: var(--signature-gradient); }
+footer { border-top: var(--border-hairline) solid var(--line); padding-block: var(--sp-xl); font-size: var(--text-subhead); color: var(--text-secondary); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: var(--sp-lg); }
+footer a { color: var(--text-secondary); text-decoration: none; } footer a:hover { color: var(--text); }
+footer .sp { margin-left: auto; }
+
+/* Entrances: a 10px settle from a visible resting state, only once the JS runs */
+.js .in-view { transform: translateY(10px); transition: transform var(--m-entrance) var(--e-entrance); }
+.js .in-view.in { transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .js .in-view { transform: none; transition: none; } .spine::after { transition: none; } }
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="lockup brand" href="#top"><span class="tile"><img src="../shared/brandmark.png" alt="" width="17" height="21"></span><span class="word">Prova</span></a>
+    <nav aria-label="Sections"><a href="#week">The week</a><a href="#parents">For parents</a><a href="#pricing">Pricing</a><a href="#beta">Beta</a></nav>
+    <a class="btn primary small" href="#beta">Join the beta</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="stage herostage">
+    <div class="copy">
+      <p class="eyebrow">Music practice, for the week between lessons</p>
+      <h1>A lesson lasts an hour. The music gets learned in the week in between.</h1>
+      <p class="lede narrow">Prova keeps that week connected. The teacher sends the work. The student practices it, records the bar that's giving them trouble, and shares it. The teacher listens and answers on that exact moment. By the next lesson, you're both starting from the same place.</p>
+      <div class="ctas"><a class="btn key" href="#beta">Join the beta</a><a class="btn secondary" href="#parents">For parents</a></div>
+      <p class="meta"><span>Private teachers and directors</span><span>Students 13 and up</span><span>iPhone · beta</span></p>
+    </div>
+    <figure class="shot"><img src="../shared/today-max-light.jpg" alt="Prova's Today screen: Good evening, Maya. Next up: Minuet in G, bars 12 to 16, left hand alone. A Start practicing button, a 12-minute daily total, and the next lesson." width="440" height="956"><figcaption>Today, from the current build. Light mode.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="week" id="week">
+  <div class="wrap">
+    <div class="intro narrow"><p class="eyebrow">One week, one loop</p><h2>Saturday to Saturday.</h2><p class="lede">Here is the week between two lessons, as it goes with Prova. The line fills as you read.</p></div>
+    <div class="spine" id="spine">
+      <div class="day in-view"><div class="text"><span class="when">Saturday, after the lesson</span><span class="who">The teacher</span><h3>Send the week's work once.</h3><p>A few words on what to focus on, a checklist of steps, a tempo, a YouTube link and the sheet music, scanned with the camera or a PDF from Files. To one student, or all of them. Save it as a template, and next week takes a tap.</p></div>
+        <div class="art"><div class="paper" aria-label="New assignment, schematic"><div class="t"><span>Minuet in G</span><span class="status">Sent</span></div><div class="m">Bars 9–16 hands together. Keep the left hand light.</div><div class="list"><div><i></i>Bars 9–12, right hand</div><div><i></i>Bars 9–12, left hand</div><div><i></i>Bars 9–16 hands together</div><div><i></i>Full run at ♩ = 92</div></div><div class="attach"><div><b>Sheet music</b><span class="m">Minuet-in-G.pdf</span></div><div><b>YouTube link</b><span class="m">Slow practice, 3:12</span></div></div><div class="m">To Maya, and 5 others. Saved as a template.</div></div></div></div>
+      <div class="day in-view"><div class="text"><span class="when">Tuesday, 8 pm</span><span class="who">The student</span><h3>Practice it in one place.</h3><p>Score, timer, metronome and recorder together, with the teacher's note in view. It is the calmest screen in the app: no streaks, no badges, nothing that competes with the music. On days with nothing new, there are a few ideas to get you playing.</p></div>
+        <div class="art"><div class="paper" aria-label="Score practice, schematic"><div class="t"><span>Minuet in G</span><span class="m">2 of 4 steps</span></div><div class="staff" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="note"><b>Note</b><span>Keep the left hand light. Let the long note ring.</span></div><div class="strip"><span class="timer">12:04</span><span class="chip">♩ 92 · metronome</span><span class="rec" aria-label="Record"></span></div></div></div></div>
+      <div class="day in-view"><div class="text"><span class="when">Tuesday, 8:12 pm</span><span class="who">The student</span><h3>Record the bar that's giving them trouble.</h3><p>Twenty seconds is enough. A take stays private until the student chooses to share it, and sharing means their teacher, never a feed.</p></div>
+        <div class="art"><div class="paper" aria-label="A take, schematic"><div class="t"><span>Take 3 · bars 12–16</span><span class="status record">Rec 0:19</span></div><div class="wave" aria-hidden="true"><b class="p" style="height:40%"></b><b class="p" style="height:70%"></b><b class="p" style="height:55%"></b><b class="p" style="height:90%"></b><b class="p" style="height:35%"></b><b class="p" style="height:60%"></b><b style="height:80%"></b><b style="height:45%"></b><b style="height:65%"></b><b style="height:30%"></b><b style="height:75%"></b><b style="height:50%"></b><b style="height:85%"></b><b style="height:40%"></b><b style="height:60%"></b><b style="height:70%"></b><b style="height:35%"></b><b style="height:55%"></b><b style="height:62%"></b><b style="height:48%"></b></div><div class="quick"><span class="chip" style="background:rgba(31,182,166,.14)">Only me</span><span class="chip">Share with my teacher</span></div><div class="m">Private until you choose. Your teacher is told when you share.</div></div></div></div>
+      <div class="day in-view"><div class="text"><span class="when">Wednesday, lunch</span><span class="who">The teacher</span><h3>Answer the exact moment.</h3><p>Play the take and stop where it matters. The note is pinned to that second, and the student taps it to hear exactly what you mean, at full speed or half. Short on time? A quick response takes one tap.</p></div>
+        <div class="art"><div class="paper" aria-label="Take review, schematic"><div class="t"><span>Maya · take 3</span><span class="m">0:47</span></div><div class="wave" aria-hidden="true"><b class="p" style="height:40%"></b><b class="p" style="height:70%"></b><b class="p" style="height:55%"></b><b class="p" style="height:90%"></b><b class="p" style="height:35%"></b><b class="p" style="height:60%"></b><b class="p" style="height:80%"></b><b class="pin" style="height:95%"></b><b style="height:65%"></b><b style="height:30%"></b><b style="height:75%"></b><b style="height:50%"></b><b style="height:85%"></b><b style="height:40%"></b><b style="height:60%"></b><b style="height:70%"></b><b style="height:35%"></b><b class="pin" style="height:92%"></b><b style="height:62%"></b><b style="height:48%"></b></div><div class="note"><b>0:18</b><span>Let the half note ring its full value.</span></div><div class="note"><b>0:41</b><span>Lovely dynamics here, keep that.</span></div><div class="quick"><span class="chip">So much better</span><span class="chip">Lovely sound</span><span class="chip">Ready to perform</span></div></div></div></div>
+      <div class="day in-view"><div class="text"><span class="when">Friday evening</span><span class="who">The teacher</span><h3>Review the week in one sitting.</h3><p>This Week lines up the takes your students sent, with whoever has the most waiting first. Listen, answer, move to the next student. Students who practiced without sending a take are listed too, with nothing for you to do.</p></div>
+        <div class="art"><div class="paper" aria-label="This Week, schematic"><div class="t"><span>This Week</span><span class="m">4 takes to hear</span></div><div class="queue"><div class="row"><span class="avatar">MR</span><span>Maya Rivera<br><span class="m">Minuet in G · 2 takes</span></span><span class="n">2</span></div><div class="row"><span class="avatar">JL</span><span>Jonah Lee<br><span class="m">Gavotte · 1 take</span></span><span class="n">1</span></div><div class="row"><span class="avatar">AO</span><span>Amara Osei<br><span class="m">Scales · 1 take</span></span><span class="n">1</span></div><div class="row"><span class="avatar">TK</span><span>Theo Kim<br><span class="m">Practiced 4 days · nothing to hear</span></span><span class="n">–</span></div></div></div></div></div>
+      <div class="day in-view"><div class="text"><span class="when">Saturday, the next lesson</span><span class="who">Both of you</span><h3>Walk in knowing the week.</h3><p>Days practiced, time on each piece, the takes sent and the last thing you told them. The lesson starts where the practice left off, not with "so, how did the week go?"</p></div>
+        <div class="art"><div class="paper" aria-label="Since last lesson, schematic"><div class="t"><span>Since last lesson</span><span class="m">Maya · Violin</span></div><div class="since"><div class="row"><span>Days practiced</span><b>5 of 7</b></div><div class="days" aria-hidden="true"><i class="y"></i><i class="y"></i><i></i><i class="y"></i><i class="y"></i><i class="y"></i><i></i></div><div class="row"><span>Minuet in G</span><b>62 min</b></div><div class="row"><span>Scales, G major</span><b>40 min</b></div><div class="row"><span>New takes</span><b>1</b></div><div class="row"><span>Your last note</span><span class="m">"Let the long note ring."</span></div></div></div></div></div>
+    </div>
+    <p class="m" style="margin-top:var(--sp-xl);color:var(--warning-text);font-size:var(--text-footnote)">The six cards are schematic, built from the app's tokens. Real screen recordings replace them.</p>
+  </div>
+</section>
+
+<section class="letter" id="parents">
+  <div class="wrap">
+    <div class="body">
+      <p class="eyebrow">A note for parents</p>
+      <h2>What Prova knows about your child, and who sees it.</h2>
+      <p>Music students skew young, and a recording of a child's voice is personal information. We designed Prova around that, from the data model up, and we'd rather tell you plainly than make you read a policy to find out.</p>
+      <p>Prova stores your child's name and email, their practice log, and the takes they choose to share. Their teacher sees those. Nobody else does. There is no public feed, no leaderboard, no way for a stranger to reach them: students join with a class code and the teacher approves each one.</p>
+      <p>There are no ads and no third-party analytics. Nothing is sold or profiled. Data lives in the United States. Your child can delete the account, recordings and history from Profile at any time, and so can you with them.</p>
+      <p>The beta is for students 13 and up. The plan is for younger students to join through a parent, with verifiable consent, before public launch. <span>A parent view, where you hear the take and see the week, is being built.</span></p>
+      <p class="signoff">Prova</p>
+      <a class="btn secondary" href="../../docs/privacy.html">Read the privacy policy</a>
+    </div>
+    <div class="facts" aria-label="Safety facts">
+      <div class="fact in-view"><span class="k">13+</span><div><b>Ages 13 and up in the beta</b><span>Younger students are screened out at sign-up, kindly, until the parent path ships.</span></div></div>
+      <div class="fact in-view"><span class="k">●</span><div><b>Private by default</b><span>A take stays with the student until they share it, and sharing means the teacher.</span></div></div>
+      <div class="fact in-view"><span class="k">0</span><div><b>No ads, no third-party analytics</b><span>Nothing sold, nothing profiled.</span></div></div>
+      <div class="fact in-view"><span class="k">1</span><div><b>One code brings a studio in</b><span>The teacher approves every student. Nobody else gets in.</span></div></div>
+      <div class="fact in-view"><span class="k">!</span><div><b>Report and block from any message</b><span>Reports come to us, not to the person reported, and every one is reviewed within 24 hours.</span></div></div>
+      <div class="fact in-view"><span class="k">×</span><div><b>Delete everything, any time</b><span>Profile → Delete account removes the account, recordings and practice history straight away.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="narrow" style="display:grid;gap:var(--sp-lg)"><p class="eyebrow">Pricing</p><h2>Free during the beta.</h2><p class="lede">When pricing arrives, teachers pay; students and parents never do.</p></div>
+    <div class="plans">
+      <div class="plan in-view"><p class="eyebrow">Beta</p><div class="price">Free <small>until launch</small></div><ul><li>Everything, for the whole studio</li><li>Unlimited students and takes</li><li>Your feedback shapes the app</li></ul><a class="btn primary" href="#beta">Join the beta</a></div>
+            <div class="plan in-view"><p class="eyebrow">Students and parents</p><div class="price">Free <small>always</small></div><ul><li>Join with a class code</li><li>Practice, record, hear notes</li><li>Practice on your own, with no teacher</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="beta" id="beta">
+  <div class="wrap">
+    <span class="band" aria-hidden="true"></span>
+    <h2>Bring your studio to the beta.</h2>
+    <p class="lede narrow">Teachers get the TestFlight build, create a studio and share one class code. Students ask their teacher for the code. iPhone, iOS 16 and up.</p>
+    <form id="invite" aria-label="Request an invite"><label class="eyebrow" for="email" style="width:100%">Teacher email</label><input class="field" id="email" type="email" placeholder="you@yourstudio.com" required><button class="btn primary" type="submit">Request an invite</button></form>
+    <p class="ok" id="ok" aria-live="polite"></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>Prova · 2026</span><a href="../../docs/privacy.html">Privacy policy</a><a href="../../docs/terms.html">Terms of service</a><a href="../../docs/support.html">Support</a><button class="face" id="face" type="button">Type: system</button><span class="sp">Direction B · The week · prototype</span></div>
+</footer>
+
+<script>
+(() => {
+  document.documentElement.classList.add("js");
+  const rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  // Entrances from a visible resting state
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
+  document.querySelectorAll(".in-view").forEach(el => io.observe(el));
+  // The spine fills as the reader scrolls; each day lights when the line reaches it
+  const spine = document.getElementById("spine"), days = [...spine.querySelectorAll(".day")];
+  function onScroll() { const r = spine.getBoundingClientRect(), vh = innerHeight; const p = clamp((vh * 0.6 - r.top) / r.height); spine.style.setProperty("--progress", p);
+    days.forEach(d => { const dr = d.getBoundingClientRect(); d.classList.toggle("lit", dr.top + 10 <= vh * 0.6); }); }
+  if (rm) { spine.style.setProperty("--progress", 1); days.forEach(d => d.classList.add("lit")); } else { addEventListener("scroll", onScroll, { passive: true }); addEventListener("resize", onScroll); onScroll(); }
+  const face = document.getElementById("face"), root = document.documentElement; const label = () => { face.textContent = root.dataset.face === "display" ? "Type: Fraunces" : "Type: system"; };
+  face.addEventListener("click", () => { if (root.dataset.face === "display") delete root.dataset.face; else root.dataset.face = "display"; label(); }); label();
+  document.getElementById("invite").addEventListener("submit", e => { e.preventDefault(); document.getElementById("ok").textContent = "Thanks. Until the form is wired, email the support address on the Support page and we'll send the TestFlight link."; });
+})();
+</script>

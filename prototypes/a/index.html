@@ -1,0 +1,437 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prova Night Ground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+/* Direction A · Night ground. Dark by design: the icon's night (#060511) is the page's ground and the
+   signature gradient is the only light. One pinned phone, the copy scrolls past it.
+   Tokens: ../shared/tokens.css (see ../TOKENS.md). This direction pins the DARK appearance in both
+   themes on purpose (TOKENS.md §7, "Direction A's night ground") and adds Geist for headings only. */
+:root, :root[data-theme="light"], :root[data-theme="dark"] {
+  --canvas: #131019; --surface: #1E1A2B; --surface-elevated: #272235; --text: #F4F2FA; --text-secondary: #9A95AD; --text-inverse: #1A1726;
+  --primary: #9992FC; --primary-fill: #675FE3; --primary-pressed: #574FD0; --primary-wash: rgba(153, 146, 252, 0.14);
+  --accent: #FD7267; --accent-text: #FD7267; --success: #1FB6A6; --success-text: #1FB6A6; --warning: #F5A623; --warning-text: #F5A623;
+  --border: #342E47; --separator: #342E47; --field-border: #726C89; --shadow-card: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+:root[data-theme="light"][data-face="display"], :root[data-face="display"] { --font-display: "Geist", var(--font-body); }  /* off by default: the site keeps the system stack (brand system, approved) */
+:root {
+  /* Local aliases onto the shared semantic tokens */
+  --ink: var(--text); --muted: var(--text-secondary); --mist: var(--border); --raise: var(--surface-elevated); --edge: var(--field-border);
+  --coral: var(--accent); --teal: var(--success); --amber: var(--warning);
+  --signature: var(--signature-gradient); --celebration: var(--celebration-gradient);
+  --font: var(--font-body); --mono: var(--font-mono); --max: var(--container-max);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--night); color: var(--ink); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 4.4rem); }
+h2 { font-size: clamp(1.7rem, 4vw, 2.8rem); }
+h3 { font-size: 1.25rem; letter-spacing: -0.01em; }
+p { margin: 0; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: 20px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--muted); max-width: 58ch; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: var(--r-lg);
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: transform .15s ease-out, background .15s; }
+.btn:active { transform: scale(.98); }
+.btn.primary { background: var(--primary-fill); color: #fff; }
+.btn.primary:hover { background: var(--primary-pressed); }
+.btn.secondary { background: transparent; color: var(--primary); border-color: var(--mist); }
+.btn.secondary:hover { background: rgba(153,146,252,.08); }
+.btn:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(6,5,17,.72); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid rgba(52,46,71,.6); }
+.nav .wrap { display: flex; align-items: center; gap: 18px; min-height: 60px; }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 600; }
+#brand-slot { width: 32px; height: 32px; border-radius: 22.4%; background: var(--night); border: 1px solid var(--mist); display: grid; place-items: center; overflow: hidden; }
+#brand-slot img { width: 61%; height: auto; }
+.nav nav { margin-left: auto; display: flex; gap: 18px; font-size: 15px; }
+.nav nav a { color: var(--muted); text-decoration: none; } .nav nav a:hover { color: var(--ink); }
+.nav .btn { min-height: 40px; padding: 0 16px; border-radius: 14px; }
+@media (max-width: 720px) { .nav nav { display: none; } }
+
+/* Hero */
+.hero { position: relative; padding-block: clamp(48px, 9vw, 110px) 40px; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 40px; align-items: center; }
+.hero .copy { display: grid; gap: 22px; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero.stage { border-radius: 0; box-shadow: none; }  /* the home header is the night stage, full-bleed on the night page */
+.face { font: inherit; font-size: var(--text-footnote); color: var(--text-secondary); background: none; border: var(--border-hairline) solid var(--border); border-radius: var(--r-pill); padding: 4px 12px; min-height: 32px; cursor: pointer; } .face:hover { color: var(--text); }
+
+.hero .meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.hero .meta span::before { content: "·"; margin-right: 14px; } .hero .meta span:first-child::before { content: none; margin: 0; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero .shot { order: 2; justify-self: center; } }
+
+/* The phone */
+.phone { width: min(300px, 100%); aspect-ratio: 440 / 956; border-radius: 44px; background: var(--night); border: 1px solid var(--mist);
+  box-shadow: 0 0 0 6px #0B0A16, 0 30px 80px rgba(0,0,0,.6), 0 0 120px rgba(99,119,251,.12); position: relative; overflow: hidden; margin-inline: auto; }
+.phone img { width: 100%; height: 100%; object-fit: cover; }
+.phone .screen { position: absolute; inset: 0; opacity: 0; transition: opacity .25s ease-in-out; background: var(--canvas); padding: 54px 18px 18px; display: grid; align-content: start; gap: 10px; font-size: 13px; }
+.phone .screen.on { opacity: 1; }
+.phone .screen .bar { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 15px; }
+.phone .screen .bar small { color: var(--primary); font-weight: 500; }
+.card { background: var(--surface); border: 1px solid var(--mist); border-radius: 16px; padding: 12px; display: grid; gap: 6px; }
+.card .t { font-weight: 600; font-size: 14px; }
+.card .m { color: var(--muted); font-size: 12px; }
+.field { background: var(--raise); border: 1px solid var(--edge); border-radius: 12px; padding: 9px 11px; min-height: 0; font-size: 13px; }
+.steps { display: grid; gap: 6px; }
+.steps div { display: flex; gap: 8px; align-items: center; }
+.steps i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--edge); display: inline-block; }
+.steps i.done { background: var(--teal); border-color: var(--teal); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(153,146,252,.14); color: var(--ink); }
+.pill { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: rgba(31,182,166,.14); color: var(--ink); display: inline-flex; gap: 6px; align-items: center; }
+.pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+.pill.rec::before { background: var(--record); }
+.pill.rec { background: rgba(229,72,77,.14); }
+.avatars { display: flex; } .avatars span { width: 24px; height: 24px; border-radius: 50%; background: rgba(153,146,252,.25); border: 2px solid var(--surface); margin-left: -6px; display: grid; place-items: center; font-size: 10px; font-weight: 600; }
+.avatars span:first-child { margin-left: 0; }
+.pbtn { background: var(--primary-fill); color: #fff; border-radius: 14px; padding: 11px; text-align: center; font-weight: 600; font-size: 14px; }
+.staff { display: grid; gap: 7px; padding: 10px 6px; background: #fff; border-radius: 10px; }
+.staff span { height: 1px; background: #222; display: block; }
+.timer { font-family: var(--mono); font-size: 30px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.wave { display: flex; align-items: center; gap: 2px; height: 46px; }
+.wave b { flex: 1; background: var(--primary); border-radius: 2px; min-height: 3px; }
+.wave.live b { animation: wave 1.1s ease-in-out infinite; }
+.wave.live b:nth-child(odd) { animation-delay: -.35s; } .wave.live b:nth-child(3n) { animation-delay: -.7s; }
+@keyframes wave { 0%,100% { transform: scaleY(.5); } 50% { transform: scaleY(1); } }
+.comment { display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 12px; align-items: start; }
+.comment b { font-family: var(--mono); font-weight: 500; color: var(--primary); }
+.rec-btn { width: 56px; height: 56px; border-radius: 50%; background: var(--record); margin: 4px auto 0; box-shadow: 0 0 0 6px rgba(229,72,77,.18); }
+.caption { font-size: 13px; color: var(--muted); text-align: center; margin-top: 10px; }
+.caption em { color: var(--amber); font-style: normal; }
+
+/* Pain */
+.pain { padding-block: clamp(70px, 10vw, 140px); background: var(--canvas); border-block: 1px solid var(--mist); }
+.pain .wrap { display: grid; gap: 40px; }
+.pain .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px; }
+.pain .two > div { display: grid; gap: 10px; padding: 24px; border-radius: var(--r-xl); background: var(--surface); border: 1px solid var(--mist); }
+.pain .two p { color: var(--muted); font-size: 1.05rem; }
+.pain .two h3 { color: var(--ink); }
+.pain q { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -0.02em; quotes: "“" "”"; display: block; max-width: 20ch; }
+
+/* The loop */
+.loop { padding-block: clamp(70px, 10vw, 140px); }
+.loop .head { display: grid; gap: 14px; margin-bottom: 40px; max-width: 60ch; }
+.loop .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.loop .sticky { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); }
+.loop .steps-col { display: grid; gap: 16px; }
+.step { min-height: 62vh; display: grid; align-content: center; gap: 12px; padding: 24px; border-radius: var(--r-xl); border: 1px solid transparent; transition: border-color .25s, background .25s; }
+.step.on { border-color: var(--mist); background: rgba(30,26,43,.6); }
+.step .n { font-family: var(--mono); color: var(--primary); font-size: 13px; }
+.step p { color: var(--muted); font-size: 1.05rem; max-width: 46ch; }
+@media (max-width: 860px) { .loop .grid { grid-template-columns: 1fr; } .loop .sticky { position: sticky; top: 64px; z-index: 2; background: var(--night); padding-block: 8px; }
+  .phone { width: min(230px, 70vw); } .step { min-height: 0; padding: 18px; } }
+
+/* Feedback */
+.feedback { padding-block: clamp(70px, 10vw, 140px); background: var(--canvas); border-block: 1px solid var(--mist); }
+.feedback .head { display: grid; gap: 14px; max-width: 60ch; margin-bottom: 36px; }
+.player { background: var(--surface); border: 1px solid var(--mist); border-radius: var(--r-xl); padding: 24px; display: grid; gap: 16px; }
+.player .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.player .top .title { font-weight: 600; } .player .top .title small { color: var(--muted); font-weight: 400; margin-left: 10px; }
+.bigwave { position: relative; height: 140px; }
+.bigwave canvas { width: 100%; height: 100%; display: block; }
+.bigwave .head-line { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); left: 0; transform: translateX(-1px); }
+.bigwave .pin { position: absolute; top: -8px; width: 14px; height: 14px; border-radius: 50%; background: var(--coral); transform: translateX(-7px) scale(.6); opacity: .5; transition: transform .35s cubic-bezier(.3,1.5,.5,1), opacity .2s; box-shadow: 0 0 0 4px rgba(253,114,103,.18); }
+.bigwave .pin.hit { transform: translateX(-7px) scale(1); opacity: 1; }
+.notes { display: grid; gap: 10px; }
+.note { display: grid; grid-template-columns: auto 1fr; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--raise); border: 1px solid var(--mist); opacity: .45; transform: translateY(4px); transition: opacity .3s, transform .3s; }
+.note.hit { opacity: 1; transform: none; }
+.note b { font-family: var(--mono); font-weight: 500; color: var(--coral); }
+.quick { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.quick .lbl { font-size: 13px; color: var(--muted); margin-right: 4px; }
+.quick .chip { padding: 8px 14px; font-size: 14px; }
+.ratings { font-size: 14px; color: var(--muted); }
+.ratings b { color: var(--ink); font-weight: 500; }
+
+/* Week */
+.week { padding-block: clamp(70px, 10vw, 140px); }
+.week .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
+.week .copy { display: grid; gap: 14px; }
+.week .copy p { color: var(--muted); font-size: 1.05rem; max-width: 46ch; }
+.since { background: var(--surface); border: 1px solid var(--mist); border-radius: var(--r-xl); padding: 22px; display: grid; gap: 14px; }
+.since .row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: baseline; padding-block: 8px; border-bottom: 1px solid var(--mist); }
+.since .row:last-of-type { border-bottom: 0; }
+.since .row b { font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.days { display: flex; gap: 6px; }
+.days i { width: 22px; height: 22px; border-radius: 6px; background: var(--mist); }
+.days i.y { background: var(--teal); }
+.bars { display: grid; gap: 6px; }
+.bars div { display: grid; grid-template-columns: 110px 1fr auto; gap: 10px; align-items: center; font-size: 14px; }
+.bars span { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--primary-fill), var(--primary)); }
+@media (max-width: 860px) { .week .wrap { grid-template-columns: 1fr; } }
+
+/* Safety */
+.safety { padding-block: clamp(70px, 10vw, 140px); background: var(--canvas); border-block: 1px solid var(--mist); }
+.safety .head { display: grid; gap: 14px; max-width: 60ch; margin-bottom: 36px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+.fact { padding: 20px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--mist); display: grid; gap: 8px; }
+.fact .k { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(31,182,166,.14); color: var(--teal); font-weight: 600; }
+.fact p { color: var(--muted); font-size: 15px; }
+.parents { margin-top: 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; padding: 28px; border-radius: var(--r-xl); background: var(--surface); border: 1px solid var(--mist); }
+.parents .copy { display: grid; gap: 12px; } .parents p, .parents li { color: var(--muted); }
+.parents ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+@media (max-width: 760px) { .parents { grid-template-columns: 1fr; } }
+
+/* Pricing and beta */
+.pricing { padding-block: clamp(70px, 10vw, 140px); }
+.pricing .wrap { display: grid; gap: 28px; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+.plan { padding: 24px; border-radius: var(--r-xl); background: var(--surface); border: 1px solid var(--mist); display: grid; gap: 10px; align-content: start; }
+.plan .price { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; }
+.plan .price small { font-size: .95rem; color: var(--muted); font-weight: 400; letter-spacing: 0; }
+.plan ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 4px; }
+.plan.hi { border-color: var(--primary); box-shadow: 0 0 60px rgba(103,95,227,.18); }
+.beta { padding-block: clamp(70px, 10vw, 140px); position: relative; overflow: hidden; }
+.beta .wrap { display: grid; gap: 22px; text-align: center; justify-items: center; }
+.beta .band { height: 4px; width: 160px; border-radius: 2px; background: var(--signature); }
+.beta .ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.beta form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.beta input { font: inherit; min-height: 52px; padding: 0 16px; border-radius: var(--r-lg); border: 1px solid var(--edge); background: var(--surface); color: var(--ink); min-width: 240px; }
+.beta .ok { color: var(--teal); font-size: 15px; min-height: 1.5em; }
+.beta .glow { position: absolute; inset: auto 0 -40%; height: 60%; background: radial-gradient(ellipse at bottom, rgba(103,95,227,.35), transparent 60%); pointer-events: none; }
+footer { border-top: 1px solid var(--mist); padding-block: 28px; font-size: 14px; color: var(--muted); }
+footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+footer a { color: var(--muted); text-decoration: none; } footer a:hover { color: var(--ink); }
+footer .sp { margin-left: auto; }
+
+/* The Downbeat curtain (JS adds it; the page stands without it) */
+#curtain { position: fixed; inset: 0; background: var(--night); z-index: 50; pointer-events: none; }
+#tile { position: fixed; z-index: 51; left: 0; top: 0; background: var(--night); border-radius: 22.4%; display: grid; place-items: center; pointer-events: none; will-change: transform, width, height; }
+#tile img { width: 61%; height: auto; }
+
+/* Reveal from a visible resting state: only a 10px lift, and only when the JS runs */
+.js .reveal { transform: translateY(10px); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.js .reveal.in { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { transform: none; transition: none; }
+  .wave.live b { animation: none; }
+  .note, .bigwave .pin, .phone .screen, .step, .btn { transition: none; }
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="lockup brand" href="#top" id="brand"><span class="tile" id="brand-slot"><img src="../shared/brandmark.png" alt="" width="20" height="24"></span><span class="word">Prova</span></a>
+    <nav aria-label="Sections"><a href="#loop">The loop</a><a href="#feedback">Feedback</a><a href="#safety">Safety</a><a href="#parents">Parents</a><a href="#pricing">Pricing</a></nav>
+    <a class="btn primary" href="#beta">Join the beta</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero stage">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow">Prova · Music practice · iPhone · Beta</p>
+      <h1>A lesson lasts an hour. The music gets learned in the week in between.</h1>
+      <p class="lede">Prova keeps that week connected. The teacher sends the work. The student practices it, records the bar that's giving them trouble, and shares it. The teacher listens and answers on that exact moment.</p>
+      <div class="ctas"><a class="btn key" href="#beta">Join the beta</a><a class="btn secondary" href="#parents">I'm a parent</a></div>
+      <p class="meta"><span>Private teachers and directors</span><span>Students 13 and up</span><span>No ads</span></p>
+    </div>
+    <div class="shot">
+      <div class="phone" aria-label="Prova's Today screen, in dark mode"><img src="../shared/today-max-dark.jpg" alt="Today: Good evening, Maya. Next up: Minuet in G, bars 12 to 16, left hand alone. Start practicing." width="440" height="956"></div>
+      <p class="caption">The real Today screen, from the current build.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pain">
+  <div class="wrap">
+    <q class="reveal">So, how did the week go?</q>
+    <div class="two">
+      <div class="reveal"><p class="eyebrow">The teacher</p><h3>The first ten minutes go to catching up.</h3><p>Did they practice? What did they try? Where did it fall apart? You find out by asking, and the lesson starts late.</p></div>
+      <div class="reveal"><p class="eyebrow">The student</p><h3>Tuesday night. Bar 12 still won't come together.</h3><p>The lesson is on Saturday. Until then, there's nobody to ask and nothing to show.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="loop" id="loop">
+  <div class="wrap">
+    <div class="head"><p class="eyebrow">The loop</p><h2>Send. Practice. Record. Answer.</h2><p class="lede">One turn of the loop, and the next lesson starts where the practice left off.</p></div>
+    <div class="grid">
+      <div class="sticky">
+        <div class="phone" id="loop-phone" aria-live="polite">
+          <div class="screen on" data-screen="1" aria-label="New assignment">
+            <div class="bar"><span>New assignment</span><small>Send</small></div>
+            <div class="field">Bach Minuet in G</div>
+            <div class="field" style="font-size:12px;color:var(--muted)">Bars 9–16 hands together. Keep the left hand light.</div>
+            <div class="card"><div class="t">Steps</div><div class="steps"><div><i></i>Bars 9–12, right hand</div><div><i></i>Bars 9–12, left hand</div><div><i></i>Bars 9–16 hands together</div><div><i></i>Full run at ♩ = 92</div></div></div>
+            <div class="card"><div class="t">Sheet music</div><div class="m">Minuet-in-G.pdf · scanned from the stand</div><div class="t" style="margin-top:4px">YouTube link</div><div class="m">Slow practice, 3:12</div></div>
+            <div class="card"><div class="t">Assign to</div><div style="display:flex;justify-content:space-between;align-items:center"><div class="avatars"><span>MR</span><span>JL</span><span>AO</span><span>TK</span><span>+2</span></div><small style="color:var(--primary)">Select all</small></div></div>
+            <div class="pbtn">Send</div>
+          </div>
+          <div class="screen" data-screen="2" aria-label="Score practice">
+            <div class="bar"><span>Minuet in G</span><small>Done</small></div>
+            <div class="staff" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="staff" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="card"><div class="m">From your teacher</div><div class="t" style="font-weight:500">Keep the left hand light. Let the long note ring.</div></div>
+            <div class="card"><div class="m">2 of 4 · Bars 9–16 hands together</div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center"><div class="timer">12:04</div><div class="chip">♩ 92</div><div class="pill rec">rec</div></div>
+          </div>
+          <div class="screen" data-screen="3" aria-label="Recorder">
+            <div class="bar"><span>Recording</span><small>0:19</small></div>
+            <div class="card"><div class="m">Minuet in G · bars 12–16</div><div class="wave live" aria-hidden="true"><b style="height:40%"></b><b style="height:70%"></b><b style="height:55%"></b><b style="height:90%"></b><b style="height:35%"></b><b style="height:60%"></b><b style="height:80%"></b><b style="height:45%"></b><b style="height:65%"></b><b style="height:30%"></b><b style="height:75%"></b><b style="height:50%"></b><b style="height:85%"></b><b style="height:40%"></b><b style="height:60%"></b><b style="height:70%"></b><b style="height:35%"></b><b style="height:55%"></b></div></div>
+            <div class="rec-btn" aria-hidden="true"></div>
+            <div class="card"><div class="t">Who can hear this</div><div class="chips"><span class="chip" style="background:rgba(31,182,166,.18)">Only me</span><span class="chip">My teacher</span></div><div class="m">Private until you choose. Takes never go to a feed.</div></div>
+          </div>
+          <div class="screen" data-screen="4" aria-label="Take review">
+            <div class="bar"><span>Maya · take 3</span><small>0:47</small></div>
+            <div class="card"><div class="wave" aria-hidden="true"><b style="height:40%"></b><b style="height:70%"></b><b style="height:55%"></b><b style="height:90%;background:var(--coral)"></b><b style="height:35%"></b><b style="height:60%"></b><b style="height:80%"></b><b style="height:45%"></b><b style="height:65%;background:var(--coral)"></b><b style="height:30%"></b><b style="height:75%"></b><b style="height:50%"></b><b style="height:85%"></b><b style="height:40%"></b><b style="height:60%"></b><b style="height:70%"></b><b style="height:35%"></b><b style="height:55%"></b></div></div>
+            <div class="card"><div class="comment"><b>0:18</b><span>Let the half note ring its full value.</span></div><div class="comment"><b>0:41</b><span>Lovely dynamics here, keep that.</span></div></div>
+            <div class="card"><div class="m">Quick response</div><div class="chips"><span class="chip">So much better</span><span class="chip">Lovely sound</span><span class="chip">Ready to perform</span></div></div>
+            <div class="pbtn">Send note</div>
+          </div>
+        </div>
+        <p class="caption"><em>Schematic.</em> Real screen recordings replace these four screens.</p>
+      </div>
+      <div class="steps-col">
+        <div class="step on" data-step="1"><span class="n">01 · Teacher</span><h3>Send the week's work once.</h3><p>A few words on what to focus on, a checklist of steps, a tempo, a YouTube link and the sheet music, scanned with the camera or a PDF from Files. To one student, or all of them. Save it as a template, and next week takes a tap.</p></div>
+        <div class="step" data-step="2"><span class="n">02 · Student</span><h3>Practice it in one place.</h3><p>Score, timer, metronome and recorder together, with the teacher's note in view. The practice screen is the calmest screen in the app: no streaks, no badges, nothing that competes with the music.</p></div>
+        <div class="step" data-step="3"><span class="n">03 · Student</span><h3>Record the bar that's giving them trouble.</h3><p>Twenty seconds is enough. A take stays private until the student chooses to share it, and sharing means the teacher, never a feed.</p></div>
+        <div class="step" data-step="4"><span class="n">04 · Teacher</span><h3>Answer the exact moment.</h3><p>Play the take and stop where it matters. The note is pinned to that second, and the student taps it to hear exactly what you mean. Short on time? A quick response takes one tap.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feedback" id="feedback">
+  <div class="wrap">
+    <div class="head"><p class="eyebrow">Feedback on the recording</p><h2>Hear the practice, not just the lesson.</h2><p class="lede">Scroll to move through the take. The teacher's notes sit on the seconds they're about, and the student taps a note to hear that moment again, at full speed or half.</p></div>
+    <div class="player" id="player">
+      <div class="top"><div class="title">Minuet in G, take 3<small>Maya · Tuesday 8:12 pm · 0:47</small></div><span class="pill">Shared with teacher</span></div>
+      <div class="bigwave" id="bigwave"><canvas id="wavecanvas" width="1200" height="140" aria-hidden="true"></canvas><div class="head-line" id="headline"></div><div class="pin" data-at="18" style="left:38.3%"></div><div class="pin" data-at="41" style="left:87.2%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted)"><span id="tc">0:00</span><span>0:47</span></div>
+      <div class="notes">
+        <div class="note" data-at="18"><b>0:18</b><span>Let the half note ring its full value.</span></div>
+        <div class="note" data-at="41"><b>0:41</b><span>Lovely dynamics here, keep that.</span></div>
+      </div>
+      <div class="quick"><span class="lbl">Quick response</span><span class="chip">So much better</span><span class="chip">Lovely sound</span><span class="chip">Ready to perform</span></div>
+      <p class="ratings">The rating scale is encouraging at every step: <b>Keep going · Coming along · Solid · Mastered</b>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="week">
+  <div class="wrap">
+    <div class="copy reveal"><p class="eyebrow">For teachers</p><h2>Walk in knowing the week.</h2><p>Before each lesson, see the days they practiced, the time on each piece, the takes they sent and the last thing you told them. This Week lines up every take your students shared, with whoever has the most waiting first.</p><p>A big roster: one code for the whole program, Approve all when the requests arrive, and the next player one tap away.</p></div>
+    <div class="since reveal" aria-label="Since last lesson">
+      <div><p class="eyebrow">Since last lesson</p><h3>Maya Rivera · Violin</h3></div>
+      <div class="row"><span>Days practiced</span><b>5 of 7</b></div>
+      <div class="days" aria-hidden="true"><i class="y"></i><i class="y"></i><i></i><i class="y"></i><i class="y"></i><i class="y"></i><i></i></div>
+      <div class="row"><span>Time on each piece</span><b>1 h 42 min</b></div>
+      <div class="bars"><div><span style="display:block;height:auto;background:none;color:var(--muted)">Minuet in G</span><span style="width:78%"></span><b style="font-family:var(--mono);font-weight:500">62 min</b></div><div><span style="display:block;height:auto;background:none;color:var(--muted)">Scales, G major</span><span style="width:46%"></span><b style="font-family:var(--mono);font-weight:500">40 min</b></div></div>
+      <div class="row"><span>New takes</span><b>1</b></div>
+      <div class="row"><span>Your last note</span><span style="color:var(--muted);text-align:right">"Let the long note ring."</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="safety" id="safety">
+  <div class="wrap">
+    <div class="head"><p class="eyebrow">Safety and privacy</p><h2>Built for a studio of kids.</h2><p class="lede">Music students skew young, and a recording of a child's voice is personal information. Prova is designed around that, from the data model up.</p></div>
+    <div class="facts">
+      <div class="fact reveal"><span class="k">13+</span><h3>Ages 13 and up in the beta.</h3><p>The plan is for younger students to join through a parent, with verifiable consent, before public launch. Until then they're screened out at sign-up, kindly.</p></div>
+      <div class="fact reveal"><span class="k">●</span><h3>Private by default.</h3><p>A take stays with the student until they share it, and sharing means their teacher. There is no public feed.</p></div>
+      <div class="fact reveal"><span class="k">0</span><h3>No ads. No third-party analytics.</h3><p>Nothing is sold, profiled or shared with advertisers. Data lives in the United States.</p></div>
+      <div class="fact reveal"><span class="k">1</span><h3>One code brings a studio in.</h3><p>Students join with the teacher's class code, and the teacher approves each one. Nobody can reach a student the teacher didn't admit.</p></div>
+      <div class="fact reveal"><span class="k">!</span><h3>Report and block, from any message.</h3><p>Reports come to us, not to the person reported, and every one is reviewed within 24 hours.</p></div>
+      <div class="fact reveal"><span class="k">×</span><h3>Delete everything, any time.</h3><p>Profile → Delete account removes the account, recordings and practice history straight away.</p></div>
+    </div>
+    <div class="parents" id="parents">
+      <div class="copy"><p class="eyebrow">For parents</p><h2>What Prova knows, and who sees it.</h2><p>Your child's name and email, their practice log, and the takes they choose to share. Their teacher sees those. Nobody else does.</p><p>Account deletion is in the app, and the full privacy policy is written to be read by a parent, not a lawyer.</p><a class="btn secondary" href="../../docs/privacy.html">Read the privacy policy</a></div>
+      <div class="copy"><h3>Questions parents ask</h3><ul><li><b>Can strangers contact my child?</b> No. Only the teacher who admitted them, and only inside the studio.</li><li><b>Where do the recordings go?</b> To Prova's storage in the United States, visible to your child and, when shared, their teacher.</li><li><b>Is there a leaderboard?</b> No. Levels and badges reward showing up, and they're personal, not ranked.</li><li><b>Do I need an account?</b> Not for the beta. <span>A parent view, where you hear the take and see the week, is being built.</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="head reveal"><p class="eyebrow">Pricing</p><h2>Free during the beta.</h2><p class="lede">When pricing arrives, teachers pay; students and parents never do.</p></div>
+    <div class="plans">
+      <div class="plan reveal"><p class="eyebrow">Beta</p><div class="price">Free<small> · until launch</small></div><ul><li>Everything, for the whole studio</li><li>Unlimited students and takes</li><li>Your feedback shapes the app</li></ul><a class="btn primary" href="#beta">Join the beta</a></div>
+            <div class="plan reveal"><p class="eyebrow">Students and parents</p><div class="price">Free<small> · always</small></div><ul><li>Join with a class code</li><li>Practice, record, hear notes</li><li>Practice on your own, with no teacher</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="beta" id="beta">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="band" aria-hidden="true"></span>
+    <h2>Bring your studio to the beta.</h2>
+    <p class="lede" style="text-align:center">Teachers get the TestFlight build, create a studio and share one class code. Students ask their teacher for the code. iPhone, iOS 16 and up.</p>
+    <form id="invite" aria-label="Request an invite"><label class="eyebrow" for="email" style="width:100%;text-align:center">Teacher email</label><input id="email" type="email" placeholder="you@yourstudio.com" required><button class="btn primary" type="submit">Request an invite</button></form>
+    <p class="ok" id="ok" aria-live="polite"></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>Prova · 2026</span><a href="../../docs/privacy.html">Privacy policy</a><a href="../../docs/terms.html">Terms of service</a><a href="../../docs/support.html">Support</a><button class="face" id="face" type="button">Type: system</button><span class="sp">Direction A · Night ground · prototype</span></div>
+</footer>
+
+<script>
+(() => {
+  const html = document.documentElement; html.classList.add("js");
+  const rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+
+  // ---- The Downbeat: the icon drops from the centre into its slot in the nav. Spring m 1, k 420, c 35 (ζ 0.85).
+  function springAt(t) { const m = 1, k = 420, c = 35; const w0 = Math.sqrt(k / m), z = c / (2 * Math.sqrt(k * m));
+    const wd = w0 * Math.sqrt(1 - z * z), B = (z * w0) / wd; return t <= 0 ? 0 : 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + B * Math.sin(wd * t)); }
+  function downbeat() {
+    const slot = document.getElementById("brand-slot"); const mark = slot.querySelector("img");
+    const curtain = document.createElement("div"); curtain.id = "curtain";
+    const tile = document.createElement("div"); tile.id = "tile"; tile.innerHTML = `<img src="${mark.src}" alt="">`;
+    document.body.append(curtain, tile);
+    const big = Math.min(160, innerWidth * 0.36), vw = innerWidth, vh = innerHeight;
+    const r = slot.getBoundingClientRect(); const ex = r.left + r.width / 2, ey = r.top + r.height / 2, es = r.width;
+    mark.style.visibility = "hidden";
+    const draw = p => { const s = big + (es - big) * p, cx = vw / 2 + (ex - vw / 2) * p, cy = vh / 2 + (ey - vh / 2) * p;
+      tile.style.width = tile.style.height = s + "px"; tile.style.transform = `translate(${cx - s / 2}px, ${cy - s / 2}px)`; curtain.style.opacity = 1 - clamp(p / 0.7); };
+    const finish = () => { curtain.remove(); tile.remove(); mark.style.visibility = ""; };
+    if (rm) { draw(1); curtain.style.transition = "opacity .2s ease-in-out"; tile.style.transition = "opacity .2s"; requestAnimationFrame(() => { curtain.style.opacity = 0; tile.style.opacity = 0; }); setTimeout(finish, 220); return; }
+    draw(0); const t0 = performance.now() + 120; // a beat of rest on the night before the drop
+    const frame = now => { const t = (now - t0) / 1000; draw(t < 0 ? 0 : springAt(t)); if (t < 0.414) requestAnimationFrame(frame); else { draw(1); finish(); } };
+    requestAnimationFrame(frame);
+  }
+  if (!navigator.webdriver && location.hash !== "#still" && (!sessionStorage.getItem("downbeat-seen") || location.hash === "#replay")) { try { sessionStorage.setItem("downbeat-seen", "1"); } catch (e) {} downbeat(); }
+  document.getElementById("brand").addEventListener("click", e => { e.preventDefault(); scrollTo({ top: 0, behavior: rm ? "auto" : "smooth" }); downbeat(); });
+
+  // ---- Reveals (from a visible resting state) and the pinned phone's screens
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  const screens = [...document.querySelectorAll("#loop-phone .screen")], steps = [...document.querySelectorAll(".step")];
+  const so = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const n = e.target.dataset.step;
+    steps.forEach(s => s.classList.toggle("on", s === e.target)); screens.forEach(s => s.classList.toggle("on", s.dataset.screen === n)); }), { rootMargin: "-45% 0px -45% 0px" });
+  steps.forEach(s => so.observe(s));
+
+  // ---- The take: a waveform drawn once, a playhead that follows the scroll through the section
+  const cv = document.getElementById("wavecanvas"), g = cv.getContext("2d");
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const bars = Array.from({ length: 188 }, (_, i) => { const phrase = 0.55 + 0.45 * Math.sin(i / 9) * Math.sin(i / 23 + 1); return clamp(0.12 + phrase * (0.35 + rnd() * 0.65)); });
+  let head = 0;
+  function drawWave() { const W = cv.width, H = cv.height, n = bars.length, w = W / n; g.clearRect(0, 0, W, H);
+    bars.forEach((b, i) => { const x = i * w, h = b * H * 0.92, played = i / n <= head;
+      g.fillStyle = played ? "#9992FC" : "#342E47"; g.beginPath(); g.roundRect(x + w * 0.2, (H - h) / 2, w * 0.6, h, 2); g.fill(); }); }
+  const player = document.getElementById("player"), hl = document.getElementById("headline"), tc = document.getElementById("tc");
+  const DUR = 47;
+  function setHead(p) { head = clamp(p); drawWave(); hl.style.left = (head * 100) + "%"; const s = Math.round(head * DUR); tc.textContent = `0:${String(s).padStart(2, "0")}`;
+    document.querySelectorAll("[data-at]").forEach(el => el.classList.toggle("hit", s >= +el.dataset.at)); }
+  function onScroll() { const r = player.getBoundingClientRect(), vh = innerHeight; const p = (vh * 0.85 - r.top) / (r.height + vh * 0.5); setHead(p); }
+  if (rm) setHead(18 / DUR); else { addEventListener("scroll", onScroll, { passive: true }); addEventListener("resize", onScroll); onScroll(); }
+  document.getElementById("bigwave").addEventListener("click", e => { const r = e.currentTarget.getBoundingClientRect(); if (rm) setHead((e.clientX - r.left) / r.width); });
+
+  const face = document.getElementById("face"), root = document.documentElement; const label = () => { face.textContent = root.dataset.face === "display" ? "Type: Geist" : "Type: system"; };
+  face.addEventListener("click", () => { if (root.dataset.face === "display") delete root.dataset.face; else root.dataset.face = "display"; label(); }); label();
+  // ---- The invite form has nowhere to send yet; it shows the support route instead
+  document.getElementById("invite").addEventListener("submit", e => { e.preventDefault(); document.getElementById("ok").textContent = "Thanks. Until the form is wired, email the support address on the Support page and we'll send the TestFlight link."; });
+})();
+</script>

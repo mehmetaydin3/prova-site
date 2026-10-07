@@ -1,0 +1,190 @@
+/* Prova web tokens: the app's design system, mapped to CSS.
+   Source of truth: prova/Prova/Prova/DesignSystem/ProvaDesignSystem.swift (Brand, Colors, Typography,
+   Spacing, Radius, Motion) and docs/DESIGN-SYSTEM.md, as of main 2f42439. The mapping and every
+   web adaptation is explained in prototypes/TOKENS.md. Change a value there first, then here.
+
+   Rule carried over from the app: build from the semantic tokens (--text, --surface, --primary ...),
+   never from the raw --brand-* values. Dark mode is automatic because the semantic tokens are adaptive. */
+
+:root {
+  /* Raw Brand palette (Brand.*). Reference only; feature CSS never uses these directly. */
+  --brand-icon-night: #060511; --brand-icon-blue: #2A48F7; --brand-icon-periwinkle: #6377FB; --brand-icon-lavender: #A890FA;
+  --brand-icon-pink: #F8AFD3; --brand-icon-coral: #FD7267; --brand-icon-orange: #FDAA46; --brand-icon-gold: #FDE56D;
+
+  /* Semantic colors (Colors.*), light appearance */
+  --canvas: #F7F6FB;            /* Colors.canvas          Brand.lavenderWhite */
+  --surface: #FFFFFF;           /* Colors.surface         Brand.white */
+  --surface-elevated: #FFFFFF;  /* Colors.surfaceElevated */
+  --text: #1A1726;              /* Colors.textPrimary     Brand.ink, 17.6:1 on white */
+  --text-secondary: #6B6780;    /* Colors.textSecondary   Brand.slate */
+  --text-inverse: #FFFFFF;      /* Colors.textInverse */
+  --on-primary: #FFFFFF;        /* Colors.onPrimary, on --primary-fill */
+  --on-dark: #FFFFFF;           /* Colors.onDark, on an always-dark surface */
+  --primary: #473CDD;           /* Colors.primary         Brand.violet: text, tint, outline. "If it's violet, it's tappable." */
+  --primary-fill: #473CDD;      /* Colors.primaryFill     the solid behind white (7.1:1) */
+  --primary-pressed: #3A30C2;   /* Colors.primaryPressed */
+  --primary-wash: rgba(71, 60, 221, 0.14);  /* Opacity.wash on primary: pills, chips */
+  --accent: #FD7267;            /* Colors.accent          Brand.coral: a person or a win, as a MARK */
+  --accent-text: #C63D30;       /* Colors.accentText      coral as text, 4.75:1 */
+  --accent-fill: #C63D30;       /* Colors.accentFill      coral behind white */
+  --success: #1B9D8F;           /* Colors.success         mark only, 3:1 */
+  --success-text: #157A70;      /* Colors.successText */
+  --success-light-fill: #1FB6A6;/* Colors.successLightFill, ink on it */
+  --warning: #C47D09;           /* Colors.warning         mark only */
+  --warning-text: #9C6307;      /* Colors.warningText */
+  --error: #C9282E;             /* Colors.error */
+  --info: #3E63DD;              /* Colors.info */
+  --record: #E5484D;            /* Colors.record          the record light, fixed in both appearances */
+  --border: #E6E3F0;            /* Colors.border          Brand.mist */
+  --separator: #E6E3F0;         /* Colors.separator */
+  --field-border: #8F8CA1;      /* Colors.fieldBorder     3:1, how a field is found */
+  --disabled-surface: #E6E3F0;  --disabled-text: #6B6780; --scrim: rgba(26, 23, 38, 0.5);
+  --night: #060511;             /* Brand.brandNight: the icon's ground, in BOTH appearances (brand system, approved 2026-10-06) */
+  --primary-on-white: #473CDD;  /* Colors.primaryOnWhite: the label on the stage's white key (7.1:1) */
+  /* The night stage (brand system §1.3): night ground lit by the gradient's cool half, static, peak 24% */
+  --aurora: radial-gradient(110% 95% at 100% 0%, rgba(168,144,250,.24) 0%, rgba(99,119,251,.18) 28%, rgba(42,72,247,.108) 50%, rgba(42,72,247,0) 72%);
+  --stage-text: #F4F2FA; --stage-text-secondary: #9A95AD; --stage-primary: #9992FC;   /* dark tokens, pinned on the stage in every appearance */
+  --stage-glow: 0 8px 18px rgba(0,0,0,.12), 0 8px 30px rgba(71,60,221,.22);
+
+  /* Gradients. Tonal = material; multi-hue = a moment, never wallpaper, never under text. */
+  --brand-gradient: linear-gradient(135deg, #675FE3, #473CDD);                                 /* Colors.brandGradient (tonal) */
+  --celebration-gradient: linear-gradient(135deg, #FD7267, #FDAA46);                           /* Colors.celebrationGradient */
+  --signature-gradient: linear-gradient(60deg, #2A48F7, #6377FB, #A890FA, #F8AFD3, #FD7267, #FDAA46); /* Colors.signatureGradient */
+  --stage-gradient: linear-gradient(180deg, #1A1726, #2E2188);                                 /* Colors.stageGradient, dark in both */
+
+  /* Typography (Typography.*). The app: rounded system font, semibold is the heaviest weight.
+     Web: ui-rounded gives SF Pro Rounded on Apple platforms; elsewhere the system sans. A direction may add a
+     display face for headings only; body and UI text keep this stack. */
+  --font-body: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-body);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;   /* statusLabel, metadata, numerals that tick */
+  --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600; /* bold is retired */
+  --text-caption: 12px; --text-footnote: 13px; --text-subhead: 15px; --text-callout: 16px; --text-body: 17px;
+  --text-headline: 17px; --text-title3: 20px; --text-title2: 22px; --text-title: 28px; --text-large-title: 34px;
+  --text-display: clamp(34px, 3.2vw + 20px, 57px);      /* Typography.display 44 × displayScale 1.0–1.3 */
+  --text-display-xl: clamp(40px, 5vw + 20px, 83px);     /* Typography.displayXL 64 × displayScale 1.0–1.3 */
+  --leading-body: 1.55; --leading-tight: 1.1; --leading-prose: 1.65;
+  --tracking-display: -0.02em; --tracking-caps: 0.08em;
+
+  /* Spacing (Spacing.*), 4pt by meaning */
+  --sp-xxs: 2px; --sp-xs: 4px; --sp-sm: 8px; --sp-md: 12px; --sp-lg: 16px; --sp-xl: 24px; --sp-xxl: 32px; --sp-xxxl: 40px;
+  --sp-section: clamp(64px, 10vw, 140px);  /* web only: between page sections, see TOKENS.md */
+
+  /* Radius (Radius.*), always continuous in the app; CSS has no continuous corners, so one step larger reads the same */
+  --r-xs: 4px; --r-sm: 10px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px; --r-pill: 999px;
+
+  /* Layout (ProvaLayout.swift): the same three width classes as the app */
+  --page-margin: 16px;           /* compact; 24 at ≥600, 32 at ≥900 (below) */
+  --readable-max: 68ch;          /* readableMax 640/720pt */
+  --form-max: 480px;             /* formMax */
+  --container-max: 1120px;       /* web only: the two-column product sections */
+
+  /* Sizing */
+  --hit-min: 44px; --button-height: 52px; --row-min: 44px; --icon-sm: 16px; --icon-md: 20px; --icon-lg: 24px; --icon-xl: 32px;
+  --border-hairline: 1px; --border-thick: 2px;
+  --opacity-disabled: 0.4; --opacity-pressed: 0.7; --opacity-wash: 0.14; --opacity-ghost: 0.10;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(26, 23, 38, 0.06), 0 6px 20px rgba(26, 23, 38, 0.06);
+  --shadow-raised: 0 10px 30px rgba(26, 23, 38, 0.14), 0 2px 6px rgba(26, 23, 38, 0.08);
+  --glow-primary: 0 0 60px rgba(71, 60, 221, 0.25);
+
+  /* Motion (Motion.*). Durations and curves; springs are solved in JS (see TOKENS.md). */
+  --m-quick: 150ms;      --e-quick: cubic-bezier(0, 0, 0.2, 1);        /* easeOut 0.15: press, tap */
+  --m-standard: 250ms;   --e-standard: cubic-bezier(0.4, 0, 0.2, 1);   /* easeInOut 0.25: routine change */
+  --m-gentle: 400ms;     --e-gentle: cubic-bezier(0.2, 0.8, 0.2, 1);   /* spring 0.4/0.8: settled entrance */
+  --m-entrance: 500ms;   --e-entrance: cubic-bezier(0.2, 0.9, 0.3, 1); /* spring 0.5/0.75: card appear */
+  --m-pop: 520ms;        --e-pop: cubic-bezier(0.3, 1.5, 0.5, 1);      /* spring 0.52/0.55: celebration, overshoots */
+  --m-reduced: 200ms;    --e-reduced: cubic-bezier(0.4, 0, 0.2, 1);    /* what everything becomes under Reduce Motion */
+  --m-downbeat: 414ms;   /* Motion.Spring.downbeat: m 1, k 420, c 35; contact ≈ 244 ms. JS only, the launch moment. */
+
+  color-scheme: light;
+}
+
+/* Dark appearance: designed, not inverted (Colors.* dark values) */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --canvas: #131019; --surface: #1E1A2B; --surface-elevated: #272235;
+  --text: #F4F2FA; --text-secondary: #9A95AD; --text-inverse: #1A1726;
+  --primary: #9992FC; --primary-fill: #675FE3; --primary-pressed: #574FD0; --primary-wash: rgba(153, 146, 252, 0.14);
+  --accent: #FD7267; --accent-text: #FD7267; --accent-fill: #C63D30;
+  --success: #1FB6A6; --success-text: #1FB6A6; --warning: #F5A623; --warning-text: #F5A623; --error: #EE7276; --info: #7C95EA;
+  --border: #342E47; --separator: #342E47; --field-border: #726C89; --disabled-surface: #342E47; --disabled-text: #9A95AD;
+  --brand-gradient: linear-gradient(135deg, #675FE3, #9992FC);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-raised: 0 14px 40px rgba(0, 0, 0, 0.5);
+  --glow-primary: 0 0 80px rgba(103, 95, 227, 0.3);
+  color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --canvas: #131019; --surface: #1E1A2B; --surface-elevated: #272235;
+  --text: #F4F2FA; --text-secondary: #9A95AD; --text-inverse: #1A1726;
+  --primary: #9992FC; --primary-fill: #675FE3; --primary-pressed: #574FD0; --primary-wash: rgba(153, 146, 252, 0.14);
+  --accent: #FD7267; --accent-text: #FD7267; --accent-fill: #C63D30;
+  --success: #1FB6A6; --success-text: #1FB6A6; --warning: #F5A623; --warning-text: #F5A623; --error: #EE7276; --info: #7C95EA;
+  --border: #342E47; --separator: #342E47; --field-border: #726C89; --disabled-surface: #342E47; --disabled-text: #9A95AD;
+  --brand-gradient: linear-gradient(135deg, #675FE3, #9992FC);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-raised: 0 14px 40px rgba(0, 0, 0, 0.5);
+  --glow-primary: 0 0 80px rgba(103, 95, 227, 0.3);
+  color-scheme: dark;
+}
+
+/* Width classes, as the app's LayoutTokens */
+@media (min-width: 600px) { :root { --page-margin: 24px; } }
+@media (min-width: 900px) { :root { --page-margin: 32px; } }
+
+/* Base: body 17/1.55, ink on canvas, the same as the app's prose */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--canvas); color: var(--text); font-family: var(--font-body); font-size: var(--text-body);
+  line-height: var(--leading-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, video { max-width: 100%; display: block; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: var(--weight-semibold); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: var(--primary); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Core components (ProvaComponents.swift), as classes */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-sm); min-height: var(--button-height); padding: 0 22px;
+  border-radius: var(--r-lg); font: inherit; font-weight: var(--weight-semibold); text-decoration: none; cursor: pointer; border: var(--border-hairline) solid transparent;
+  max-width: var(--form-max); transition: transform var(--m-quick) var(--e-quick), background var(--m-quick) var(--e-quick); }
+.btn:active { transform: scale(0.98); }
+.btn.primary { background: var(--primary-fill); color: var(--on-primary); }           /* PrimaryButtonStyle: one per screen */
+.btn.primary:hover { background: var(--primary-pressed); }
+.btn.secondary { background: transparent; color: var(--primary); border-color: var(--border); } /* SecondaryButtonStyle */
+.btn.secondary:hover { background: var(--primary-wash); }
+.btn.small { min-height: 40px; padding: 0 16px; border-radius: var(--r-md); }
+.card { background: var(--surface); border: var(--border-hairline) solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow-card); } /* .provaCard */
+.chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--r-pill); background: var(--primary-wash); color: var(--text); font-size: var(--text-caption); font-weight: var(--weight-medium); white-space: nowrap; } /* Chip: ink on a wash */
+.status { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: var(--r-pill); font-family: var(--font-mono); font-size: 10px; font-weight: var(--weight-semibold); letter-spacing: var(--tracking-caps); text-transform: uppercase; background: var(--primary-wash); color: var(--text); } /* StatusPill: LED + mono label */
+.status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+.status.success { background: rgba(31, 182, 166, 0.14); } .status.success::before { background: var(--success); }
+.status.record { background: rgba(229, 72, 77, 0.14); } .status.record::before { background: var(--record); }
+.eyebrow { font-family: var(--font-mono); font-size: var(--text-caption); font-weight: var(--weight-medium); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.avatar { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--primary-wash); color: var(--text); font-size: 11px; font-weight: var(--weight-semibold); } /* Avatar: ink initials on a violet wash */
+.field { background: var(--surface); border: var(--border-hairline) solid var(--field-border); border-radius: var(--r-md); min-height: var(--hit-min); padding: 10px 12px; font: inherit; color: var(--text); } /* ProvaTextField */
+
+/* The night stage (brand system §1.3, approved): every "home header" on the site is one. Radius xl, raised, a faint
+   violet glow, the aurora from the top trailing corner, the signature line 2px along its foot. Words sit on night. */
+.stage { position: relative; overflow: hidden; background: var(--night); color: var(--stage-text); border-radius: var(--r-xl); box-shadow: var(--stage-glow); color-scheme: dark;
+  --text: var(--stage-text); --text-secondary: var(--stage-text-secondary); --primary: var(--stage-primary); --border: rgba(255,255,255,.10); --surface: rgba(255,255,255,.06); }
+.stage::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--aurora); }
+.stage::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--signature-gradient); }
+.stage > * { position: relative; }
+.stage .key { background: #FFFFFF; color: var(--primary-on-white); border-color: transparent; box-shadow: 0 4px 10px rgba(0,0,0,.12); } /* the one action on a stage: the white key */
+.stage .key:hover { background: #F7F6FB; }
+@media (prefers-contrast: more) { :root { --aurora: radial-gradient(110% 95% at 100% 0%, rgba(168,144,250,.10) 0%, rgba(99,119,251,.075) 28%, rgba(42,72,247,.045) 50%, rgba(42,72,247,0) 72%); } }
+/* The lockup (brand system §1.1): tile + wordmark 8px apart, wordmark in the rounded brand face, never gradient-filled */
+.lockup { display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; }
+.lockup .tile { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 22.37%; background: var(--night); overflow: hidden; flex: none; }
+.lockup .tile img { width: 61%; height: auto; }
+.lockup .word { font-family: var(--font-body); font-weight: var(--weight-semibold); font-size: 19px; }
+/* A line of copy waiting on the founder's approval (review aid; removed before publishing) */
+.pending { text-decoration: underline dotted var(--warning); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* Reduce Motion: springs become cross-fades, nothing loops, the meaning stays */
+@media (prefers-reduced-motion: reduce) {
+  :root { --m-quick: 0ms; --m-standard: var(--m-reduced); --m-gentle: var(--m-reduced); --m-entrance: var(--m-reduced); --m-pop: var(--m-reduced);
+    --e-gentle: var(--e-reduced); --e-entrance: var(--e-reduced); --e-pop: var(--e-reduced); }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
