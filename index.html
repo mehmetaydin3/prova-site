@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="The week between lessons, connected. Prova helps music teachers give clear practice steps, hear students’ takes, and answer where it matters.">
+  <meta name="theme-color" content="#060511">
+  <title>Prova — The week between lessons</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="shared/tokens.css">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="lockup" href="#top" aria-label="Prova home"><span class="tile" id="brand-slot"><img src="assets/brandmark.png" width="626" height="766" alt=""></span><span class="word">Prova</span></a>
+    <nav aria-label="Main navigation"><a href="#assignment">The week</a><a href="#feedback">The connection</a><a href="#beta">The beta</a></nav>
+    <a class="nav-cta" href="#beta" data-beta-request>Explore the beta <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<noscript><p class="wrap no-script">Read the story and explore the app screenshots below. Turn on JavaScript to try the browser demonstrations.</p></noscript>
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="wrap hero-layout">
+    <div class="hero-copy">
+      <p class="kicker"><span class="beat-dot" aria-hidden="true"></span> Music practice, connected</p>
+      <h1 id="hero-title">The week<br>between<br><span class="last-line">lessons<span class="period">.</span></span></h1>
+      <p class="hero-lede">Give them a next step.<br>Hear where it takes them.</p>
+      <p class="hero-body">Prova brings your teaching into the practice week: clear work, shared takes, and feedback right where it matters.</p>
+      <div class="hero-actions"><a class="btn primary" href="#beta" data-beta-request>Explore the beta <span aria-hidden="true">↗</span></a><a class="text-link" href="#assignment">See the week <span aria-hidden="true">↓</span></a></div>
+      <p class="meta">For music teachers &amp; students · iPhone · Ages 13+</p>
+    </div>
+    <figure class="hero-product">
+      <div class="product-orbit" aria-hidden="true"><span>Teacher</span><span class="orbit-line"></span><span>Student</span></div>
+      <div class="phone hero-phone"><img src="assets/product/today.jpg" alt="Prova Today: Maya’s next piece is Minuet in G, bars 12 to 16, left hand alone. The Start practicing button opens her work." width="880" height="1912" fetchpriority="high"><video id="launch-film" width="880" height="1912" preload="none" playsinline muted controls poster="assets/product/today.jpg" aria-label="Native Prova launch motion study" hidden><source src="assets/downbeat.mp4" type="video/mp4"><a href="assets/downbeat.mp4">Download the native launch film</a></video></div>
+      <figcaption><span class="figure-index">01 /</span> A clear place to begin.<small>Actual app capture · demo studio</small></figcaption>
+      <button type="button" class="text-link film-trigger" id="film-toggle" aria-controls="launch-film">Play the entrance <span aria-hidden="true">▶</span></button><p class="film-note">Native motion study · silent</p><p class="film-status" id="film-status" aria-live="polite"></p>
+    </figure>
+  </div>
+  <div class="wrap hero-foot"><span>A lesson is the beginning.</span><span>The week is where it grows. <span aria-hidden="true">↓</span></span></div>
+</section>
+
+<section class="overture wrap" aria-labelledby="overture-title">
+  <p class="section-label">From lesson to practice</p>
+  <div><h2 id="overture-title">More than<br>“keep practicing.”</h2><p>A passage. A tempo. One thing to listen for. Give students something specific to work on, and a way to come back to you before the next lesson.</p></div>
+</section>
+
+<nav class="week-score wrap" aria-label="Follow the practice week"><a href="#assignment" data-beat="assignment"><span>01</span> The assignment</a><a href="#practice" data-beat="practice"><span>02</span> The practice</a><a href="#take" data-beat="take"><span>03</span> The take</a><a href="#feedback" data-beat="feedback"><span>04</span> The reply</a><a href="#next-lesson" data-beat="next-lesson"><span>05</span> What’s next</a></nav>
+
+<section class="assignment movement wrap" id="assignment" data-movement aria-labelledby="assignment-title">
+  <div class="movement-header"><p class="section-label"><span>01 / Teacher → Student</span></p><span class="movement-context">After the lesson</span></div>
+  <div class="assignment-layout">
+    <figure class="evidence assignment-evidence"><div class="phone"><img src="assets/product/assignment.jpg" width="880" height="1913" alt="Actual Prova assignment: Minuet in G, bars 12 to 16, left hand alone. Two of four checklist steps are complete." loading="lazy"></div><figcaption>The piece. The steps. The point.<small>Actual app capture · demo studio</small></figcaption><button class="expand-image" type="button" data-image="assignment" aria-label="Enlarge assignment screenshot">Look closer ↗</button></figure>
+    <div class="movement-copy"><h2 id="assignment-title">Make “practice this”<br>mean something.</h2><p>A student leaves the lesson with a piece, a passage, and a plan. Your checklist makes the next step clear when they’re on their own.</p>
+      <div class="checklist-demo sample" aria-label="Sample assignment checklist"><div class="sample-heading"><span>Try the student’s checklist</span><span class="sample-tag">Browser demo</span></div><h3>Minuet in G <span>/ bars 12–16</span></h3><div class="checklist-progress"><span id="checklist-count">2 of 4 steps</span><span class="progress-track" aria-hidden="true"><i id="checklist-fill"></i></span></div><label><input type="checkbox" data-check checked><span>Left hand alone at 60</span></label><label><input type="checkbox" data-check checked><span>Hands together at 60</span></label><label><input type="checkbox" data-check><span>Up to 72</span></label><label><input type="checkbox" data-check><span>Record a take</span></label><p class="sample-status" id="checklist-status" aria-live="polite">Next: up to 72. Check a step to see the focus change.</p></div>
+      <a class="text-link movement-action" href="#practice">Carry the plan into practice <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="practice movement" id="practice" data-movement aria-labelledby="practice-title"><div class="wrap">
+  <div class="movement-header"><p class="section-label"><span>02 / Student</span></p><span class="movement-context">At the music stand</span></div>
+  <div class="practice-layout"><div class="movement-copy"><h2 id="practice-title">One thing<br>to listen for.</h2><p>Between lessons, the instruction stays close. See the next step, keep time, and practice the passage with purpose.</p><div class="practice-note"><span>From your teacher</span><p id="practice-note">Slow and even. Record one take when it feels steady.</p></div>
+    <div class="timer-demo sample"><div class="sample-heading"><span>Try a practice moment</span><span class="sample-tag">Browser demo</span></div><p class="practice-focus" id="practice-focus">Next: up to 72</p><output id="practice-clock" aria-live="off" aria-label="Sample practice time">00:00</output><div class="timer-actions"><button type="button" class="btn secondary" id="practice-toggle" aria-pressed="false">Start the preview <span aria-hidden="true">▶</span></button><button type="button" class="text-link" id="practice-reset">Reset</button></div><p id="practice-status" class="sample-status" aria-live="polite">A sample timer. No practice is saved.</p></div><a class="text-link movement-action" href="#take">Give the passage another pair of ears <span aria-hidden="true">↓</span></a></div>
+    <figure class="practice-evidence evidence"><div class="phone"><img src="assets/product/practice.jpg" width="880" height="1913" loading="lazy" alt="Actual Prova practice screen: the teacher’s instruction above the timer, Pause and Finish controls, metronome, and recording drawer."></div><figcaption>The instruction stays with the work.<small>Actual app capture · demo studio</small></figcaption><button class="expand-image" type="button" data-image="practice" aria-label="Enlarge practice screenshot">Look closer ↗</button></figure></div>
+</div></section>
+
+<section class="take movement wrap" id="take" data-movement aria-labelledby="take-title"><div class="movement-header"><p class="section-label"><span>03 / Student → Teacher</span></p><span class="movement-context">When it’s ready to be heard</span></div><div class="take-layout"><div class="movement-copy"><h2 id="take-title">Send the passage.<br>Keep the connection.</h2><p>It doesn’t have to be a performance. Capture the part you want help with, then choose to share that take with your teacher.</p><a class="text-link movement-action" href="#feedback">See how a teacher can answer <span aria-hidden="true">↓</span></a></div><div class="take-desk"><figure class="native-take"><div class="native-crop"><img src="assets/product/conversation.jpg" width="880" height="1913" loading="lazy" alt="Actual assignment screenshot, cropped to the Recordings section showing the shared Minuet take, bars 12 to 16, duration 38 seconds."></div><figcaption>A take, beside the piece.<small>Actual app capture detail · demo studio</small></figcaption><button class="expand-image" type="button" data-image="conversation" aria-label="View complete recording and conversation screenshot">See the whole screen ↗</button></figure>
+  <div class="share-demo sample"><div class="sample-heading"><span>Explore the sharing choice</span><span class="sample-tag">Browser demo</span></div><div class="sharing-path" aria-hidden="true"><span class="sharing-person">Student</span><span class="sharing-bridge"><i></i></span><span class="sharing-person" id="teacher-end">Teacher</span></div><p id="share-status" class="share-status" aria-live="polite">Private. This sample take is only yours.</p><div class="sharing-controls"><button type="button" class="btn secondary" id="share-preview" aria-pressed="false">Share with teacher <span aria-hidden="true">↗</span></button><button type="button" class="text-link" id="share-reset">Reset example</button></div><p class="sample-status">An example of the choice. No recording is uploaded or shared.</p></div></div></div></section>
+
+<section class="connection movement" id="feedback" data-movement aria-labelledby="feedback-title">
+  <div class="wrap">
+    <div class="section-heading"><div><p class="section-label"><span>04 / Teacher → Student</span></p><h2 id="feedback-title">“Right there.<br>That’s the moment.”</h2></div><p class="section-intro">Pin a note to a second in the take.<br> Your student can return to that moment<br> and hear what you mean.</p></div>
+    <div class="feedback-demo" aria-label="Interactive sample of timestamped feedback">
+      <div class="demo-top"><div><span class="sample-label">Explore sample feedback</span><h3>Minuet in G <span> / bars 12–16</span></h3></div><span class="demo-format">Browser demonstration · no audio</span></div>
+      <div class="timeline" aria-hidden="true"><div class="waveform" id="waveform"></div><div class="playhead" id="playhead"></div><span class="pin pin-one"></span><span class="pin pin-two"></span></div>
+      <div class="seek"><label for="position">Moment in the take</label><input type="range" id="position" min="0" max="47" value="18" aria-valuetext="18 seconds"><output for="position" id="timecode">0:18</output><span>/ 0:47</span></div>
+      <div class="feedback-notes">
+        <button type="button" class="feedback-note" data-time="18" aria-pressed="true"><span class="note-time">0:18 <span aria-hidden="true">↗</span></span><span><small>Your teacher</small>Let the half note ring its full value.</span></button>
+        <button type="button" class="feedback-note" data-time="41" aria-pressed="false"><span class="note-time">0:41 <span aria-hidden="true">↗</span></span><span><small>Your teacher</small>Lovely dynamics here. Keep that.</span></button>
+      </div>
+      <div class="feedback-action"><p class="demo-instruction" id="feedback-status" aria-live="polite">At 0:18: let the half note ring its full value. Select a note to find its moment.</p><button class="text-link" id="carry-feedback" type="button">Take this note into practice <span aria-hidden="true">↗</span></button></div>
+    </div>
+    <div class="connection-foot"><p>A sentence on Thursday.<br>A different practice on Friday.</p><div><p>The recording is one way to stay connected. Questions and replies also live in the assignment’s own thread, alongside the work.</p><figure class="thread-evidence"><div class="thread-crop"><img src="assets/product/conversation.jpg" width="880" height="1913" loading="lazy" alt="Actual demo-studio thread: the student asks whether to use third position; the teacher replies to stay in first until the string crossing is clean."></div><figcaption>A question, and a specific reply.<small>Actual app capture detail · demo studio</small></figcaption></figure><button class="text-link" type="button" data-image="conversation" aria-label="View actual assignment conversation">See the actual conversation <span aria-hidden="true">↗</span></button></div></div>
+  </div>
+</section>
+
+<section class="arrival movement wrap" id="next-lesson" data-movement aria-labelledby="arrival-title">
+  <div class="arrival-copy"><p class="section-label"><span>05 / Teacher &amp; Student</span></p><h2 id="arrival-title">Walk in<br>knowing the week.</h2><p>See the practice sessions, the student’s notes, and the takes they shared, together with the piece. Spend the next lesson moving forward.</p><blockquote>“Bars 12–16 finally clean at 72.”<cite>A practice note in Prova’s demo studio</cite></blockquote><div class="next-focus"><span>In this example, the next practice begins with</span><p id="next-focus">Let the half note ring its full value.</p></div><a class="text-link" href="#beta">Bring the connection to your studio <span aria-hidden="true">↓</span></a></div>
+  <figure class="film-stage"><div class="phone film-phone"><img src="assets/product/review.jpg" width="880" height="1913" loading="lazy" alt="Teacher’s assignment review showing practice session durations, the student’s practice note, and a shared 38-second take."></div><figcaption>The week has something to show.<small>Actual app capture · demo studio</small></figcaption><button class="expand-image" type="button" data-image="review" aria-label="Enlarge teacher review screenshot">Look closer ↗</button></figure>
+</section>
+
+<section class="beta wrap" id="beta" aria-labelledby="beta-title">
+  <div class="beta-heading"><p class="section-label">Your studio, connected</p><h2 id="beta-title">The next lesson<br>starts here.</h2><p>Try Prova with your studio. Give the week a clear beginning, and come back ready to listen.</p><a class="btn primary" id="beta-action" href="#beta-details">Explore beta access <span aria-hidden="true">↗</span></a><p class="beta-meta">iPhone · iOS 16+ · Students aged 13 and up</p></div>
+  <div class="beta-details" id="beta-details"><h3>Before your first practice</h3><details open><summary>How does a studio join?</summary><p>Teachers create a studio and share a class code. Students enter the code, and the teacher approves their request.</p></details><details><summary>Who hears a student’s take?</summary><p>Ordinary practice takes stay private until the student shares them. A Performance run is sent to the teacher; Prova explains that before it starts.</p></details><details><summary>Can younger students join?</summary><p>The beta is for ages 13 and up. Younger students cannot join this beta.</p></details><details><summary>What does the beta cost?</summary><p>Prova is free during the beta. Your feedback helps shape what comes next.</p></details><p class="access-status" id="access-status">Prova is in beta. Students join through their teacher.</p></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap"><div class="footer-top"><a class="lockup" href="#top" aria-label="Prova home"><span class="tile"><img src="assets/brandmark.png" alt="" width="626" height="766"></span><span class="word">Prova</span></a><p>Keep the week connected.</p><a class="text-link" href="#top">Back to the beginning <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><span>© 2026 Prova</span><nav aria-label="Legal and support"><a href="docs/privacy.html" data-legal="privacy.html">Privacy</a><a href="docs/terms.html" data-legal="terms.html">Terms</a><a href="docs/support.html" data-legal="support.html">Support</a></nav><button type="button" id="motion-toggle" aria-pressed="false">Reduce motion</button><span>Beta preview</span></div></div></footer>
+<dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="dialog-toolbar"><h2 id="image-dialog-title">Inside Prova</h2><button type="button" id="close-image" aria-label="Close full-size screenshot">Close <span aria-hidden="true">×</span></button></div><img id="full-image" src="assets/product/assignment.jpg" alt="" width="880" height="1913"><p>Actual app capture · demo studio. Beta screens may change.</p></dialog>
+</body>
+</html>

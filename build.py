@@ -16,7 +16,7 @@
   in light and dark, the system font, 17px/1.55 body, one 68ch column, 16px
   gutters, semibold sentence-case headings, the app icon at 64px.
 """
-import argparse, html, json, pathlib, re, sys
+import argparse, html, json, pathlib, re, shutil, sys
 
 import markdown
 
@@ -217,6 +217,17 @@ def main():
         assert "<!--" not in doc, f"comment leaked into {name}"
         (out / name).write_text(doc)
     (out / "icon.png").write_bytes(pathlib.Path(a.icon).read_bytes())
+    # Direction A is the marketing entry point. Legal pages retain their
+    # placeholder gate; --preview retains the legacy legal-artifact wrapper.
+    if not a.preview:
+        landing = (HERE / "index.html").read_text()
+        landing = landing.replace('href="docs/', 'href="')
+        (out / "index.html").write_text(landing)
+        for file in ("site.css", "site.js"):
+            shutil.copyfile(HERE / file, out / file)
+        for directory in ("assets", "shared"):
+            shutil.copytree(HERE / directory, out / directory, dirs_exist_ok=True,
+                            ignore=shutil.ignore_patterns("README.md"))
     if not a.preview:
         (out / ".nojekyll").write_text("")
     kind = "publish" if a.publish else "preview" if a.preview else "draft"
