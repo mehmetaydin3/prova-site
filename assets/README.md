@@ -1,6 +1,6 @@
 # Product asset provenance
 
-All product visuals are actual native app captures of fictional demo data. No production account, personal student information, or new simulator capture was used.
+All screenshot and film evidence is actual native app capture of fictional demo data. No production account, personal student information, or new simulator capture was used.
 
 | Website asset | Original local source | Treatment |
 |---|---|---|
@@ -15,7 +15,7 @@ All product visuals are actual native app captures of fictional demo data. No pr
 
 Journey-audit demo provenance was checked against `~/prova/.claude/journey-audit/wt/Prova/Prova/Core/Repositories/ShowcaseStudio.swift`: fixed fictional identities and seeded studio, no network account. The archive is `archive/journey-audit-wt-4b69437` (`3e30e37`). These are historical captures, not freshly approved launch captures. Inconsistent seeded musical details and older navigation/daily-goal/gradient treatments remain authentic; they must not be mistaken for approved final app styling or advertised features.
 
-The feedback waveform is generated browser illustration, explicitly labelled “Browser demonstration · no audio.” It is not extracted from an actual take. No audio is fabricated. All screenshot evidence can be enlarged.
+The feedback waveform is generated browser illustration, explicitly labelled “Browser demonstration · no audio.” It is not extracted from an actual take. The feedback sample has no audio. The optional browser metronome synthesizes its tool click using the native algorithm; it is not a student recording. All screenshot evidence can be enlarged.
 
 ## Exact replacement captures needed
 
@@ -24,7 +24,7 @@ Use a current approved fictional demo studio with the app build lock coordinated
 1. Teacher assignment for Minuet bars 12–16: piece, instruction and four-step checklist; then student Today with the same next step.
 2. Current practice screen with score/instruction, timer and metronome; short manual start/pause recording.
 3. Recorder: capture a take, show it private, then explicitly share with the teacher; short recording and both resting states.
-4. Teacher take review with a loaded waveform and two timestamped comments; student taps each comment and hears that moment. Provide cleared demo audio rights, or a silent UI recording.
+4. Teacher take review with a loaded waveform and two timestamped comments at 18 and 31 seconds in a 38-second sample; student taps each comment and hears that moment. Provide cleared demo audio rights, or a silent UI recording.
 5. Current teacher preparation screen / Since last lesson, with the same student's sessions, practice note and shared take.
 6. If Downbeat is retained for launch: approved current native launch capture, clearly separated from the concept film.
 

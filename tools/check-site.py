@@ -46,7 +46,7 @@ for path in (ROOT / 'index.html', ROOT / 'docs/index.html'):
     assert 'fonts.googleapis.com' not in text and '@font-face' not in text
     print(f'{path.relative_to(ROOT)}: links, anchors, semantics, media, image geometry OK')
 
-for name in ('site.css', 'site.js'):
+for name in ('site.css', 'site.js', 'metronome.js'):
     assert (ROOT / name).read_bytes() == (ROOT / 'docs' / name).read_bytes()
 assert (ROOT / 'shared/tokens.css').read_bytes() == (ROOT / 'prototypes/shared/tokens.css').read_bytes()
 subprocess.run(['git', 'diff', '--exit-code', 'bc79c17', '--', 'prototypes'], cwd=ROOT, check=True)
