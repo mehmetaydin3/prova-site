@@ -33,6 +33,74 @@
   }
   syncMotion();
   motionButton.addEventListener('click', () => { prefersLess = !prefersLess; try { localStorage.setItem('prova-reduce-motion', String(prefersLess)); } catch {} syncMotion(); document.querySelector('#launch-film').pause(); });
+  // A small guided sequence links captured, verified screens. It does not
+  // operate the app, capture a take, or play the take shown in the images.
+  const previewFigure = document.querySelector('.hero-product');
+  const previewScreen = document.querySelector('#preview-screen');
+  const previewDescription = document.querySelector('#preview-description');
+  const previewButtons = [...document.querySelectorAll('[data-preview-step]')];
+  document.querySelector('#preview-kicker').textContent = 'Interactive preview';
+  const previewStates = {
+    plan: {image: 'today-plan.jpg', alt: 'Actual Prova Today plan: the assigned Minuet passage, completed scale and practice suggestions.', copy: 'A clear plan keeps the teacher’s assignment in view between lessons.'},
+    assignment: {image: 'assignment.jpg', alt: 'Actual Prova assignment: Minuet in G, bars 12 to 16, with a four-step checklist and practice button.', copy: 'The teacher’s passage and checklist show the student where to begin.'},
+    practice: {image: 'practice.jpg', alt: 'Actual Prova Practice Mode with the teacher’s instruction, timer, metronome and recording controls.', copy: 'In Practice Mode, the instruction stays beside the work and the recording controls.'},
+    take: {image: 'conversation.jpg', alt: 'Actual Prova assignment conversation with the linked Recordings section showing a shared Minuet take, 38 seconds long.', copy: 'A 38-second take appears in the assignment’s recording section after it has been shared.'},
+    feedback: {image: 'conversation.jpg', alt: 'Actual Prova assignment thread: the teacher replies to the student’s question about third position.', copy: 'The teacher’s reply stays with the assignment, ready for the next practice.'}
+  };
+  let previewCurrent = 'plan';
+  let previewTimer;
+  function selectPreview(name) {
+    const state = previewStates[name];
+    if (!state) return;
+    clearTimeout(previewTimer);
+    previewCurrent = name;
+    previewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.previewStep === name)));
+    previewDescription.textContent = state.copy;
+    if (!reduced() && previewScreen.getAttribute('src') !== `assets/product/${state.image}`) {
+      previewFigure.dataset.changing = 'true';
+      previewTimer = setTimeout(() => {
+        previewScreen.src = `assets/product/${state.image}`;
+        previewScreen.alt = state.alt;
+        delete previewFigure.dataset.changing;
+      }, 110);
+    } else {
+      previewScreen.src = `assets/product/${state.image}`;
+      previewScreen.alt = state.alt;
+      delete previewFigure.dataset.changing;
+    }
+  }
+  previewButtons.forEach((button, index) => {
+    button.addEventListener('click', () => selectPreview(button.dataset.previewStep));
+    button.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? previewButtons.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + previewButtons.length) % previewButtons.length;
+      previewButtons[next].focus(); previewButtons[next].click();
+    });
+  });
+  const personaContent = {
+    teacher: {copy: 'Set an assignment, hear the shared take and guide the next step.', target: 'feedback', label: 'Explore the teacher’s part'},
+    student: {copy: 'Carry the instruction into practice, then share a take when it is ready.', target: 'practice', label: 'Explore the student’s part'},
+    parent: {copy: 'Ask your child to show the plan and help make time for the next step.', target: 'assignment', label: 'Explore the family’s part'}
+  };
+  const personaLink = document.querySelector('#persona-link');
+  document.querySelectorAll('[data-persona]').forEach(button => button.addEventListener('click', () => {
+    const person = personaContent[button.dataset.persona];
+    document.querySelectorAll('[data-persona]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
+    document.querySelector('#persona-copy').textContent = person.copy;
+    document.querySelector('#persona-link-label').textContent = person.label;
+    personaLink.dataset.previewTarget = person.target;
+  }));
+  personaLink.addEventListener('click', () => selectPreview(personaLink.dataset.previewTarget));
+  document.addEventListener('prova:motionchange', () => {
+    clearTimeout(previewTimer);
+    if (reduced()) {
+      const state = previewStates[previewCurrent];
+      previewScreen.src = `assets/product/${state.image}`;
+      previewScreen.alt = state.alt;
+      delete previewFigure.dataset.changing;
+    }
+  });
   function buttonText(button, text) {
     button.textContent = text;
     button.setAttribute('aria-label', text.replace(/[▶Ⅱ↗↻✓]/g, '').trim());
