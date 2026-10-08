@@ -50,6 +50,11 @@
   const imageStatus = document.querySelector('#image-status');
   const retryImage = document.querySelector('#retry-image');
   let currentImage = 'assignment';
+  let viewerOpener;
+  let viewerAnimation;
+  let closingViewer = false;
+  const closeImage = document.querySelector('#close-image');
+  const duration = token => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(token));
   function imageReady() {
     const retryFocused = document.activeElement === retryImage;
     imageWell.dataset.state = 'ready'; imageFallback.hidden = true;
@@ -68,26 +73,86 @@
     imageStatus.textContent = 'This screen couldn’t load. You can retry or close this view.';
   });
   retryImage.addEventListener('click', () => loadImage(true));
-  document.querySelectorAll('[data-image]').forEach(button => button.addEventListener('click', () => {
-    currentImage = button.dataset.image;
+  document.querySelectorAll('[data-image]').forEach(link => link.addEventListener('click', event => {
+    // Keep the native image URL when enhancement is unavailable or a new tab is requested.
+    if (typeof dialog.showModal !== 'function' || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    viewerOpener = link;
+    currentImage = link.dataset.image;
     loadImage();
+    document.documentElement.classList.add('viewer-open');
     dialog.showModal();
-    document.querySelector('#close-image').focus();
+    closeImage.focus({preventScroll: true});
+    imageWell.scrollTop = 0;
+    if (dialog.animate) viewerAnimation = dialog.animate(
+      reduced() ? [{opacity: .94}, {opacity: 1}] : [{opacity: .94, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}],
+      {duration: duration(reduced() ? '--m-reduced' : '--m-standard'), easing: 'ease-out'});
   }));
-  document.querySelector('#close-image').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
-
-  function emphasize(element) {
-    if (element.animate) element.animate([{opacity: .45}, {opacity: 1}], {duration: reduced() ? 200 : 250, easing: 'ease-in-out'});
+  function closeViewer() {
+    if (!dialog.open || closingViewer) return;
+    closingViewer = true;
+    viewerAnimation?.cancel();
+    const finish = () => { if (dialog.open) { dialog.close(); releaseViewer(); } };
+    if (!reduced() && dialog.animate) {
+      viewerAnimation = dialog.animate([{opacity: 1}, {opacity: .94}], {duration: duration('--m-quick'), easing: 'ease-out'});
+      viewerAnimation.finished.then(finish, finish);
+    } else finish();
   }
-  // One restrained entrance per step: content is always readable, even before
-  // enhancement. Product detail follows the headline by one quick token.
+  closeImage.addEventListener('click', closeViewer);
+  dialog.addEventListener('cancel', event => { event.preventDefault(); closeViewer(); });
+  dialog.addEventListener('keydown', event => {
+    if (event.key !== 'Tab') return;
+    const stops = [closeImage, imageWell, ...(!retryImage.hidden ? [retryImage] : [])];
+    const first = stops[0], last = stops[stops.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
+  function releaseViewer() {
+    viewerAnimation?.cancel();
+    closingViewer = false;
+    document.documentElement.classList.remove('viewer-open');
+    viewerOpener?.focus({preventScroll: true});
+  }
+  // A queued close event from a rapid reopen must not release the new viewer.
+  dialog.addEventListener('close', () => { if (!dialog.open) releaseViewer(); });
+  const outsideViewer = event => {
+    const r = dialog.getBoundingClientRect();
+    return event.target === dialog && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom);
+  };
+  let backdropPress = false;
+  dialog.addEventListener('pointerdown', event => { backdropPress = outsideViewer(event); });
+  dialog.addEventListener('click', event => { if (backdropPress && outsideViewer(event)) closeViewer(); backdropPress = false; });
+  document.addEventListener('prova:motionchange', () => { if (reduced()) viewerAnimation?.cancel(); });
+
+  let feedbackAnimation;
+  function emphasize(element) {
+    feedbackAnimation?.cancel();
+    if (element.animate) feedbackAnimation = element.animate([{opacity: .45}, {opacity: 1}], {duration: reduced() ? 200 : 250, easing: 'ease-in-out'});
+  }
+  // Observe only two content groups per section. On mobile, a tall screenshot
+  // enters when it actually reaches the viewport, without a reading delay.
   if ('IntersectionObserver' in window) {
-    document.documentElement.classList.add('motion-ready');
+    const pairedLayout = matchMedia('(min-width: 761px)');
+    const settle = group => { group.classList.add('settled'); entrance.unobserve(group); };
     const entrance = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('settled'); entrance.unobserve(entry.target); }
-    }), {threshold: .12});
-    document.querySelectorAll('[data-movement]').forEach(section => entrance.observe(section));
+      if (!entry.isIntersecting) return;
+      const section = entry.target.closest('[data-movement]');
+      if (pairedLayout.matches) {
+        // A tall phone can be visible before its centered explanation. Hold
+        // both groups for the explanation, then let CSS stagger the product.
+        const copy = section.querySelector('[data-entrance="copy"]');
+        if (entry.target === copy || copy.classList.contains('settled')) {
+          section.querySelectorAll('[data-entrance]').forEach(settle);
+        }
+      } else settle(entry.target);
+    }), {threshold: .08, rootMargin: '0px 0px -32px 0px'});
+    document.querySelectorAll('[data-movement]').forEach(section => {
+      section.querySelectorAll('.movement-copy, .arrival-copy, .audience-intro, .evidence, .native-take, .audience-parts').forEach(group => {
+        group.dataset.entrance = group.matches('.evidence, .native-take, .audience-parts') ? 'evidence' : 'copy';
+        entrance.observe(group);
+      });
+    });
+    document.documentElement.classList.add('motion-ready');
   }
   const notes = [...document.querySelectorAll('[data-time]')];
   notes.forEach(note => note.addEventListener('click', () => {
@@ -152,5 +217,6 @@
     }
     requestAnimationFrame(frame);
   }
+  document.documentElement.classList.add('js-ready');
   arrival();
 })();

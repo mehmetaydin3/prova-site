@@ -1,0 +1,159 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "viewer": "light-desktop",
+      "focusReturn": true,
+      "keyboardContained": true,
+      "backgroundLocked": true,
+      "noHorizontalShift": true,
+      "scrollReset": true,
+      "escapeClose": true,
+      "buttonClose": true,
+      "backdropClose": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "viewer": "dark-desktop",
+      "focusReturn": true,
+      "keyboardContained": true,
+      "backgroundLocked": true,
+      "noHorizontalShift": true,
+      "scrollReset": true,
+      "escapeClose": true,
+      "buttonClose": true,
+      "backdropClose": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "viewer": "light-mobile",
+      "focusReturn": true,
+      "keyboardContained": true,
+      "backgroundLocked": true,
+      "noHorizontalShift": true,
+      "scrollReset": true,
+      "escapeClose": true,
+      "buttonClose": true,
+      "backdropClose": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "viewer": "dark-mobile",
+      "focusReturn": true,
+      "keyboardContained": true,
+      "backgroundLocked": true,
+      "noHorizontalShift": true,
+      "scrollReset": true,
+      "escapeClose": true,
+      "buttonClose": true,
+      "backdropClose": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "width": 600,
+      "theme": "light",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "width": 600,
+      "theme": "dark",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "width": 900,
+      "theme": "light",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "width": 900,
+      "theme": "dark",
+      "overflow": false,
+      "failedImages": 0,
+      "clipped": []
+    },
+    {
+      "anchorFocus": true,
+      "appearancePersisted": true,
+      "systemAppearanceUpdates": true,
+      "themeGeometryStable": true
+    },
+    {
+      "mobileEvidenceWaitsForViewport": true,
+      "mobileEntranceDelay": "0s, 0s"
+    },
+    {
+      "OSReducedMotion": true,
+      "offscreenReduced": true,
+      "manualReducedMotion": true,
+      "reducedDialogOpacityOnly": true
+    },
+    {
+      "nextFocusGeometryStable": true,
+      "keyboardReply": true,
+      "selectedState": true,
+      "keyboardFocusVisible": true
+    },
+    {
+      "imageFailureRecovery": true
+    },
+    {
+      "emulatedTouchViewer": true,
+      "touchHasNoHover": true
+    },
+    {
+      "noJavaScriptContent": true,
+      "noJavaScriptImageLink": true
+    },
+    {
+      "desktopExplanationTriggersPair": true,
+      "desktopEvidenceDelay": "150ms",
+      "mobileGroupsWaitForViewport": true,
+      "mobileEvidenceDelay": "0ms",
+      "finalReducedMotion": true
+    }
+  ],
+  "errors": []
+}
