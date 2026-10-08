@@ -22,7 +22,7 @@ explain beta access without collecting information.
 
 
 The public privacy policy, terms of service and support page for the Prova app,
-served by GitHub Pages from `docs/` at https://mehmetaydin3.github.io/prova-site.
+prepared for GitHub Pages from `docs/` at https://provamusic.app.
 The app links to `/privacy`, `/terms` and `/support` (`AppLinks.website`).
 
 **Status: draft.** GitHub Pages is off until every placeholder is filled:
@@ -52,3 +52,5 @@ python3 -m venv .venv && .venv/bin/pip install markdown
 .venv/bin/python build.py --out docs            # draft: banner, placeholders visible
 .venv/bin/python build.py --out docs --publish  # refuses while any placeholder is unfilled
 ```
+
+Domain/contact preparation and exact dashboard steps: [review/DEPLOYMENT.md](review/DEPLOYMENT.md). Hosting remains disabled until the publication gate passes. General contact: hello@provamusic.com; support: support@provamusic.com.

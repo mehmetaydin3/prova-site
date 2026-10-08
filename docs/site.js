@@ -1,5 +1,23 @@
 (() => {
   'use strict';
+  const appearance = document.querySelector('#appearance');
+  const systemAppearance = matchMedia('(prefers-color-scheme: dark)');
+  let appearanceChoice = 'system';
+  try { const saved = localStorage.getItem('prova-appearance'); if (['light', 'dark'].includes(saved)) appearanceChoice = saved; } catch {}
+  function syncAppearance() {
+    if (appearanceChoice === 'system') delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = appearanceChoice;
+    appearance.value = appearanceChoice;
+    const dark = appearanceChoice === 'dark' || (appearanceChoice === 'system' && systemAppearance.matches);
+    document.querySelector('meta[name="theme-color"]').content = dark ? '#060511' : '#F7F6FB';
+  }
+  appearance.addEventListener('change', () => {
+    appearanceChoice = appearance.value;
+    try { if (appearanceChoice === 'system') localStorage.removeItem('prova-appearance'); else localStorage.setItem('prova-appearance', appearanceChoice); } catch {}
+    syncAppearance();
+  });
+  systemAppearance.addEventListener('change', syncAppearance);
+  syncAppearance();
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const motionButton = document.querySelector('#motion-toggle');
   let prefersLess = false;
@@ -92,7 +110,7 @@
     catch { film.hidden = true; filmStatus.textContent = 'The film could not play. The app screenshot remains visible; you can try again.'; }
   });
   film.addEventListener('ended', () => { film.hidden = true; });
-  const syncFilm = () => { buttonText(filmButton, film.paused ? (film.ended ? 'Replay the native motion study ↻' : 'Play the native motion study ▶') : 'Pause the native motion study Ⅱ'); };
+  const syncFilm = () => { buttonText(filmButton, film.paused ? (film.ended ? 'Replay the launch study ↻' : 'Watch the launch study ▶') : 'Pause the launch study Ⅱ'); };
   ['play', 'pause', 'ended'].forEach(event => film.addEventListener(event, syncFilm));
   film.addEventListener('error', () => { film.hidden = true; filmStatus.textContent = 'The film is unavailable. The app screenshot is still visible.'; });
   document.addEventListener('visibilitychange', () => { if (document.hidden) film.pause(); });

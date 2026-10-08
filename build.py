@@ -21,7 +21,7 @@ import argparse, html, json, pathlib, re, shutil, sys
 import markdown
 
 HERE = pathlib.Path(__file__).resolve().parent
-PLACEHOLDERS = ["ENTITY NAME", "SUPPORT EMAIL", "POSTAL ADDRESS", "WEBSITE", "REGION",
+PLACEHOLDERS = ["ENTITY NAME", "SUPPORT EMAIL", "GENERAL EMAIL", "POSTAL ADDRESS", "WEBSITE", "REGION",
                 "BACKUP DAYS", "REPORT DAYS", "LOG DAYS", "EMAIL PROVIDER", "STATE",
                 "COPYRIGHT AGENT", "DATE"]
 PLACEHOLDER_RE = re.compile(r"\[(" + "|".join(re.escape(p) for p in PLACEHOLDERS) + r")\]")
@@ -33,6 +33,8 @@ Questions, problems, or something that doesn't feel right? Email us at
 [SUPPORT EMAIL]. Tell us which device you're on and what happened, and we'll
 take it from there. You can get back to this page from the app at any time:
 **Profile → Contact support**.
+
+General enquiries: [GENERAL EMAIL].
 
 ## Common questions
 
@@ -157,8 +159,11 @@ def fill(md, values):
                     lambda m: f'<a href="{website}{m.group(1) or ""}">{website}{m.group(1) or ""}</a>', md)
     if email:
         md = md.replace("[SUPPORT EMAIL]", f'<a href="mailto:{email}">{email}</a>')
+    general_email = values.get("GENERAL EMAIL")
+    if general_email:
+        md = md.replace("[GENERAL EMAIL]", f'<a href="mailto:{general_email}">{general_email}</a>')
     for key, val in values.items():
-        if key not in ("WEBSITE", "SUPPORT EMAIL"):
+        if key not in ("WEBSITE", "SUPPORT EMAIL", "GENERAL EMAIL"):
             md = md.replace(f"[{key}]", html.escape(str(val)))
     return md, sorted(set(PLACEHOLDER_RE.findall(md)))
 
@@ -207,6 +212,11 @@ def main():
         if a.preview and name == "index.html":
             title = "Prova legal site"
         head = HEAD.format(title=title, description=desc, css=CSS)
+        canonical_path = "/" if name == "index.html" else "/" + name.removesuffix(".html")
+        metadata = f'<link rel="canonical" href="{html.escape(website + canonical_path, quote=True)}">'
+        if not a.publish:
+            metadata += '\n<meta name="robots" content="noindex">'
+        head += "\n" + metadata
         page_body = BODY.format(draft=draft, body=body, year=year, entity=entity)
         doc = head + "\n" + page_body + "\n" if (a.preview and name == "index.html") else \
             DOCUMENT.format(head=head, body=page_body)
@@ -222,6 +232,8 @@ def main():
     if not a.preview:
         landing = (HERE / "index.html").read_text()
         landing = landing.replace('href="docs/', 'href="')
+        if not a.publish:
+            landing = landing.replace("</head>", '<meta name="robots" content="noindex">\n</head>')
         (out / "index.html").write_text(landing)
         for file in ("site.css", "site.js"):
             shutil.copyfile(HERE / file, out / file)
@@ -230,6 +242,12 @@ def main():
                             ignore=shutil.ignore_patterns("README.md"))
     if not a.preview:
         (out / ".nojekyll").write_text("")
+    if a.publish:
+        from urllib.parse import urlparse
+        (out / "CNAME").write_text(urlparse(website).hostname + "\n")
+        urls = [website + ("/" if name == "index.html" else "/" + name.removesuffix(".html")) for name, *_ in PAGES]
+        (out / "sitemap.xml").write_text('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + "".join(f"<url><loc>{html.escape(url)}</loc></url>" for url in urls) + "</urlset>\n")
+        (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {website}/sitemap.xml\n")
     kind = "publish" if a.publish else "preview" if a.preview else "draft"
     print(f"built {len(pages)} pages into {out} ({kind})")
     if all_missing:

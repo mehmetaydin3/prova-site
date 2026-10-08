@@ -4,6 +4,7 @@ All screenshot and film evidence is actual native app capture of fictional demo 
 
 | Website asset | Original local source | Treatment |
 |---|---|---|
+| `product/today-plan.jpg` | `~/prova/.claude/journey-audit/shots/s-13-today-assignments.png` | Existing full native capture, resized to 880×1913; no compositing or erased content |
 | `product/today.jpg` | `prototypes/shared/today-max-dark.jpg` | Unchanged; 880×1912 |
 | `downbeat.mp4` | `prototypes/shared/downbeat-max-today-dark.mp4` | Native concept launch recording; silent, manual playback. Experimental `design/launch-handoff`, not evidence of released animation |
 | `brandmark.png` | `prototypes/shared/brandmark.png` | Resized to 192px high; preserves original geometry and color |
@@ -29,3 +30,7 @@ Use a current approved fictional demo studio with the app build lock coordinated
 6. If Downbeat is retained for launch: approved current native launch capture, clearly separated from the concept film.
 
 No build lock availability was confirmed, so no native build or simulator was started. See `prototypes/ASSETS.md` for the original broader capture request.
+
+## Tab-bar framing investigation
+
+The original Today image contains Assignments text below the translucent native tab bar. This is in the source capture, not a website overflow artifact. Read-only TodayView.swift uses a ScrollView inside StudentRootView.swift’s TabView. The replacement shows the scrolled assignment plan with a clear bottom edge. Its clipped Add to Calendar control at the top is authentic scroll state, retained rather than retouched. The old source remains the manual experimental film poster. A fresh approved resting-state capture is still needed before launch.

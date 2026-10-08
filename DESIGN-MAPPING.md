@@ -1,6 +1,6 @@
 # Prova: app → website
 
-This implements selected Direction A on a permanent dark stage. It refines the existing direction rather than replacing it. `prototypes/` remains byte-for-byte unchanged from `bc79c17`, including B and C. The website is a marketing presentation of the same identity, not a new app theme.
+This implements selected Direction A with designed light and dark appearances. It refines the existing direction rather than replacing it. `prototypes/` remains byte-for-byte unchanged from `bc79c17`, including B and C. The website is a marketing presentation of the same identity, not a new app theme.
 
 ## Authority and scope
 
@@ -14,7 +14,7 @@ The original multicolor p geometry predates the motion experiment and is the app
 
 | App role | Web token / use | Adaptation |
 |---|---|---|
-| Brand night `#060511` | `--night`, main stage | Always dark for this selected direction; not the app's universal canvas |
+| Brand night `#060511` | `--night`, main stage | Dark website ground; light appearance uses the mapped canvas |
 | Dark canvas `#131019` | `--canvas`, alternating practice/reply ground | Establishes narrative pacing without a new hue |
 | Surface / raised `#1E1A2B` / `#272235` | `--surface`, `--surface-elevated` | Interactive samples and selected feedback |
 | Text `#F4F2FA`, secondary `#9A95AD` | `--text`, `--text-secondary` | Same hierarchy; no low-opacity body copy |
@@ -40,7 +40,7 @@ The default stack is the approved rounded system stack, with installed Segoe UI/
 
 The opening p settles into the existing navigation slot once per tab, using the Downbeat study's m=1, k=420, c=35 spring over approximately 414ms. The page is usable immediately. There is no curtain, pinned introduction, scroll hijacking, or autoplay media.
 
-Five moments alternate authentic native evidence and a single benefit. Each heading settles 8px over the standard 250ms. Its product frame follows by the quick 150ms token and settles 12px over 250ms. This one-time, small web-scale offset explains a handoff rather than moving the whole page. Initial opacity stays at least .94, with all essential content visible. IntersectionObserver disconnects each moment after entry; there is no per-scroll animation work, bouncing or parallax. Transforms do not change reserved layout geometry.
+Five moments alternate authentic native evidence and a single benefit. Each heading settles 8px over the standard 250ms. Its product frame follows by the quick 150ms token and settles 16px over the gentle 400ms token. This one-time, small web-scale offset explains a handoff rather than moving the whole page. Initial opacity stays at least .94, with all essential content visible. IntersectionObserver disconnects each moment after entry; there is no per-scroll animation work, bouncing or parallax. Transforms do not change reserved layout geometry.
 
 Reduced motion removes the entrance offsets and delay entirely, keeps full opacity and immediate scrolling, and changes selected-note emphasis to the 200ms opacity token. No state depends on animation. The manual native film remains opt-in, pauses offscreen/hidden and is explicitly an experimental silent motion study. The opening mark behavior is unchanged.
 
@@ -49,3 +49,7 @@ Reduced motion removes the entrance offsets and delay entirely, keeps full opaci
 Teacher-led, effort-focused copy uses piece, passage, take, teacher and studio. No guilt, invented success metrics, testimonials, AI features, parent account, under-13 access, pricing tiers or App Store link. Ordinary takes are private until shared; the FAQ explains the existing Performance-run exception. Free-beta, iPhone/iOS 16+, 13+ and class-code/teacher-approval claims are grounded in launch materials and the original handoff. Timestamped comment seeking is implemented in `Features/Shared/RecordingPost.swift`; the browser sample is illustrative, not a native recording or live account.
 
 The timestamp controls are explicitly labelled a browser example with no audio. Their selected note also appears as the next practice focus; this demonstrates continuity, not native automation. The actual conversation remains the dominant feedback evidence. Checklist/timer/metronome/sharing tools, the illustrative waveform and duplicate reading navigation were removed in the bounded clarity pass. Fonts, palette, original geometry, component radii and shared token values are unchanged.
+
+## Expressive refinement and appearance
+
+Preserves the approved p tile, rounded system typography and semantic token map. Coral italic hero copy and quieter violet section accents distinguish the brand without extra navigation or interactive toys. Light mode uses lavender canvas, white surfaces and native light action/text colors; dark mode uses night ground and raised dark surfaces. Appearance is a labelled native select (System / Light / Dark), keyboard accessible and persisted where storage is available. System follows device changes; screenshots remain authentic historical light captures in either website appearance. Parent copy describes supporting the student’s existing plan, never a parent account or dashboard. See assets/README.md for framing investigation and review/DEPLOYMENT.md for domain preparation.

@@ -3,6 +3,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse, unquote
+import json
 import subprocess
 import tempfile
 
@@ -62,6 +63,12 @@ def contrast(a, b):
     return (high + .05) / (low + .05)
 
 pairs = [
+    ('light body on canvas', '#1A1726', '#F7F6FB', 4.5),
+    ('light secondary on canvas', '#6B6780', '#F7F6FB', 4.5),
+    ('light CTA', '#FFFFFF', '#473CDD', 4.5),
+    ('light link on canvas', '#473CDD', '#F7F6FB', 4.5),
+    ('light warm text on canvas', '#C63D30', '#F7F6FB', 4.5),
+    ('light field on canvas', '#8F8CA1', '#F7F6FB', 3),
     ('body on night', '#F4F2FA', '#060511', 4.5),
     ('secondary on raised', '#9A95AD', '#272235', 4.5),
     ('CTA', '#FFFFFF', '#675FE3', 4.5),
@@ -79,7 +86,18 @@ for name, a, b, floor in pairs:
 
 with tempfile.TemporaryDirectory(prefix='prova-site-gate-') as directory:
     target = Path(directory) / 'output'
-    gate = subprocess.run([str(ROOT / '.venv/bin/python'), 'build.py', '--out', str(target), '--publish'], cwd=ROOT, capture_output=True, text=True)
+    values = json.loads((ROOT / 'values.json').read_text())
+    values['ENTITY NAME'] = None
+    gate_values = Path(directory) / 'incomplete-values.json'
+    gate_values.write_text(json.dumps(values))
+    gate = subprocess.run([str(ROOT / '.venv/bin/python'), 'build.py', '--out', str(target), '--values', str(gate_values), '--publish'], cwd=ROOT, capture_output=True, text=True)
     assert gate.returncode != 0 and 'refusing to publish, unfilled:' in gate.stderr
     assert not target.exists()
 print('Publication gate refuses unfilled legal values before writing output')
+
+for name, canonical in (("index", "/"), ("privacy", "/privacy"), ("terms", "/terms"), ("support", "/support")):
+    text = (ROOT / "docs" / (name + ".html")).read_text()
+    assert f'rel="canonical" href="https://provamusic.app{canonical}"' in text
+assert 'href="mailto:hello@provamusic.com"' in (ROOT / "docs/index.html").read_text()
+assert 'href="mailto:support@provamusic.com"' in (ROOT / "docs/support.html").read_text()
+print("Canonical URLs and intentional .com contact targets OK")
