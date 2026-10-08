@@ -1,21 +1,22 @@
 (() => {
   'use strict';
-  const appearance = document.querySelector('#appearance');
+  const appearanceButtons = [...document.querySelectorAll('[data-appearance]')];
   const systemAppearance = matchMedia('(prefers-color-scheme: dark)');
   let appearanceChoice = 'system';
   try { const saved = localStorage.getItem('prova-appearance'); if (['light', 'dark'].includes(saved)) appearanceChoice = saved; } catch {}
   function syncAppearance() {
     if (appearanceChoice === 'system') delete document.documentElement.dataset.theme;
     else document.documentElement.dataset.theme = appearanceChoice;
-    appearance.value = appearanceChoice;
     const dark = appearanceChoice === 'dark' || (appearanceChoice === 'system' && systemAppearance.matches);
+    const selected = dark ? 'dark' : 'light';
+    appearanceButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.appearance === selected)));
     document.querySelector('meta[name="theme-color"]').content = dark ? '#060511' : '#F7F6FB';
   }
-  appearance.addEventListener('change', () => {
-    appearanceChoice = appearance.value;
-    try { if (appearanceChoice === 'system') localStorage.removeItem('prova-appearance'); else localStorage.setItem('prova-appearance', appearanceChoice); } catch {}
+  appearanceButtons.forEach(button => button.addEventListener('click', () => {
+    appearanceChoice = button.dataset.appearance;
+    try { localStorage.setItem('prova-appearance', appearanceChoice); } catch {}
     syncAppearance();
-  });
+  }));
   systemAppearance.addEventListener('change', syncAppearance);
   syncAppearance();
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -33,74 +34,6 @@
   }
   syncMotion();
   motionButton.addEventListener('click', () => { prefersLess = !prefersLess; try { localStorage.setItem('prova-reduce-motion', String(prefersLess)); } catch {} syncMotion(); document.querySelector('#launch-film').pause(); });
-  // A small guided sequence links captured, verified screens. It does not
-  // operate the app, capture a take, or play the take shown in the images.
-  const previewFigure = document.querySelector('.hero-product');
-  const previewScreen = document.querySelector('#preview-screen');
-  const previewDescription = document.querySelector('#preview-description');
-  const previewButtons = [...document.querySelectorAll('[data-preview-step]')];
-  document.querySelector('#preview-kicker').textContent = 'Interactive preview';
-  const previewStates = {
-    plan: {image: 'today-plan.jpg', alt: 'Actual Prova Today plan: the assigned Minuet passage, completed scale and practice suggestions.', copy: 'A clear plan keeps the teacher’s assignment in view between lessons.'},
-    assignment: {image: 'assignment.jpg', alt: 'Actual Prova assignment: Minuet in G, bars 12 to 16, with a four-step checklist and practice button.', copy: 'The teacher’s passage and checklist show the student where to begin.'},
-    practice: {image: 'practice.jpg', alt: 'Actual Prova Practice Mode with the teacher’s instruction, timer, metronome and recording controls.', copy: 'In Practice Mode, the instruction stays beside the work and the recording controls.'},
-    take: {image: 'conversation.jpg', alt: 'Actual Prova assignment conversation with the linked Recordings section showing a shared Minuet take, 38 seconds long.', copy: 'A 38-second take appears in the assignment’s recording section after it has been shared.'},
-    feedback: {image: 'conversation.jpg', alt: 'Actual Prova assignment thread: the teacher replies to the student’s question about third position.', copy: 'The teacher’s reply stays with the assignment, ready for the next practice.'}
-  };
-  let previewCurrent = 'plan';
-  let previewTimer;
-  function selectPreview(name) {
-    const state = previewStates[name];
-    if (!state) return;
-    clearTimeout(previewTimer);
-    previewCurrent = name;
-    previewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.previewStep === name)));
-    previewDescription.textContent = state.copy;
-    if (!reduced() && previewScreen.getAttribute('src') !== `assets/product/${state.image}`) {
-      previewFigure.dataset.changing = 'true';
-      previewTimer = setTimeout(() => {
-        previewScreen.src = `assets/product/${state.image}`;
-        previewScreen.alt = state.alt;
-        delete previewFigure.dataset.changing;
-      }, 110);
-    } else {
-      previewScreen.src = `assets/product/${state.image}`;
-      previewScreen.alt = state.alt;
-      delete previewFigure.dataset.changing;
-    }
-  }
-  previewButtons.forEach((button, index) => {
-    button.addEventListener('click', () => selectPreview(button.dataset.previewStep));
-    button.addEventListener('keydown', event => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault();
-      const next = event.key === 'Home' ? 0 : event.key === 'End' ? previewButtons.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + previewButtons.length) % previewButtons.length;
-      previewButtons[next].focus(); previewButtons[next].click();
-    });
-  });
-  const personaContent = {
-    teacher: {copy: 'Set an assignment, hear the shared take and guide the next step.', target: 'feedback', label: 'Explore the teacher’s part'},
-    student: {copy: 'Carry the instruction into practice, then share a take when it is ready.', target: 'practice', label: 'Explore the student’s part'},
-    parent: {copy: 'Ask your child to show the plan and help make time for the next step.', target: 'assignment', label: 'Explore the family’s part'}
-  };
-  const personaLink = document.querySelector('#persona-link');
-  document.querySelectorAll('[data-persona]').forEach(button => button.addEventListener('click', () => {
-    const person = personaContent[button.dataset.persona];
-    document.querySelectorAll('[data-persona]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
-    document.querySelector('#persona-copy').textContent = person.copy;
-    document.querySelector('#persona-link-label').textContent = person.label;
-    personaLink.dataset.previewTarget = person.target;
-  }));
-  personaLink.addEventListener('click', () => selectPreview(personaLink.dataset.previewTarget));
-  document.addEventListener('prova:motionchange', () => {
-    clearTimeout(previewTimer);
-    if (reduced()) {
-      const state = previewStates[previewCurrent];
-      previewScreen.src = `assets/product/${state.image}`;
-      previewScreen.alt = state.alt;
-      delete previewFigure.dataset.changing;
-    }
-  });
   function buttonText(button, text) {
     button.textContent = text;
     button.setAttribute('aria-label', text.replace(/[▶Ⅱ↗↻✓]/g, '').trim());
@@ -197,28 +130,17 @@
     feedbackAnimation?.cancel();
     if (element.animate) feedbackAnimation = element.animate([{opacity: .45}, {opacity: 1}], {duration: reduced() ? 200 : 250, easing: 'ease-in-out'});
   }
-  // Observe only two content groups per section. On mobile, a tall screenshot
-  // enters when it actually reaches the viewport, without a reading delay.
+  // Settle each section as one composition so image and explanation arrive
+  // together. Content remains visible when scripting is unavailable.
   if ('IntersectionObserver' in window) {
-    const pairedLayout = matchMedia('(min-width: 761px)');
-    const settle = group => { group.classList.add('settled'); entrance.unobserve(group); };
+    const settle = section => { section.classList.add('settled'); entrance.unobserve(section); };
     const entrance = new IntersectionObserver(entries => entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const section = entry.target.closest('[data-movement]');
-      if (pairedLayout.matches) {
-        // A tall phone can be visible before its centered explanation. Hold
-        // both groups for the explanation, then let CSS stagger the product.
-        const copy = section.querySelector('[data-entrance="copy"]');
-        if (entry.target === copy || copy.classList.contains('settled')) {
-          section.querySelectorAll('[data-entrance]').forEach(settle);
-        }
-      } else settle(entry.target);
+      settle(entry.target);
     }), {threshold: .08, rootMargin: '0px 0px -32px 0px'});
     document.querySelectorAll('[data-movement]').forEach(section => {
-      section.querySelectorAll('.movement-copy, .arrival-copy, .audience-intro, .evidence, .native-take, .audience-parts').forEach(group => {
-        group.dataset.entrance = group.matches('.evidence, .native-take, .audience-parts') ? 'evidence' : 'copy';
-        entrance.observe(group);
-      });
+      section.dataset.entrance = 'story';
+      entrance.observe(section);
     });
     document.documentElement.classList.add('motion-ready');
   }
@@ -253,38 +175,11 @@
   // Beta destination is configured by the owner, never invented or collected locally.
   const betaURL = document.querySelector('meta[name="prova-beta-url"]')?.content;
   if (betaURL && /^(https:\/\/|mailto:)/.test(betaURL)) {
-    const action = document.querySelector('#beta-action');
+    const action = document.querySelector('#join-action');
     action.href = betaURL;
     action.textContent = 'Request beta access ↗';
-    document.querySelectorAll('[data-beta-request]').forEach(link => { link.href = betaURL; link.textContent = 'Request beta access ↗'; });
     document.querySelector('#access-status').textContent = 'Teachers can request beta access. Students join through their teacher.';
   }
 
-  // Downbeat-inspired arrival: no curtain, no blocked content, once per tab.
-  // Brand geometry is the icon crop: 626 × 766 inside a 1024px tile.
-  function arrival() {
-    if (reduced() || location.hash === '#still') return;
-    try { if (sessionStorage.getItem('prova-arrival')) return; sessionStorage.setItem('prova-arrival', '1'); } catch { return; }
-    const slot = document.querySelector('#brand-slot');
-    const r = slot.getBoundingClientRect();
-    const mark = document.createElement('div');
-    mark.className = 'arrival-mark';
-    mark.setAttribute('aria-hidden', 'true');
-    const art = document.createElement('img'); art.src = 'assets/brandmark.png'; art.alt = ''; mark.append(art);
-    mark.style.left = `${r.left + r.width / 2 - 32}px`;
-    mark.style.top = `${r.top + r.height / 2 - 32}px`;
-    document.body.append(mark);
-    const start = performance.now();
-    const spring = t => { const w = Math.sqrt(420), z = 35 / (2 * w), wd = w * Math.sqrt(1 - z * z); return 1 - Math.exp(-z * w * t) * (Math.cos(wd * t) + z * w / wd * Math.sin(wd * t)); };
-    function frame(now) {
-      if (reduced() || now - start > 414) { mark.remove(); return; }
-      const p = spring((now - start) / 1000);
-      mark.style.transform = `translateY(${-80 * (1 - p)}px) scale(${1 - .375 * p})`;
-      mark.style.opacity = String(Math.min(1, (now - start) / 80));
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }
   document.documentElement.classList.add('js-ready');
-  arrival();
 })();

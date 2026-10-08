@@ -1,10 +1,10 @@
-# Prova — focused finesse candidate
+# Prova — reimagined story candidate
 
-Branch: `site/direction-a-expressive`. The current interaction pass builds from committed rollback candidate `af91e26`; preserve that commit for rollback. It keeps the approved direction, section order, main benefit copy, authentic assets, semantic token map, light/dark themes and contact/domain preparation. No app edits, dependencies, native build, merge or publication. Keep deployment separate; this candidate is not published.
+Branch: `site/direction-a-expressive`. The current reimagined story pass builds from committed rollback candidate `7470818`; preserve that commit for rollback. It keeps Prova’s semantic tokens, light/dark appearances, authentic product imagery, verified app behavior, contact details and publication gate. App files remain read-only. No dependencies, native build, merge or publication.
 
-Preview: **http://127.0.0.1:8087/docs/** (existing server confirmed HTTP 200). Root `index.html`, `site.css`, `site.js` remain canonical; `.venv/bin/python build.py --out docs` generates draft output.
+Preview: **http://127.0.0.1:8092/** (local draft returned HTTP 200). Root `index.html`, `site.css`, `site.js` remain canonical; `.venv/bin/python build.py --out docs` generates draft output. The connected browser is unavailable in this environment, so current visual captures and browser interaction checks are outstanding.
 
-## Five highest-impact issues, found before editing
+## Previous finesse findings (2026-10-07)
 
 Fresh before renders of desktop/mobile in both themes and the viewer are retained in `review/finesse/before/`. Measurements confirmed 32/64/80px desktop gutters and differing column ratios. The viewer scrolled its whole container, clipped its bottom content, and left the document scrollable. Chrome's native Escape focus return already worked; this pass makes all closing paths explicit and consistent.
 
@@ -14,7 +14,7 @@ Fresh before renders of desktop/mobile in both themes and the viewer are retaine
 4. **Coordinated entrances.** Only explanation and evidence groups animate. Desktop waits for the explanation and settles the pair, with 150ms evidence stagger; copy 8px/250ms, product 12px/400ms. On mobile each group waits for its own visibility with no delay. Initial opacity is .96, so content remains readable if enhancement fails. Observers detach after settlement; scrolling stays native. OS/manual reduction removes all offsets/delays/transitions, even for offscreen groups. Existing sample emphasis remains a brief opacity change.
 5. **Action clarity.** Enlargement links consistently say “View full screen”; beta entry links say “Beta details” with downward arrows, and the FAQ link says “How to join.” Sample labels are shorter while preserving “browser example, no audio.” Native fragment targets receive keyboard focus below the sticky header. JavaScript-only controls remain unavailable until enhancement succeeds, with their geometry reserved; screenshot links, joining details, FAQ and essential content still work without JavaScript.
 
-## Verification and evidence
+## Previous pass verification and evidence (2026-10-07)
 
 Final matching renders: `review/finesse/{light,dark}-{desktop,mobile}-{hero,full}.png`, desktop 1440×1000 viewport and mobile 390×844 viewport. Section/viewer captures are in the same folder. Final paired-motion assertions and the full interaction report are in `review/finesse/checks.json`.
 
@@ -24,7 +24,7 @@ Viewer checks in both themes and desktop/mobile: keyboard opening, Tab cycle, Cl
 
 `node --check site.js`, draft build, `python3 tools/check-site.py` and `git diff --check` pass. Reuse unaffected claim/provenance, legal/contact, contrast, publication-refusal and native-film evidence from `c9d63af`; original screenshots and shared tokens/prototypes remain unchanged. No claim of Safari, real-device, screen-reader or measured performance/CLS validation.
 
-## Remaining visual limitations
+## Previous visual limitations
 
 Historical native demo captures contain older styling and inconsistent musical details; they remain untouched. The hero's partially clipped calendar control is authentic capture scroll state. Approved current launch captures and native timestamp audio remain absent. Browser samples stay illustrative. Safari, real iPhone, VoiceOver, zoom and throttled performance remain unverified. Final visual approval is pending.
 
@@ -36,7 +36,7 @@ Publication requires ENTITY NAME, POSTAL ADDRESS, STATE, REPORT DAYS, BACKUP DAY
 
 Historical native captures have inconsistent musical data/older styling and need launch approval/replacement; native timestamp audio is absent. Approved beta request endpoint remains absent. Safari, real iPhone, VoiceOver, zoom and throttled performance remain untested. No service purchase, transfer, email sending, merge or publication.
 
-## Immersive interaction pass (2026-10-07)
+## Previous immersive interaction pass (2026-10-07)
 
 This bounded pass preserves `af91e26` as the rollback point. Before-state visual evidence is retained in `review/finesse/` and covers desktop/mobile in both themes; the current session could not create after-state screenshots because no connected browser was available (`agent.browsers.list()` returned an empty list). The preview server responds HTTP 200 at **http://127.0.0.1:8092/** after an elevated local request. Rendered geometry, visual contrast in context, keyboard/touch behavior, reduced-motion rendering, and desktop/mobile after-state remain unverified. Do not describe this as visual QA complete.
 
@@ -45,3 +45,17 @@ The hero now has a five-step visitor-controlled screen navigator: Today plan, as
 The only repository video is `assets/downbeat.mp4`, an existing silent launch motion study, not a screen recording of the assignment/practice/feedback flow. The practice recording and shared 38-second take shown are captured app states; the website does not record or play them. Native source behavior was checked previously: Practice Mode has its own timer/metronome/recording UI, and the app's timestamp comments can seek native audio. These web screens do not claim or reproduce that native audio behavior.
 
 Validation this pass: `.venv/bin/python build.py --out docs`, `node --check site.js`, `python3 tools/check-site.py`, and `git diff --check` pass. The site checker retains canonical/contact safeguards and refuses unfilled legal publication values. No browser-driven interaction tests or after-state screenshots were possible; review visual rhythm, wrapping and accessibility on desktop/mobile before approval.
+
+## Reimagined story pass (2026-10-08)
+
+Rollback: committed `7470818`. Source-level review suggests the prior hero stepper, its accumulated disclosure copy, and the three-persona selector made visitors process several choices before they reached the assignment story. Fresh rendered inspection could not be performed: the connected browser lookup returned “No browser is available.” Treat this as a source-based diagnosis, not a visual audit; no older screenshots are used as evidence for this pass.
+
+The hero now leads with one student/teacher/family value promise and a static authentic Today capture. The sequence then unfolds in page order: role-specific outcomes with links to proof, assignment, guided practice, shared take, teacher feedback, next practice, and Join Prova. The audience outcomes are promises tied to capabilities already shown in the app. The role selector and five-screen hero stepper have been removed; screenshot enlargement and feedback examples remain available as supportive interactions.
+
+The main “Join Prova” links are in-page anchors to `#join-prova`. That section explains the verified teacher-led studio steps and links “Ask about beta access” to `hello@provamusic.com` with a prefilled subject. There is no website signup backend or beta endpoint configured; the email action starts an inquiry and does not claim instant enrollment. If an approved HTTPS/mailto endpoint is configured in `prova-beta-url`, the section action uses it.
+
+The appearance control is a paired, 44px light/dark button group with semantic-token selected, hover, pressed, forced-color and keyboard-focus states. It follows the device theme until a visitor selects one, then remembers that selection. Scroll entrances now animate one whole section at the app’s `--m-entrance` / `--e-entrance` timing (500ms) so explanation and evidence arrive together; the logo drop and staggered evidence transitions were removed. Reduced motion settles sections immediately and scrolling remains native.
+
+Web adaptations: the landing page floors section separation at 96px while following app `--sp-section`; its larger display scale and 19–20px marketing copy retain the app typography family while improving long-form reading. The container follows the app’s 1120px `--container-max`. The longer section entrance uses the app’s existing 500ms entrance token rather than introducing a new motion token. No parallax was added because it did not improve this linear reading sequence.
+
+Checks run: `node --check site.js`, `.venv/bin/python build.py --out docs`, `python3 tools/check-site.py`, and `git diff --check` pass. The checker verified local links/anchors/media geometry, source-to-draft synchronization, theme contrast, canonical/contact safeguards, and the legal publication gate. The preview returned HTTP 200. Rendered desktop/mobile screenshots in either theme, actual visual spacing and text wrapping, theme-control clicks, anchor behavior, keyboard interaction, and reduced-motion behavior remain unverified until a connected browser is available. No publication occurred.

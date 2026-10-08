@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="The week between lessons, connected. Prova helps music teachers give clear practice steps, hear students’ takes, and answer where it matters.">
+  <meta name="description" content="Clear practice plans for students. Useful feedback for teachers. A next step families can encourage. Prova connects the week between music lessons.">
   <meta name="prova-beta-url" content="">
   <meta name="theme-color" content="#060511">
   <link rel="canonical" href="https://provamusic.app/">
   <meta property="og:url" content="https://provamusic.app/">
-  <meta property="og:title" content="Prova — Clear direction. Room for music.">
+  <meta property="og:title" content="Prova — A clearer week between lessons">
   <meta property="og:type" content="website">
-  <title>Prova — The week between lessons</title>
+  <title>Prova — A clearer week between lessons</title>
   <script>
     // Apply an explicit choice before paint; absent preference follows the OS.
-    try { const appearance = localStorage.getItem('prova-appearance'); if (appearance === 'light' || appearance === 'dark') document.documentElement.dataset.theme = appearance; } catch {}
+    try { const appearance = localStorage.getItem('prova-appearance'); if (appearance === 'light' || appearance === 'dark') document.documentElement.dataset.theme = appearance; const dark = appearance === 'dark' || (appearance !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches); document.querySelector('meta[name="theme-color"]').content = dark ? '#060511' : '#F7F6FB'; } catch {}
   </script>
   <link rel="icon" href="assets/favicon.png">
   <link rel="stylesheet" href="shared/tokens.css">
@@ -27,8 +27,8 @@
   <div class="wrap nav-inner">
     <a class="lockup" href="#top" aria-label="Prova home"><span class="tile" id="brand-slot"><img src="assets/brandmark.png" width="626" height="766" alt=""></span><span class="word">Prova</span></a>
 
-    <div class="nav-actions"><label class="appearance requires-js"><span class="sr-only">Appearance</span><select id="appearance" aria-label="Appearance"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
-    <a class="nav-cta" href="#beta" data-beta-request>Beta details <span aria-hidden="true">↓</span></a></div>
+    <div class="nav-actions"><div class="appearance-control requires-js" role="group" aria-label="Color theme"><button type="button" data-appearance="light" aria-label="Use light theme" title="Light theme" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button><button type="button" data-appearance="dark" aria-label="Use dark theme" title="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/></svg></button></div>
+    <a class="nav-cta" href="#join-prova">Join Prova <span aria-hidden="true">↓</span></a></div>
   </div>
 </header>
 <main id="main" tabindex="-1">
@@ -37,25 +37,15 @@
   <div class="aurora" aria-hidden="true"></div>
   <div class="wrap hero-layout">
     <div class="hero-copy">
-      <h1 id="hero-title">Clear direction.<br><span class="last-line">Room for music.</span></h1>
-      <p class="hero-body">Prova connects assignments, shared takes and teacher feedback—so students know what to work on between lessons.</p>
-      <div class="hero-actions"><a class="btn primary" href="#beta" data-beta-request>Beta details <span aria-hidden="true">↓</span></a><a class="text-link" href="#assignment">See the steps <span aria-hidden="true">↓</span></a></div>
+      <p class="section-label hero-eyebrow">A little more music between lessons</p>
+      <h1 id="hero-title">A clearer week.<br><span class="last-line">More room to grow.</span></h1>
+      <p class="hero-body">Prova turns each lesson into a practice plan students can follow, teachers can guide, and families can encourage.</p>
+      <div class="hero-actions"><a class="btn primary" href="#join-prova">Join Prova <span aria-hidden="true">↓</span></a><a class="text-link" href="#assignment">See how it works <span aria-hidden="true">↓</span></a></div>
       <p class="meta">For music teachers &amp; students · iPhone · Ages 13+</p>
     </div>
-    <figure class="hero-product" id="preview">
-      <div class="phone hero-phone preview-screen"><img id="preview-screen" src="assets/product/today-plan.jpg" alt="Actual Prova Today assignments: Minuet in G, bars 12 to 16, left hand alone; a completed G major scale; and ways to warm up or revisit the piece." width="880" height="1913" fetchpriority="high"><video id="launch-film" width="880" height="1912" preload="none" playsinline muted controls poster="assets/product/today.jpg" aria-label="Silent native Prova launch motion study" hidden><source src="assets/downbeat.mp4" type="video/mp4"><a href="assets/downbeat.mp4">Download the native launch film</a></video></div>
-      <figcaption><span class="preview-kicker" id="preview-kicker">Captured app screens</span> · actual Prova, demo studio</figcaption>
-      <div class="preview-story requires-js" role="group" aria-label="Explore moments from a practice week">
-        <p id="preview-description" class="preview-description" aria-live="polite" aria-atomic="true">A clear plan keeps the teacher’s assignment in view between lessons.</p>
-        <div class="preview-steps" aria-label="Choose a captured screen">
-          <button type="button" data-preview-step="plan" aria-pressed="true">Plan</button>
-          <button type="button" data-preview-step="assignment" aria-pressed="false">Assignment</button>
-          <button type="button" data-preview-step="practice" aria-pressed="false">Practice</button>
-          <button type="button" data-preview-step="take" aria-pressed="false">Shared take</button>
-          <button type="button" data-preview-step="feedback" aria-pressed="false">Teacher feedback</button>
-        </div>
-        <p class="preview-disclosure">Screens from the demo studio. This preview changes screens only; it does not record or play audio.</p>
-      </div>
+    <figure class="hero-product">
+      <div class="phone hero-phone"><img src="assets/product/today-plan.jpg" alt="Actual Prova Today assignments: Minuet in G, bars 12 to 16, left hand alone; a completed G major scale; and ways to warm up or revisit the piece." width="880" height="1913" fetchpriority="high"><video id="launch-film" width="880" height="1912" preload="none" playsinline muted controls poster="assets/product/today.jpg" aria-label="Silent native Prova launch motion study" hidden><source src="assets/downbeat.mp4" type="video/mp4"><a href="assets/downbeat.mp4">Download the native launch film</a></video></div>
+      <figcaption>Today, with a plan · actual Prova, demo studio</figcaption>
       <button type="button" class="text-link film-trigger requires-js" id="film-toggle" aria-controls="launch-film">Watch the silent launch study <span aria-hidden="true">▶</span></button><p class="film-status" id="film-status" aria-live="polite"></p>
     </figure>
   </div>
@@ -63,16 +53,11 @@
 </section>
 
 <section id="audiences" class="audiences wrap" aria-labelledby="audiences-title" data-movement>
-  <div class="audience-intro"><p class="section-label">One piece. A shared purpose.</p><h2 id="audiences-title">Everyone has <br>a part to play.</h2></div>
-  <div class="audience-parts"><article><h3>Teachers</h3><p>Give a clear plan. Hear the work. Respond where it matters.</p></article><article><h3>Students</h3><p>Know what to practice. Listen back to a take. Find your next step.</p></article><article><h3>Parents</h3><p>Ask your child to show you the plan. Help make time for the next small step.</p></article></div>
-  <div class="persona-explorer requires-js">
-    <p class="persona-prompt">Follow a part in the week</p>
-    <div class="persona-choices" role="group" aria-label="Choose who you are exploring as">
-      <button type="button" data-persona="teacher" aria-pressed="true">Teacher</button>
-      <button type="button" data-persona="student" aria-pressed="false">Student</button>
-      <button type="button" data-persona="parent" aria-pressed="false">Parent</button>
-    </div>
-    <div class="persona-result" aria-live="polite" aria-atomic="true"><p id="persona-copy">Set an assignment, hear the shared take and guide the next step.</p><a id="persona-link" href="#preview" data-preview-target="feedback"><span id="persona-link-label">Explore the teacher’s part</span><span aria-hidden="true">↓</span></a></div>
+  <div class="audience-intro"><p class="section-label">One practice week. Three wins.</p><h2 id="audiences-title">Everyone knows<br>what comes next.</h2></div>
+  <div class="audience-parts">
+    <article><p class="audience-role">For teachers</p><h3>Leave every lesson with a plan students can follow.</h3><p>Set the passage, give a few clear steps, then respond to shared work as practice unfolds.</p><a href="#assignment">See how assignments work <span aria-hidden="true">↓</span></a></article>
+    <article><p class="audience-role">For students</p><h3>Open practice knowing where to begin.</h3><p>Keep the teacher’s instruction beside the passage, and share a take when you’re ready.</p><a href="#practice">See guided practice <span aria-hidden="true">↓</span></a></article>
+    <article><p class="audience-role">For parents</p><h3>Know what to encourage between lessons.</h3><p>Ask your child to show the practice plan and help make time for one clear next step.</p><a href="#next-lesson">See how progress carries forward <span aria-hidden="true">↓</span></a></article>
   </div>
 </section>
 
@@ -110,9 +95,9 @@
   </figure>
 </section>
 
-<section class="beta wrap" id="beta" tabindex="-1" aria-labelledby="beta-title">
-  <div class="beta-heading"><p class="section-label">Your studio, connected</p><h2 id="beta-title">The next lesson<br>starts here.</h2><p>Try Prova with your studio. Give the week a clear beginning, and come back ready to listen.</p><a class="btn primary" id="beta-action" href="#beta-details">How to join <span aria-hidden="true">↓</span></a><p class="beta-meta">iPhone · iOS 16+ · Students aged 13 and up</p></div>
-  <div class="beta-details" id="beta-details" tabindex="-1"><h3>Before your first practice</h3><details open><summary>How does a studio join?</summary><p>Teachers create a studio and share a class code. Students enter the code, and the teacher approves their request.</p></details><details><summary>Who hears a student’s take?</summary><p>Ordinary practice takes stay private until the student shares them. A Performance run is sent to the teacher; Prova explains that before it starts.</p></details><details><summary>Can younger students join?</summary><p>The beta is for ages 13 and up. Younger students cannot join this beta.</p></details><details><summary>What does the beta cost?</summary><p>Prova is free during the beta. Your feedback helps shape what comes next.</p></details><p class="access-status" id="access-status">Prova is in beta. Students join through their teacher.</p></div>
+<section class="beta wrap" id="join-prova" tabindex="-1" data-movement aria-labelledby="beta-title">
+  <div class="beta-heading"><p class="section-label">Your studio, connected</p><h2 id="beta-title">Join Prova.<br><span class="ink-accent">Make room to grow.</span></h2><p>Bring your studio. Teachers lead setup; students join with a class code and start with one clear assignment.</p><a class="btn primary" id="join-action" href="mailto:hello@provamusic.com?subject=Prova%20beta%20access">Ask about beta access <span aria-hidden="true">↗</span></a><p class="beta-meta">Free during beta · iPhone · Ages 13+</p></div>
+  <div class="beta-details" id="beta-details" tabindex="-1"><h3>Your first steps</h3><ol class="join-steps"><li><span>01</span><p><strong>Teachers start a studio.</strong> Email us to ask about beta access, then create a studio and share a class code.</p></li><li><span>02</span><p><strong>Students join with the code.</strong> Your teacher approves your request.</p></li><li><span>03</span><p><strong>Begin with one clear assignment.</strong> Practice, share a take when you’re ready, and keep the next step close.</p></li></ol><details><summary>Who hears a student’s take?</summary><p>Ordinary practice takes stay private until the student shares them. A Performance run is sent to the teacher; Prova explains that before it starts.</p></details><details><summary>Can younger students join?</summary><p>The beta is for ages 13 and up. Younger students cannot join this beta.</p></details><details><summary>What does the beta cost?</summary><p>Prova is free during the beta. Your feedback helps shape what comes next.</p></details><p class="access-status" id="access-status">Beta access starts with a teacher-led studio.</p></div>
 </section>
 </main>
 <footer class="footer"><div class="wrap"><div class="footer-top"><a class="lockup" href="#top" aria-label="Prova home"><span class="tile"><img src="assets/brandmark.png" alt="" width="626" height="766"></span><span class="word">Prova</span></a><p>Keep the week connected.</p><a class="text-link" href="#top">Back to the beginning <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><span>© 2026 Prova</span><nav aria-label="Legal and support"><a href="mailto:hello@provamusic.com">Contact</a><a href="privacy.html" data-legal="privacy.html">Privacy</a><a href="terms.html" data-legal="terms.html">Terms</a><a href="support.html" data-legal="support.html">Support</a></nav><button type="button" id="motion-toggle" class="requires-js" aria-pressed="false">Reduce motion</button><span>Beta preview</span></div></div></footer>
