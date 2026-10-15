@@ -1,0 +1,136 @@
+{
+  "results": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": true,
+      "cls": 0,
+      "longTasks": 0,
+      "moving": {
+        "time": "0:00",
+        "head": "translate(13.892210526315788 0)",
+        "playing": "true"
+      },
+      "actions": {
+        "seek": true,
+        "placement": true,
+        "review": true,
+        "layer": true,
+        "progress": true,
+        "badge": true
+      },
+      "keyboard": {
+        "value": "25",
+        "focus": "wave-scrub",
+        "outline": "auto"
+      },
+      "timedExchange": [
+        "student",
+        "teacher"
+      ],
+      "finalCLS": 0
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": true,
+      "cls": 0,
+      "longTasks": 0,
+      "moving": {
+        "time": "0:00",
+        "head": "translate(13.892210526315788 0)",
+        "playing": "true"
+      },
+      "actions": {
+        "seek": true,
+        "placement": true,
+        "review": true,
+        "layer": true,
+        "progress": true,
+        "badge": true
+      },
+      "keyboard": {
+        "value": "25",
+        "focus": "wave-scrub",
+        "outline": "auto"
+      },
+      "timedExchange": [
+        "student",
+        "teacher"
+      ],
+      "finalCLS": 0
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": true,
+      "cls": 0,
+      "longTasks": 0,
+      "moving": {
+        "time": "0:00",
+        "head": "translate(13.89221052631579 0)",
+        "playing": "true"
+      },
+      "actions": {
+        "seek": true,
+        "placement": true,
+        "review": true,
+        "layer": true,
+        "progress": true,
+        "badge": true
+      },
+      "keyboard": {
+        "value": "25",
+        "focus": "wave-scrub",
+        "outline": "auto"
+      },
+      "timedExchange": [
+        "student",
+        "teacher"
+      ],
+      "finalCLS": 0
+    },
+    {
+      "name": "small-mobile",
+      "width": 320,
+      "scrollWidth": 320,
+      "images": true,
+      "cls": 0,
+      "longTasks": 0,
+      "moving": {
+        "time": "0:00",
+        "head": "translate(13.888421052631582 0)",
+        "playing": "true"
+      },
+      "actions": {
+        "seek": true,
+        "placement": true,
+        "review": true,
+        "layer": true,
+        "progress": true,
+        "badge": true
+      },
+      "keyboard": {
+        "value": "25",
+        "focus": "wave-scrub",
+        "outline": "auto"
+      },
+      "timedExchange": [
+        "student",
+        "teacher"
+      ],
+      "finalCLS": 0.0020299517211468227
+    }
+  ],
+  "reduced": {
+    "time": "0:18",
+    "scroll": "auto",
+    "sticky": "relative",
+    "animations": 0
+  },
+  "errors": [],
+  "recordingFrames": 48
+}

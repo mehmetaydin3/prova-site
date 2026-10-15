@@ -12,7 +12,7 @@
     animation.finished.catch(()=>{}).finally(()=>activeAnimations.delete(animation));
     return animation;
   }
-  const reveals = $$('.section-top, .purpose-layout h2, .purpose-copy, .feedback-heading, #score-title, .score-benefit, .ensemble-heading, .parent-moment h2, .parent-moment > p, .closing h2, .studio-preview > div, .journey-line li, .ensemble-images figure');
+  const reveals = $$('.promise-heading h2, .promise-heading > p, .promise-sequence article, .section-top, .purpose-layout h2, .purpose-copy, .feedback-heading, #score-title, .score-benefit, .ensemble-heading, .parent-moment h2, .parent-moment > p, .closing h2, .studio-preview > div, .journey-line li, .ensemble-images figure');
   const entrance = new IntersectionObserver(entries => entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     animate(entry.target, [{opacity:.3,transform:'translateY(22px)'},{opacity:1,transform:'translateY(0)'}]);
@@ -49,7 +49,7 @@
   }
   addEventListener('scroll',()=>{if(!scrollFrame&&(heroVisible||scoreVisible))scrollFrame=requestAnimationFrame(scrollUpdate);},{passive:true});
   const visibility=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.target.matches('.overture'))heroVisible=entry.isIntersecting;
+    if(entry.target.matches('.overture')){heroVisible=entry.isIntersecting;if(heroVisible&&!scrollFrame)scrollFrame=requestAnimationFrame(scrollUpdate);}
     else {scoreVisible=entry.isIntersecting;if(!entry.isIntersecting)stopExchange();}
   }));visibility.observe($('.overture'));visibility.observe($('.score-story'));
   layerButtons.forEach(button=>button.addEventListener('click',()=>{stopExchange();setLayer(button.dataset.layer,true);}));
@@ -68,7 +68,7 @@
   });
 
   // Playback only moves after an explicit action; the scrubber is native keyboard UI.
-  let seconds=0,running=false,last=0,playFrame=0,lastComment='',placedNote=null,lastBar=-1;
+  let seconds=18,running=false,last=0,playFrame=0,lastComment='',placedNote=null,lastBar=-1;
   const play=$('#wave-play'),time=$('#wave-time'),head=$('.wave-playhead'),scrub=$('#wave-scrub');
   function showComment(copy,foot){
     if(copy===lastComment)return;lastComment=copy;
@@ -124,5 +124,13 @@
     const target=link.hash?document.getElementById(link.hash.slice(1)):document.body;if(!target)return;
     if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');target.focus({preventScroll:true});
   }));
+  // The promise reads like three measures: the current handoff gets one quiet underline.
+  const promiseObserver = new IntersectionObserver(entries => {
+    const entering = entries.filter(entry => entry.isIntersecting);
+    if (!entering.length) return;
+    const current = entering[entering.length - 1].target;
+    $$('.promise-sequence article').forEach(row => row.classList.toggle('is-current', row === current));
+  }, { rootMargin: '-25% 0px -35% 0px', threshold: 0.1 });
+  $$('.promise-sequence article').forEach(row => promiseObserver.observe(row));
   paint();
 })();

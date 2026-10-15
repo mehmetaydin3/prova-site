@@ -1,6 +1,6 @@
 const fs=require('fs');const path=require('path');
 (async()=>{
- const output='review/cinematic-v2';fs.mkdirSync(output,{recursive:true});
+ const output='review/authored';fs.mkdirSync(output,{recursive:true});
  const tabs=await(await fetch('http://127.0.0.1:9234/json')).json();
  const ws=new WebSocket(tabs.find(t=>t.type==='page').webSocketDebuggerUrl);await new Promise(r=>ws.addEventListener('open',r,{once:true}));
  let id=0;const pending=new Map(),errors=[];ws.addEventListener('message',e=>{const m=JSON.parse(e.data);if(m.id){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(m.error):p.resolve(m.result);}if(m.method==='Runtime.exceptionThrown')errors.push(m.params.exceptionDetails.text);});
@@ -43,7 +43,7 @@ const fs=require('fs');const path=require('path');
  // Actual browser frames: a short silent capture of the two interactive scenes.
  await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});await send('Emulation.setDeviceMetricsOverride',{width:1100,height:820,deviceScaleFactor:1,mobile:false});
  await run(`document.querySelector('#wave-demo').scrollIntoView({behavior:'instant',block:'center'});document.querySelector('#wave-reset').click();document.querySelector('[data-seek="18"]').click();document.querySelector('#wave-play').click()`);
- const frames=[];const frameDir='/private/tmp/prova-motion-v2-frames';fs.mkdirSync(frameDir,{recursive:true});let last=Date.now();
+ const frames=[];const frameDir='/private/tmp/prova-authored-frames';fs.mkdirSync(frameDir,{recursive:true});let last=Date.now();
  for(let i=0;i<48;i++){
  if(i===24){await run(`document.querySelector('#score-demo').scrollIntoView({behavior:'instant',block:'center'});document.querySelector('#play-exchange').click()`);}
  const shot=await send('Page.captureScreenshot',{format:'png'});const now=Date.now();const file=path.join(frameDir,String(i).padStart(3,'0')+'.png');fs.writeFileSync(file,Buffer.from(shot.data,'base64'));frames.push({file,duration:Math.max(90,now-last)});last=now;await wait(100);

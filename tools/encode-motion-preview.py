@@ -1,5 +1,5 @@
 import json,struct,zlib,pathlib
-root=pathlib.Path('/private/tmp/prova-motion-v2-frames')
+root=pathlib.Path('/private/tmp/prova-authored-frames')
 frames=json.loads((root/'frames.json').read_text())
 def chunk(kind,data):
  return struct.pack('>I',len(data))+kind+data+struct.pack('>I',zlib.crc32(kind+data)&0xffffffff)
@@ -17,5 +17,5 @@ for i,f in enumerate(frames):
  out+=chunk(b'fcTL',struct.pack('>IIIIIHHBB',seq,w,h,0,0,duration,1000,0,0));seq+=1
  if i==0:out+=chunk(b'IDAT',data)
  else:out+=chunk(b'fdAT',struct.pack('>I',seq)+data);seq+=1
-out+=chunk(b'IEND',b'');target=pathlib.Path('review/cinematic-v2/motion-preview.apng');target.write_bytes(out)
+out+=chunk(b'IEND',b'');target=pathlib.Path('review/authored/motion-preview.apng');target.write_bytes(out)
 print(f'Encoded {len(frames)} real browser frames: {w}x{h}, {len(out)//1024} KiB, {sum(f["duration"] for f in frames)/1000:.1f}s')
