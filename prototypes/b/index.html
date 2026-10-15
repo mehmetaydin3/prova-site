@@ -44,7 +44,7 @@ h3 { font-size: var(--text-title2); font-weight: var(--weight-semibold); font-fa
 .shot { justify-self: center; width: min(320px, 100%); display: grid; gap: var(--sp-sm); }
 .shot img { border-radius: 36px; border: var(--border-hairline) solid var(--line); box-shadow: var(--shadow-raised); width: 100%; height: auto; }
 .shot figcaption { font-size: var(--text-footnote); color: var(--text-secondary); text-align: center; }
-@media (max-width: 860px) { .herostage { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .herostage { grid-template-columns: minmax(0, 1fr); } }
 
 /* The week: a spine down the left (centre on wide screens), days as beats on it */
 .week { padding-block: var(--sp-section); border-top: var(--border-hairline) solid var(--line); }
@@ -60,7 +60,7 @@ h3 { font-size: var(--text-title2); font-weight: var(--weight-semibold); font-fa
 .day .who { font-family: var(--font-mono); font-size: var(--text-caption); letter-spacing: .12em; text-transform: uppercase; color: var(--text-secondary); }
 .day p { color: var(--text-secondary); max-width: 46ch; line-height: var(--leading-prose); }
 .day .art { justify-self: stretch; }
-@media (max-width: 760px) { .day { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .day { grid-template-columns: minmax(0, 1fr); } }
 
 /* Paper: the product moments as note-like cards built from the tokens */
 .paper { background: var(--surface); border: var(--border-hairline) solid var(--line); border-radius: var(--r-xl); box-shadow: var(--shadow-card); padding: var(--sp-xl); display: grid; gap: var(--sp-md); font-size: var(--text-subhead); }
@@ -109,7 +109,7 @@ h3 { font-size: var(--text-title2); font-weight: var(--weight-semibold); font-fa
 .fact .k { width: 28px; height: 28px; border-radius: var(--r-sm); background: rgba(31,182,166,.14); color: var(--success-text); display: grid; place-items: center; font-weight: var(--weight-semibold); font-size: var(--text-footnote); }
 .fact b { display: block; font-weight: var(--weight-semibold); }
 .fact span { color: var(--text-secondary); font-size: var(--text-subhead); }
-@media (max-width: 860px) { .letter .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .letter .wrap { grid-template-columns: minmax(0, 1fr); } }
 
 /* Pricing and beta */
 .pricing { padding-block: var(--sp-section); border-top: var(--border-hairline) solid var(--line); }

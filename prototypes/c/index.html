@@ -41,7 +41,7 @@ h3 { font-size: var(--text-title2); font-family: var(--font-body); }
 
 .hero .meta { font-family: var(--font-mono); font-size: var(--text-footnote); color: var(--text-secondary); display: flex; flex-wrap: wrap; gap: var(--sp-md); }
 .take { position: relative; margin-top: clamp(24px, 4vw, 48px); border-top: var(--border-hairline) solid var(--border); border-bottom: var(--border-hairline) solid var(--border); }
-.take canvas { width: 100%; height: clamp(180px, 32vw, 320px); display: block; }
+.take canvas { width: 100%; max-width: 100%; height: clamp(180px, 32vw, 320px); display: block; }
 .take .playhead { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--text); left: 0; }
 .take .tc { position: absolute; bottom: 8px; font-family: var(--font-mono); font-size: var(--text-caption); color: var(--text-secondary); font-variant-numeric: tabular-nums; }
 .take .tc.l { left: var(--page-margin); } .take .tc.r { right: var(--page-margin); }
@@ -80,7 +80,7 @@ h3 { font-size: var(--text-title2); font-family: var(--font-body); }
 .real figcaption { font-size: var(--text-footnote); color: var(--text-secondary); text-align: center; }
 .real .copy { display: grid; gap: var(--sp-lg); }
 .real .copy p { color: var(--text-secondary); max-width: 46ch; }
-@media (max-width: 860px) { .real .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .real .wrap { grid-template-columns: minmax(0, 1fr); } }
 
 /* The reward: one celebration, the app's own overlay hierarchy */
 .reward { padding-block: var(--sp-section); background: var(--surface); border-block: var(--border-hairline) solid var(--border); }
@@ -94,7 +94,7 @@ h3 { font-size: var(--text-title2); font-family: var(--font-body); }
 .celebrate h3 { font-family: var(--font-display); font-size: 2rem; letter-spacing: -0.02em; }
 .celebrate .msg { color: var(--text-secondary); font-size: var(--text-subhead); }
 .celebrate .cta { margin-top: var(--sp-sm); width: 100%; }
-@media (max-width: 860px) { .reward .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .reward .wrap { grid-template-columns: minmax(0, 1fr); } }
 
 /* Safety as a receipt: what we keep, what we never do */
 .safety { padding-block: var(--sp-section); }
@@ -105,7 +105,7 @@ h3 { font-size: var(--text-title2); font-family: var(--font-body); }
 .receipt .r { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-md); padding-block: var(--sp-sm); border-bottom: 1px dashed var(--border); }
 .receipt .r:last-child { border-bottom: 0; }
 .receipt .y { color: var(--success-text); } .receipt .n { color: var(--error); }
-@media (max-width: 860px) { .safety .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .safety .wrap { grid-template-columns: minmax(0, 1fr); } }
 
 /* Parents, pricing, beta */
 .parents { padding-block: 0 var(--sp-section); }

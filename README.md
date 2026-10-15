@@ -44,6 +44,11 @@ backup and log retention. `null` in `values.json` means not filled yet.
   `[POSTAL ADDRESS]`, `[WEBSITE]`, `[REGION]`, `[BACKUP DAYS]`, `[REPORT DAYS]`,
   `[LOG DAYS]`, `[EMAIL PROVIDER]`, `[STATE]`, `[COPYRIGHT AGENT]`, `[DATE]`).
 - The support and legal page wrapper are written in `build.py`; the marketing entry point is root `index.html`.
+- `src/index.html` + `src/assets/`: the alternative landing page ("the week, with the take",
+  `prototypes/d`, the site lead's recorded default), built to `docs/the-week/` beside the entry
+  point until the founder settles which page is the front door. `prototypes/` holds the three
+  directions, `TOKENS.md` (the app-to-web token map), `ASSETS.md` (recordings to capture),
+  `HANDOFF.md` (the review handoff) and `tools/shoot.mjs` (renders at real phone and desktop viewports).
 
 ## Building
 

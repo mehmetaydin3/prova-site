@@ -136,9 +136,11 @@ def fill(md, values):
     website = values.get("WEBSITE", "").rstrip("/")
     email = values.get("SUPPORT EMAIL")
     if website:
-        md = md.replace("([WEBSITE]/", f"({website}/")  # inside a markdown link target
+        # A link to one of our own pages is relative, so the pages work on any host and in a local
+        # preview; the site's name as text stays the real address.
+        md = re.sub(r"\(\[WEBSITE\]/([a-z]+)\)", r"(\1)", md)  # inside a markdown link target
         md = re.sub(r"\[WEBSITE\](/[a-z]+)?",
-                    lambda m: f'<a href="{website}{m.group(1) or ""}">{website}{m.group(1) or ""}</a>', md)
+                    lambda m: f'<a href="{m.group(1)[1:] if m.group(1) else website}">{website}{m.group(1) or ""}</a>', md)
     if email:
         md = md.replace("[SUPPORT EMAIL]", f'<a href="mailto:{email}">{email}</a>')
     general_email = values.get("GENERAL EMAIL")
@@ -222,6 +224,23 @@ def main():
         for directory in ("assets", "shared"):
             shutil.copytree(HERE / directory, out / directory, dirs_exist_ok=True,
                             ignore=shutil.ignore_patterns("README.md"))
+        # The alternative landing page (prototypes/d, "the week, with the take") builds to /the-week/
+        # beside the entry point, with its own assets, until the founder settles which page is the
+        # front door. It takes the draft banner and the placeholder fill like every page.
+        week_src = HERE / "src" / "index.html"
+        if week_src.exists():
+            week, week_missing = fill(week_src.read_text(), values)
+            m = re.match(r"((?:<link[^>]*>\n)+<style>.*?</style>\n)", week, flags=re.S)
+            head = ('<title>Prova: Music Practice. The week between lessons</title>\n'
+                    '<meta name="description" content="Prova keeps the week between lessons connected: the teacher sends the work, '
+                    'the student practices and records, the teacher answers on the exact moment.">\n'
+                    '<link rel="icon" href="../icon.png">\n<meta name="robots" content="noindex">'
+                    + ("\n" + m.group(1).rstrip("\n") if m else ""))
+            body = (week[m.end():] if m else week).replace("{draft}", draft).replace("{year}", year).replace("{entity}", entity)
+            week_out = out / "the-week"
+            week_out.mkdir(parents=True, exist_ok=True)
+            (week_out / "index.html").write_text(DOCUMENT.format(head=head, body=body))
+            shutil.copytree(HERE / "src" / "assets", week_out / "assets", dirs_exist_ok=True)
     if not a.preview:
         (out / ".nojekyll").write_text("")
     if a.publish:
