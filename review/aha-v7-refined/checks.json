@@ -1,0 +1,116 @@
+{
+  "checks": [
+    {
+      "name": "desktop",
+      "scene": "establish",
+      "step": "0",
+      "overflow": 0,
+      "scale": "1.0000"
+    },
+    {
+      "name": "desktop",
+      "scene": "teacher",
+      "step": "1",
+      "overflow": 0,
+      "scale": "1.0000"
+    },
+    {
+      "name": "desktop",
+      "scene": "detail",
+      "step": "2",
+      "overflow": 0,
+      "scale": "2.0500"
+    },
+    {
+      "name": "desktop",
+      "scene": "practice",
+      "step": "3",
+      "overflow": 0,
+      "scale": "0.7500"
+    },
+    {
+      "name": "desktop",
+      "reduced": {
+        "position": "relative",
+        "teacher": "1",
+        "student": "1",
+        "overflow": 0
+      }
+    },
+    {
+      "name": "mobile",
+      "scene": "establish",
+      "step": "0",
+      "overflow": 0,
+      "scale": "1.0000"
+    },
+    {
+      "name": "mobile",
+      "scene": "teacher",
+      "step": "1",
+      "overflow": 0,
+      "scale": "1.0000"
+    },
+    {
+      "name": "mobile",
+      "scene": "detail",
+      "step": "2",
+      "overflow": 0,
+      "scale": "1.8500"
+    },
+    {
+      "name": "mobile",
+      "scene": "practice",
+      "step": "3",
+      "overflow": 0,
+      "scale": "0.8200"
+    },
+    {
+      "name": "mobile",
+      "reduced": {
+        "position": "relative",
+        "teacher": "1",
+        "student": "1",
+        "overflow": 0
+      }
+    },
+    {
+      "name": "small",
+      "scene": "establish",
+      "step": "0",
+      "overflow": 0,
+      "scale": "1.0000"
+    },
+    {
+      "name": "small",
+      "scene": "teacher",
+      "step": "1",
+      "overflow": 0,
+      "scale": "1.0000"
+    },
+    {
+      "name": "small",
+      "scene": "detail",
+      "step": "2",
+      "overflow": 0,
+      "scale": "1.8500"
+    },
+    {
+      "name": "small",
+      "scene": "practice",
+      "step": "3",
+      "overflow": 0,
+      "scale": "0.8200"
+    },
+    {
+      "name": "small",
+      "reduced": {
+        "position": "relative",
+        "teacher": "1",
+        "student": "1",
+        "overflow": 0
+      }
+    }
+  ],
+  "errors": []
+}
