@@ -29,46 +29,28 @@ PLACEHOLDER_RE = re.compile(r"\[(" + "|".join(re.escape(p) for p in PLACEHOLDERS
 SUPPORT_MD = """\
 # Support
 
-Questions, problems, or something that doesn't feel right? Email us at
-[SUPPORT EMAIL]. Tell us which device you're on and what happened, and we'll
-take it from there. You can get back to this page from the app at any time:
-**Profile → Contact support**.
+Email [SUPPORT EMAIL] with your device and a description of what happened.
+
+## Password reset
+
+Request a password reset from sign-in. Prova emails you a code.
+
+## Join your teacher
+
+Tap an invite link or enter your teacher's code, then wait for approval.
+
+## Privacy and safety
+
+Takes are private unless shared with your teacher. Report and block tools are available in the app.
+
+## Beta access
+
+The beta is for students 13 and older, on iPhone and iPad through TestFlight.
+Free during the beta. When pricing arrives, teachers pay; students and parents never do.
 
 General enquiries: [GENERAL EMAIL].
 
-## Common questions
-
-### I forgot my password
-
-On the sign-in screen, enter your email and tap **Forgot your password?** We'll
-email you a link that opens Prova so you can choose a new one.
-
-### How do I join my teacher?
-
-Go to **Profile → Join a teacher** and enter the code your teacher gave you.
-You can also use Prova on your own, without a teacher.
-
-### Someone sent me something that isn't OK
-
-Press and hold the message or comment and choose **Report**. Reports come to
-us, not to the person you reported, and we review every one within 24 hours.
-You can also block them from the same menu. If someone is in immediate danger,
-contact emergency services first.
-
-### How do I delete my account?
-
-Go to **Profile → Delete account**. It removes your account and everything in
-it, including your recordings, straight away. The
-[privacy policy](privacy) lists exactly what's deleted.
-
-### Who can use Prova?
-
-Prova is for people aged 13 and over.
-
-## More
-
-- [Privacy policy](privacy)
-- [Terms of service](terms)
+TODO(founder): confirm support instructions against the current build before publication.
 """
 
 INDEX_MD = """\
@@ -202,8 +184,8 @@ def main():
         all_missing |= set(missing)
         pages.append((name, title, desc, render(md)))
 
-    if a.publish and all_missing:
-        sys.exit(f"refusing to publish, unfilled: {', '.join(sorted(all_missing))}")
+    if a.publish and (all_missing or any("TODO(founder):" in body for _, _, _, body in pages) or "TODO(founder):" in (HERE / "index.html").read_text()):
+        sys.exit(f"refusing to publish, unfilled: {', '.join(sorted(all_missing))}; founder TODOs require review")
 
     out = pathlib.Path(a.out)
     out.mkdir(parents=True, exist_ok=True)

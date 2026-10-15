@@ -163,3 +163,14 @@ dialog > p { font-size: var(--text-caption); text-align: center; color: var(--te
 :root[data-motion="reduce"].motion-ready [data-entrance] { transform: none; opacity: 1; transition: none; }
 
 @media(max-width:360px) { .hero-actions { gap: 12px; }.hero-actions .btn { padding-inline: 12px; gap: 8px; }.hero-actions .text-link { gap: 8px; } }
+
+/* Brief alignment: retain the existing web fallback without an Apple-only face. */
+:root { --font-body: "Segoe UI", system-ui, sans-serif; --font-display: var(--font-body); }
+.score-layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-xl); margin-block: 48px; }
+.score-layers article { padding: 28px; background: var(--surface); border: 1px solid var(--field-border); border-radius: var(--r-xl); }
+.score-layers h3 { font-size: 24px; }
+.founder-todo { color: var(--text-secondary); font-size: 15px; }
+#feedback .movement-copy { max-width: 720px; }
+#students > p, #parents > p { max-width: 65ch; font-size: 20px; line-height: 1.6; }
+.lockup .tile { background: var(--night); border-radius: 10px; }
+@media (max-width: 700px) { .score-layers { grid-template-columns: 1fr; } #students > p, #parents > p { font-size: 18px; } }

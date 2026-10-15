@@ -98,6 +98,6 @@ print('Publication gate refuses unfilled legal values before writing output')
 for name, canonical in (("index", "/"), ("privacy", "/privacy"), ("terms", "/terms"), ("support", "/support")):
     text = (ROOT / "docs" / (name + ".html")).read_text()
     assert f'rel="canonical" href="https://provamusic.app{canonical}"' in text
-assert 'href="mailto:hello@provamusic.com"' in (ROOT / "docs/index.html").read_text()
-assert 'href="mailto:support@provamusic.com"' in (ROOT / "docs/support.html").read_text()
-print("Canonical URLs and intentional .com contact targets OK")
+assert 'href="mailto:hello@provamusic.app"' in (ROOT / "docs/index.html").read_text()
+assert 'href="mailto:support@provamusic.app"' in (ROOT / "docs/support.html").read_text()
+print("Canonical URLs and brief-approved .app contact targets OK")

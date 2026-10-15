@@ -5,7 +5,7 @@
   "REGION": "the United States (AWS us-west-1, Northern California)",
   "COPYRIGHT AGENT": "our copyright agent",
   "ENTITY NAME": null,
-  "SUPPORT EMAIL": "support@provamusic.com",
+  "SUPPORT EMAIL": "support@provamusic.app",
   "POSTAL ADDRESS": null,
   "STATE": null,
   "REPORT DAYS": null,
@@ -13,5 +13,5 @@
   "BACKUP DAYS": null,
   "LOG DAYS": null,
   "DATE": null,
-  "GENERAL EMAIL": "hello@provamusic.com"
+  "GENERAL EMAIL": "hello@provamusic.app"
 }

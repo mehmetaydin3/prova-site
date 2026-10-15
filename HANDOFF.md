@@ -59,3 +59,11 @@ The appearance control is a paired, 44px light/dark button group with semantic-t
 Web adaptations: the landing page floors section separation at 96px while following app `--sp-section`; its larger display scale and 19–20px marketing copy retain the app typography family while improving long-form reading. The container follows the app’s 1120px `--container-max`. The longer section entrance uses the app’s existing 500ms entrance token rather than introducing a new motion token. No parallax was added because it did not improve this linear reading sequence.
 
 Checks run: `node --check site.js`, `.venv/bin/python build.py --out docs`, `python3 tools/check-site.py`, and `git diff --check` pass. The checker verified local links/anchors/media geometry, source-to-draft synchronization, theme contrast, canonical/contact safeguards, and the legal publication gate. The preview returned HTTP 200. Rendered desktop/mobile screenshots in either theme, actual visual spacing and text wrapping, theme-control clicks, anchor behavior, keyboard interaction, and reduced-motion behavior remain unverified until a connected browser is available. No publication occurred.
+
+## Website brief alignment (2026-10-14)
+
+The latest user brief supersedes earlier claims and contact targets. Direction A is retained. The hero is teacher-first; score markup and Mine/Teacher/Both receive a dedicated section with explicit screenshot TODOs. Student and parent sections and FAQs reflect only brief-approved features. Pricing states that teachers pay when pricing arrives; students and parents never do. Contacts now use the `.app` domain.
+
+Privacy and Terms are deliberately minimal unpublished templates pending legal details/review; Support uses the brief's emailed reset code and invite/approval flow. The publication gate now rejects founder TODOs as well as missing values. Current screenshots remain historical captures; the hero and layer demonstration need current assets. The shared archived token map remains untouched; site.css overrides the Apple-only font stack with the existing Segoe UI/system fallback pending founder confirmation.
+
+See review/BRIEF-ALIGNMENT.md for the PR description, claim map, validation limits and founder TODOs. No publication or merge. Browser visual, accessibility and Lighthouse 95+ validation remain outstanding.
