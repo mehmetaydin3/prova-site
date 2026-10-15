@@ -1,0 +1,18 @@
+{
+  "desktop": {
+    "step": "3",
+    "overflow": 0
+  },
+  "mobile": {
+    "step": "3",
+    "overflow": 0,
+    "score": 478.0389099121094
+  },
+  "reduced": {
+    "runHeight": 987,
+    "sticky": "relative",
+    "teacher": "1",
+    "student": "1"
+  },
+  "frames": 44
+}
