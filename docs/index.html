@@ -1,109 +1,201 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Assign practice, hear student takes, and mark feedback on the score. Prova connects independent music teachers and students on iPhone and iPad.">
-  <meta name="prova-beta-url" content="">
-  <meta name="theme-color" content="#060511">
-  <link rel="canonical" href="https://provamusic.app/">
-  <meta property="og:url" content="https://provamusic.app/">
-  <meta property="og:title" content="Prova — A clearer week between lessons">
-  <meta property="og:type" content="website">
-  <title>Prova — A clearer week between lessons</title>
-  <script>
-    // Apply an explicit choice before paint; absent preference follows the OS.
-    try { const appearance = localStorage.getItem('prova-appearance'); if (appearance === 'light' || appearance === 'dark') document.documentElement.dataset.theme = appearance; const dark = appearance === 'dark' || (appearance !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches); document.querySelector('meta[name="theme-color"]').content = dark ? '#060511' : '#F7F6FB'; } catch {}
-  </script>
-  <link rel="icon" href="assets/favicon.png">
-  <link rel="stylesheet" href="shared/tokens.css">
-  <link rel="stylesheet" href="site.css">
-  <script src="site.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#060511">
+<meta name="description" content="Prova connects a music student's practice with real teaching: feedback pinned to the second of a take, and two-way marks on the student's own score.">
+<title>Prova — Great teaching stays with the music</title>
+<link rel="canonical" href="https://provamusic.app/">
+<link rel="icon" href="assets/favicon.png">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="site.js" defer></script>
 <meta name="robots" content="noindex">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+
+<!-- The score's ink, in the part page's coordinates (assets/v10/minuet-part.svg, bars 11–16 on system 3).
+     Alex's circle: the ornamented C of bar 13. Maya's bracket: the runs of bars 14 and 15. -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="ink-t" pathLength="1" d="M 257.4 296.2 C 250.6 291.4 236.2 293.2 233.6 305.6 C 231.6 316.6 239.4 324.6 248.6 324.2 C 257.8 323.8 262.2 314.6 260.4 305.8 C 259.4 300.4 254.8 295.6 247.6 294.2"/>
+    <path id="ink-s" pathLength="1" d="M 347.2 330.6 Q 347.6 335.3 350.4 335.2 C 396 334.4 446 335.9 488.4 334.7 Q 491.3 334.8 491.6 330.4"/>
+  </defs>
+</svg>
+
 <header class="nav">
   <div class="wrap nav-inner">
-    <a class="lockup" href="#top" aria-label="Prova home"><span class="tile" id="brand-slot"><img src="assets/brandmark.png" width="626" height="766" alt=""></span><span class="word">Prova</span></a>
-
-    <div class="nav-actions"><div class="appearance-control requires-js" role="group" aria-label="Color theme"><button type="button" data-appearance="light" aria-label="Use light theme" title="Light theme" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button><button type="button" data-appearance="dark" aria-label="Use dark theme" title="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/></svg></button></div>
-    <a class="nav-cta" href="#join-prova">Join the beta <span aria-hidden="true">↓</span></a></div>
+    <a class="lockup" href="#top" aria-label="Prova home"><span class="tile" id="brand-tile"><img src="assets/brandmark.png" width="20" height="24" alt=""></span><span class="word">Prova</span></a>
+    <nav class="nav-links" aria-label="Sections"><a href="#sound">The sound of progress</a><a href="#music">The music between us</a><a href="#who">Who it's for</a></nav>
+    <a class="btn key small" href="#join">Join the beta</a>
   </div>
 </header>
-<main id="main" tabindex="-1">
-<noscript><p class="wrap no-script">The app screenshots and joining details work without JavaScript.</p></noscript>
-<section class="hero" id="top" tabindex="-1" aria-labelledby="hero-title">
-  <div class="aurora" aria-hidden="true"></div>
-  <div class="wrap hero-layout">
+
+<main id="main">
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="section-label hero-eyebrow">For independent music teachers</p>
-      <h1 id="hero-title">Practice that<br><span class="last-line">you can actually hear.</span></h1>
-      <p class="hero-body">Set the week’s practice. Hear the takes your students share. Reply with comments and markings on the score, where they’ll see them next time they play.</p>
-      <div class="hero-actions"><a class="btn primary" href="#join-prova">Join the beta <span aria-hidden="true">↓</span></a><a class="text-link" href="#assignment">See how it works <span aria-hidden="true">↓</span></a></div>
-      <p class="founder-todo">TODO(founder): confirm the site lead’s interim web font. Current draft uses the existing Segoe UI/system fallback.</p><p class="meta">Free during the beta · iPhone and iPad · Students 13+</p>
+      <p class="eyebrow">For music teachers and the students they teach</p>
+      <h1 id="hero-title">Great teaching stays with the music.</h1>
+      <p class="lede">The lesson ends. In Prova, the teacher's feedback carries on through the week: pinned to the second of a take, and drawn on the student's own score.</p>
+      <div class="ctas"><a class="btn key" href="#join">Join the beta</a><a class="btn ghost" href="#sound">Watch the loop</a></div>
+      <p class="meta"><span>iPhone and iPad, via TestFlight</span><span>Students 13 and up</span><span>Free during the beta</span></p>
     </div>
-    <figure class="hero-product">
-      <div class="phone hero-phone"><img src="assets/product/today-plan.jpg" alt="Actual Prova Today assignments: Minuet in G, bars 12 to 16, left hand alone; a completed G major scale; and ways to warm up or revisit the piece." width="880" height="1913" fetchpriority="high"><video id="launch-film" width="880" height="1912" preload="none" playsinline muted controls poster="assets/product/today.jpg" aria-label="Silent native Prova launch motion study" hidden><source src="assets/downbeat.mp4" type="video/mp4"><a href="assets/downbeat.mp4">Download the native launch film</a></video></div>
-      <figcaption>Historical app capture · demo studio. TODO(founder): replace with a current score-markup screenshot and approve the final hero line.</figcaption>
-      <button type="button" class="text-link film-trigger requires-js" id="film-toggle" aria-controls="launch-film">Watch the silent launch study <span aria-hidden="true">▶</span></button><p class="film-status" id="film-status" aria-live="polite"></p>
-    </figure>
-  </div>
-
-</section>
-
-<section id="audiences" class="audiences wrap" aria-labelledby="audiences-title" data-movement>
-  <div class="audience-intro"><p class="section-label">One practice week. Three wins.</p><h2 id="audiences-title">Everyone knows<br>what comes next.</h2></div>
-  <div class="audience-parts">
-    <article><p class="audience-role">For teachers</p><h3>Leave every lesson with a plan students can follow.</h3><p>Set the passage, give a few clear steps, then respond to shared work as practice unfolds.</p><a href="#assignment">See how assignments work <span aria-hidden="true">↓</span></a></article>
-    <article><p class="audience-role">For students</p><h3>Open practice knowing where to begin.</h3><p>Keep the teacher’s instruction beside the passage, and share a take when you’re ready.</p><a href="#practice">See guided practice <span aria-hidden="true">↓</span></a></article>
-    <article><p class="audience-role">For parents</p><h3>Know what to encourage between lessons.</h3><p>Ask your child to show the practice plan and help make time for one clear next step.</p><a href="#parents">Read about privacy and the beta <span aria-hidden="true">↓</span></a></article>
-  </div>
-</section>
-
-<section class="assignment movement wrap" id="assignment" tabindex="-1" data-movement aria-labelledby="assignment-title">
-  <p class="section-label">01 / Assignment</p>
-  <div class="assignment-layout">
-    <figure class="evidence assignment-evidence"><div class="phone"><img src="assets/product/assignment.jpg" width="880" height="1913" alt="Actual Prova assignment: Minuet in G, bars 12 to 16, left hand alone. Two of four checklist steps are complete." loading="lazy"></div><figcaption>Historical app capture · demo studio</figcaption><a class="expand-image" href="assets/product/assignment.jpg" data-image="assignment" aria-haspopup="dialog" aria-label="Enlarge assignment screenshot">View full screen <span aria-hidden="true">↗</span></a></figure>
-    <div class="movement-copy"><h2 id="assignment-title">Know exactly<br><span class="ink-accent">what to practice.</span></h2><p>Assign a piece with practice steps and a daily target. Attach sheet music scans, PDFs and YouTube reference links. Students open Today and know where to begin.</p>
+    <div class="hero-devices">
+      <figure class="device hd-student">
+        <div class="screen"><img src="assets/v10/captures/today-dark.jpg" width="1000" height="2174" alt="Prova's Today screen for Maya, a student: her next piece, Minuet in G bars 12 to 16, and a Start practising button." fetchpriority="high"></div>
+        <figcaption>Maya’s Today</figcaption>
+      </figure>
+      <figure class="device hd-teacher">
+        <div class="screen"><img src="assets/v10/captures/review-playing-dark.jpg" width="1000" height="2174" alt="Her teacher's review of Maya's take: the waveform with a comment pinned at 0:18, and the feedback timeline below it."></div>
+        <figcaption>Her teacher’s review</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="practice movement" id="practice" data-movement aria-labelledby="practice-title"><div class="wrap">
-  <p class="section-label">02 / Practice</p>
-  <div class="practice-layout"><div class="movement-copy"><h2 id="practice-title">One passage.<br><span class="ink-accent">Your full attention.</span></h2><p>Practice with the score in front of you, a built-in metronome and tuner. The screen stays awake on a stand, and practice time is tracked.</p></div>
-    <figure class="practice-evidence evidence"><div class="practice-detail"><img src="assets/product/practice.jpg" width="880" height="1913" loading="lazy" alt="Actual Prova practice detail: the teacher’s note stays beside the instruction and next checklist step."></div><figcaption>Historical practice capture · demo studio</figcaption><a class="expand-image" href="assets/product/practice.jpg" data-image="practice" aria-haspopup="dialog" aria-label="Enlarge practice screenshot">View full screen <span aria-hidden="true">↗</span></a></figure></div>
-</div></section>
-
-<section class="take movement wrap" id="take" data-movement aria-labelledby="take-title"><p class="section-label">03 / Recording</p><div class="take-layout"><div class="movement-copy"><h2 id="take-title">A little progress.<br><span class="ink-accent">Worth hearing.</span></h2><p>Record a take with a live timer and waveform. Play it back, keep it, or share it privately with your teacher. Teachers listen and see practice time for each piece.</p></div><div class="take-desk"><figure class="native-take"><div class="native-crop"><img src="assets/product/conversation.jpg" width="880" height="1913" loading="lazy" alt="Actual assignment screenshot, cropped to the Recordings section showing the shared Minuet take, bars 12 to 16, duration 38 seconds."></div><figcaption>Historical shared take · demo studio</figcaption><a class="expand-image" href="assets/product/conversation.jpg" data-image="conversation" aria-haspopup="dialog" aria-label="View complete recording and conversation screenshot">View full screen <span aria-hidden="true">↗</span></a></figure>
-</div></div></section>
-
-<section class="connection movement" id="feedback" data-movement aria-labelledby="feedback-title"><div class="wrap">
-<p class="section-label">04 / Review and mark</p><div class="movement-copy"><h2 id="feedback-title">Feedback belongs<br><span class="ink-accent">on the music.</span></h2><p>Listen to the shared take. Leave a comment about the piece or recording, then draw directly on the student’s sheet music. Your markings stay on a separate layer from theirs.</p></div>
-<div class="score-layers" aria-label="Score screenshot placeholders"><article><h3>Mine</h3><p>The student’s own markings.</p><p class="founder-todo">TODO(founder): current screenshot of a bar with student markings.</p></article><article><h3>Teacher</h3><p>Your guidance on the same bar.</p><p class="founder-todo">TODO(founder): the same bar with teacher markings.</p></article><article><h3>Both</h3><p>Two layers, together on the score.</p><p class="founder-todo">TODO(founder): the same bar with both layers visible.</p></article></div>
-<p>Students switch between Mine, Teacher and Both as they practice. Your feedback is there when they return to the score.</p>
-</div></section>
-
-<section class="arrival movement wrap" id="next-lesson" data-movement aria-labelledby="arrival-title">
-  <div class="arrival-copy"><p class="section-label"><span>05 / Next practice</span></p><h2 id="arrival-title">Begin again.<br><span class="ink-accent">With direction.</span></h2><p>Return to the teacher’s advice with a clear next step. Your sessions, notes and shared takes help prepare the next lesson.</p></div>
-  <figure class="review-evidence evidence">
-
-    <div class="review-window" data-focus="practice"><div class="review-crop"><img src="assets/product/review.jpg" width="880" height="1913" loading="lazy" alt="Actual teacher review: practice sessions, the student’s note ‘Bars 12–16 finally clean at 72’, and a shared 38-second take."></div></div>
-    <figcaption>Historical teacher review · demo studio</figcaption>
-    <a class="expand-image" href="assets/product/review.jpg" data-image="review" aria-haspopup="dialog" aria-label="Enlarge teacher review screenshot">View full screen <span aria-hidden="true">↗</span></a>
-  </figure>
+<!-- 01 · The Sound of Progress. Scroll drives it; the beat buttons jump to a moment. Reduced motion and no
+     JavaScript get the storyboard instead. Every screen is a capture of the current app (see PROVENANCE.md). -->
+<section class="film" id="sound" data-film="sound" aria-labelledby="sound-title">
+  <div class="film-pin">
+    <div class="film-head wrap">
+      <p class="eyebrow"><span class="num">01</span> The sound of progress</p>
+      <h2 id="sound-title">A take, heard. A moment, answered.</h2>
+    </div>
+    <div class="scene" aria-hidden="true">
+      <figure class="device" data-el="student">
+        <div class="screen">
+          <div class="layer" data-layer="score"><img src="assets/v10/captures/score-dark.jpg" width="1000" height="2174" alt="" loading="lazy">
+            <div class="page" style="--px:12;--py:138;--pw:378;--ph:489"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/></svg></div></div>
+          <div class="layer" data-layer="recorder"><img src="assets/v10/captures/recorder-dark.jpg" width="1000" height="2174" alt="" loading="lazy"></div>
+          <div class="layer" data-layer="recordings"><img src="assets/v10/captures/student-recordings-dark.jpg" width="1000" height="2174" alt="" loading="lazy"></div>
+          <div class="layer" data-layer="take"><img src="assets/v10/captures/take-feedback-dark.jpg" width="1000" height="2174" alt="" loading="lazy"></div>
+        </div>
+      </figure>
+      <p class="tag" data-el="share"><span class="dot"></span>Shared with her teacher</p>
+      <figure class="device" data-el="teacher">
+        <div class="screen">
+          <div class="layer" data-layer="inbox"><img src="assets/v10/captures/review-inbox-dark.jpg" width="1000" height="2174" alt="" loading="lazy"></div>
+          <div class="layer" data-layer="review"><img src="assets/v10/captures/review-sheet-dark.jpg" width="1000" height="2174" alt="" loading="lazy"></div>
+          <div class="layer" data-layer="compose"><img src="assets/v10/captures/review-compose-dark.jpg" width="1000" height="2174" alt="" loading="lazy"></div>
+          <div class="layer" data-layer="answered"><img src="assets/v10/captures/review-commented-dark.jpg" width="1000" height="2174" alt="" loading="lazy"></div>
+        </div>
+      </figure>
+      <div class="wavestage" data-el="wave">
+        <div class="wave-head"><span>Maya Rivera · Minuet in G — bars 12–16</span><span class="tc" data-tc>0:00</span></div>
+        <div class="wave-body">
+          <svg class="wave" viewBox="0 0 960 120" preserveAspectRatio="none" data-wave></svg>
+          <div class="played" data-played></div>
+          <div class="playhead" data-playhead></div>
+          <div class="pin" data-pin><span>0:18</span></div>
+        </div>
+        <blockquote class="note" data-note><cite>Alex Morgan · at 0:18</cite><p data-type>So much steadier — lovely! Let that last G ring for all three beats.</p></blockquote>
+      </div>
+      <p class="tag next" data-el="next"><span class="dot"></span>Next attempt: the last G, all three beats</p>
+    </div>
+    <div class="film-foot wrap">
+      <div class="captions" aria-live="polite">
+        <p data-beat="0"><b>Tuesday.</b> Maya practises bars 12 to 16 with the score, the timer and the metronome.</p>
+        <p data-beat="1"><b>A take.</b> She records the bit she wants feedback on and shares it with her teacher. Takes stay private unless she does.</p>
+        <p data-beat="2"><b>Between lessons,</b> her teacher, Alex, listens with the take laid out as a waveform.</p>
+        <p data-beat="3"><b>At 0:18</b> Alex stops the playhead and drops a comment on that exact moment.</p>
+        <p data-beat="4"><b>Maya opens her take.</b> The comment sits at 0:18; one tap plays the moment it’s about.</p>
+        <p data-beat="5"><b>Next attempt.</b> Back on the stand, she knows exactly what to listen for.</p>
+      </div>
+      <nav class="beats" aria-label="The sound of progress, step by step"><button type="button" data-go="0">Practice</button><button type="button" data-go="1">Record</button><button type="button" data-go="2">Listen</button><button type="button" data-go="3">Respond</button><button type="button" data-go="4">Receive</button><button type="button" data-go="5">Again</button></nav>
+    </div>
+  </div>
+  <ol class="storyboard wrap" aria-label="The sound of progress, as stills">
+    <li><figure class="device"><div class="screen"><img src="assets/v10/captures/score-dark.jpg" width="1000" height="2174" alt="Maya's practice screen in Prova: the score of Minuet in G with the assignment, bars 12 to 16, a timer, the metronome at 90 and a record button." loading="lazy"><div class="page" style="--px:12;--py:138;--pw:378;--ph:489"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/></svg></div></div></figure><p><b>Practice.</b> Maya practises bars 12 to 16 with the score, the timer and the metronome.</p></li>
+    <li><figure class="device"><div class="screen"><img src="assets/v10/captures/recorder-dark.jpg" width="1000" height="2174" alt="Prova's recorder: Record a clip, the bit you want feedback on." loading="lazy"></div></figure><p><b>Record.</b> She records the bit she wants feedback on and shares it with her teacher.</p></li>
+    <li><figure class="device"><div class="screen"><img src="assets/v10/captures/review-commented-dark.jpg" width="1000" height="2174" alt="Her teacher's take review: a marker at 0:18 on the waveform and the comment in the feedback timeline." loading="lazy"></div></figure><p><b>Respond.</b> Alex stops at 0:18 and drops a comment on that moment.</p></li>
+    <li><figure class="device"><div class="screen"><img src="assets/v10/captures/take-feedback-dark.jpg" width="1000" height="2174" alt="Maya's take in Prova: the waveform with a marker at 0:18 and her teacher's comment, with a Play from 00:18 stamp." loading="lazy"></div></figure><p><b>Receive.</b> Maya opens her take; one tap plays the moment the comment is about.</p></li>
+  </ol>
 </section>
 
-<section class="movement wrap" id="students" data-movement aria-labelledby="students-title"><p class="section-label">For students</p><h2 id="students-title">Your music. Your next step.</h2><p>Open Today for the day’s practice. Keep the score, metronome, tuner and recorder close. Add your own pieces from a scan, PDF or YouTube link, alongside your teacher’s assignments.</p><p>Your linked teacher can see your own pieces read-only, and Prova tells you so.</p></section>
-<section class="movement wrap" id="parents" data-movement aria-labelledby="parents-title"><p class="section-label">For parents</p><h2 id="parents-title">A clear plan. A private take.</h2><p>Ask your student to show you Today, and help make time for practice. Takes are private unless shared with the teacher. Report and block tools are available in the app.</p><p>The beta is for students 13 and older. Students and parents never pay.</p></section>
+<!-- 02 · The Music Between Us. The score is the anchor; the view changes hands around it. Marks sync when saved. -->
+<section class="film" id="music" data-film="music" aria-labelledby="music-title">
+  <div class="film-pin">
+    <div class="film-head wrap">
+      <p class="eyebrow"><span class="num">02</span> The music between us</p>
+      <h2 id="music-title">Two layers. One score.</h2>
+    </div>
+    <div class="scene" aria-hidden="true">
+      <div class="sheet" data-el="sheet">
+        <svg class="sheet-svg" viewBox="0 0 595.28 770.36" preserveAspectRatio="xMidYMid slice" data-camera>
+          <image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/>
+          <use class="ink-t" href="#ink-t"/>
+          <use class="ink-s" href="#ink-s"/>
+        </svg>
+        <div class="sheet-tags">
+          <span class="who" data-who>Alex · teacher</span>
+          <span class="seg" data-seg><i data-l="mine">Mine</i><i data-l="theirs" data-t="Student" data-s="Teacher">Student</i><i data-l="both">Both</i></span>
+          <span class="saved" data-saved>Saved</span>
+        </div>
+      </div>
+      <figure class="device" data-el="score">
+        <div class="screen">
+          <div class="layer" data-layer="t-blank" data-ink=""><img src="assets/v10/captures/markup-teacher-mine-dark.jpg" width="1000" height="2174" alt="" loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/></svg></div></div>
+          <div class="layer" data-layer="t-mine" data-ink="t"><img src="assets/v10/captures/markup-teacher-mine-dark.jpg" width="1000" height="2174" alt="" loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/></svg></div></div>
+          <div class="layer" data-layer="s-theirs" data-ink="t"><img src="assets/v10/captures/markup-student-theirs-dark.jpg" width="1000" height="2174" alt="" loading="lazy"><div class="page" style="--px:5;--py:254.7;--pw:392;--ph:506.7"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/></svg></div></div>
+          <div class="layer" data-layer="s-both" data-ink="ts"><img src="assets/v10/captures/markup-student-both-dark.jpg" width="1000" height="2174" alt="" loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/><use class="ink-s" href="#ink-s"/></svg></div></div>
+          <div class="layer" data-layer="t-both" data-ink="ts"><img src="assets/v10/captures/markup-teacher-both-dark.jpg" width="1000" height="2174" alt="" loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/><use class="ink-s" href="#ink-s"/></svg></div></div>
+          <div class="layer" data-layer="t-mine2" data-ink="t"><img src="assets/v10/captures/markup-teacher-mine-dark.jpg" width="1000" height="2174" alt="" loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/></svg></div></div>
+          <div class="layer" data-layer="t-theirs" data-ink="s"><img src="assets/v10/captures/markup-teacher-theirs-dark.jpg" width="1000" height="2174" alt="" loading="lazy"><div class="page" style="--px:5;--py:254.7;--pw:392;--ph:506.7"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-s" href="#ink-s"/></svg></div></div>
+        </div>
+      </figure>
+    </div>
+    <div class="film-foot wrap">
+      <div class="captions" aria-live="polite">
+        <p data-beat="0"><b>Alex opens Mark up</b> on the score Maya is practising.</p>
+        <p data-beat="1"><b>Bars 12 to 16,</b> the phrase that closes the first half.</p>
+        <p data-beat="2"><b>A circle around the ornament in bar 13,</b> in Alex’s own layer. Then Save.</p>
+        <p data-beat="3"><b>Maya opens the same score.</b> The circle is in her Teacher layer, exactly where it was drawn. That layer is Alex’s; her pens stay away.</p>
+        <p data-beat="4"><b>She answers in her own layer:</b> a bracket under the runs in bars 14 and 15. Save.</p>
+        <p data-beat="5"><b>Back with Alex:</b> Mine, Student or Both on one score. Marks arrive when they’re saved, not while someone is drawing.</p>
+      </div>
+      <nav class="beats" aria-label="The music between us, step by step"><button type="button" data-go="0">Open</button><button type="button" data-go="1">Zoom</button><button type="button" data-go="2">Teacher marks</button><button type="button" data-go="3">Student sees</button><button type="button" data-go="4">Student marks</button><button type="button" data-go="5">Teacher sees</button></nav>
+    </div>
+  </div>
+  <ol class="storyboard wrap" aria-label="The music between us, as stills">
+    <li><figure class="device"><div class="screen" data-ink="t"><img src="assets/v10/captures/markup-teacher-mine-dark.jpg" width="1000" height="2174" alt="The teacher's Mark up in Prova with the Mine layer chosen: a red circle around the ornament in bar 13 of Minuet in G." loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/></svg></div></div></figure><p><b>Teacher marks.</b> Alex circles the ornament in bar 13, in their own layer, and saves.</p></li>
+    <li><figure class="device"><div class="screen" data-ink="t"><img src="assets/v10/captures/markup-student-theirs-dark.jpg" width="1000" height="2174" alt="The student's Mark up with the Teacher layer chosen: the teacher's circle, and no pens, because the layer is the teacher's." loading="lazy"><div class="page" style="--px:5;--py:254.7;--pw:392;--ph:506.7"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/></svg></div></div></figure><p><b>Student sees.</b> Maya opens the score; the circle is in her Teacher layer.</p></li>
+    <li><figure class="device"><div class="screen" data-ink="ts"><img src="assets/v10/captures/markup-student-both-dark.jpg" width="1000" height="2174" alt="The student's Mark up with Both layers: the teacher's circle and her own bracket under bars 14 and 15." loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/><use class="ink-s" href="#ink-s"/></svg></div></div></figure><p><b>Student marks.</b> She answers in her own layer, under bars 14 and 15, and saves.</p></li>
+    <li><figure class="device"><div class="screen" data-ink="ts"><img src="assets/v10/captures/markup-teacher-both-dark.jpg" width="1000" height="2174" alt="The teacher's Mark up with Both layers after the student saved: both marks on one score." loading="lazy"><div class="page" style="--px:5;--py:212;--pw:392;--ph:507"><svg viewBox="0 0 595.28 770.36"><image href="assets/v10/minuet-part.svg" width="595.28" height="770.36"/><use class="ink-t" href="#ink-t"/><use class="ink-s" href="#ink-s"/></svg></div></div></figure><p><b>Teacher sees.</b> Back with Alex: both layers on one score, synced when saved.</p></li>
+  </ol>
+</section>
 
-<section class="beta wrap" id="join-prova" tabindex="-1" data-movement aria-labelledby="beta-title">
-  <div class="beta-heading"><p class="section-label">Your studio, connected</p><h2 id="beta-title">Join the beta.<br><span class="ink-accent">Make room to grow.</span></h2><p>For independent studios. Invite students by link or code, approve their requests, and start with one clear assignment.</p><a class="btn primary" id="join-action" href="mailto:hello@provamusic.app?subject=Prova%20beta%20access">Join the beta <span aria-hidden="true">↗</span></a><p class="beta-meta">Free during the beta. When pricing arrives, teachers pay; students and parents never do.</p></div>
-  <div class="beta-details" id="beta-details" tabindex="-1"><h3>Joining and common questions</h3><ol class="join-steps"><li><span>01</span><p><strong>Teachers start a studio.</strong> Email us to ask about beta access, then create a studio and share a invite code.</p></li><li><span>02</span><p><strong>Students join with the code.</strong> Your teacher approves your request.</p></li><li><span>03</span><p><strong>Begin with one clear assignment.</strong> Practice, share a take when you’re ready, and keep the next step close.</p></li></ol><details><summary>Who hears a student’s take?</summary><p>Takes are private unless shared with the teacher. A linked teacher can also see pieces the student adds for themselves, read-only. Prova tells students that their teacher can see those pieces.</p></details><details><summary>Can younger students join?</summary><p>The beta is for ages 13 and up. Younger students cannot join this beta.</p></details><details><summary>What does the beta cost?</summary><p>Free during the beta. When pricing arrives, teachers pay; students and parents never do.</p></details><details><summary>Who is Prova for?</summary><p>Independent music teachers and their students. The beta is for students 13 and older.</p></details><details><summary>Which devices can I use?</summary><p>iPhone and iPad first. The beta starts on TestFlight, with the App Store to follow.</p></details><details><summary>What can my teacher see?</summary><p>Your practice time per piece, takes you share, and your own pieces read-only. Takes stay private unless shared with your teacher.</p></details><details><summary>How do I join the beta?</summary><p>Email <a href="mailto:hello@provamusic.app">hello@provamusic.app</a> to ask about access. Students join their teacher by invite link or code and wait for approval.</p></details><p class="access-status" id="access-status">TODO(founder): confirm the final beta signup mechanism. Email is the interim contact.</p></div>
+<section class="benefits" id="who" aria-labelledby="who-title">
+  <div class="wrap">
+    <p class="eyebrow">Who it’s for</p>
+    <h2 id="who-title">One loop, four kinds of musician.</h2>
+    <div class="cards">
+      <article><h3>Teachers</h3><p>Send the week’s work with steps, a daily target, scans, PDFs or a YouTube link. Hear the takes students share and answer at the exact second. Leave the next thought on the score, in your own layer.</p><p class="small">Invite with a link or a code; you approve who joins.</p></article>
+      <article><h3>Students</h3><p>Open Today and know where to start. Practise with the score, the metronome and the tuner in one place. Record a take, then keep it private or share it with your teacher. Your marks sit beside your teacher’s: Mine, Teacher or Both.</p><p class="small">Add your own pieces, too.</p></article>
+      <article><h3>Parents</h3><p>Your child sees their teacher’s guidance on the score and knows what to practise next. Takes stay private unless they share them with their teacher. Parents never pay for Prova.</p><p class="small">Students 13 and up during the beta.</p></article>
+      <article><h3>Independent musicians</h3><p>No teacher yet? Add the pieces you’re working on, practise with the metronome and the tuner, and keep your takes. When you join a teacher, their guidance joins your music.</p><p class="small">Free during the beta.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="join" aria-labelledby="join-title">
+  <div class="wrap">
+    <p class="eyebrow">For your studio. For their next attempt.</p>
+    <h2 id="join-title">The lesson ends. The music continues.</h2>
+    <p class="lede">Bring your studio to the beta. Students join with your link or code, and you approve them.</p>
+    <a class="btn key" href="mailto:hello@provamusic.app?subject=Prova%20beta">Ask about beta access</a>
+    <p class="meta"><span>Free during the beta. When pricing arrives, teachers pay; students and parents never do.</span><span>iPhone and iPad via TestFlight · students 13 and up</span></p>
+  </div>
 </section>
 </main>
-<footer class="footer"><div class="wrap"><div class="footer-top"><a class="lockup" href="#top" aria-label="Prova home"><span class="tile"><img src="assets/brandmark.png" alt="" width="626" height="766"></span><span class="word">Prova</span></a><p>Keep the week connected.</p><a class="text-link" href="#top">Back to the beginning <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><span>© 2026 Prova</span><nav aria-label="Legal and support"><a href="mailto:hello@provamusic.app">Contact</a><a href="privacy.html" data-legal="privacy.html">Privacy</a><a href="terms.html" data-legal="terms.html">Terms</a><a href="support.html" data-legal="support.html">Support</a></nav><button type="button" id="motion-toggle" class="requires-js" aria-pressed="false">Reduce motion</button><span>Beta preview</span></div></div></footer>
-<dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="dialog-toolbar"><h2 id="image-dialog-title">Inside Prova</h2><button type="button" id="close-image" aria-label="Close full-size screenshot">Close <span aria-hidden="true">×</span></button></div><div class="image-well" data-state="ready" tabindex="0" role="region" aria-label="Full app screenshot"><img id="full-image" src="assets/product/assignment.jpg" alt="" width="880" height="1913"><div class="image-fallback" hidden><p id="image-status" role="status">Loading the app screen…</p><button class="btn secondary" type="button" id="retry-image" hidden>Try again</button></div></div><p>Historical app capture · demo studio. Scroll to see the full screen.</p></dialog>
+
+<footer class="foot">
+  <div class="wrap foot-inner"><span class="lockup"><span class="tile"><img src="assets/brandmark.png" width="20" height="24" alt=""></span><span class="word">Prova</span></span><a href="mailto:hello@provamusic.app">hello@provamusic.app</a><span class="sp">Screens are captures of the current Prova app with showcase data. The score is the Mutopia Project’s public-domain engraving of the Menuet in G, BWV Anh. 114. <a href="assets/v10/captures/PROVENANCE.md">Provenance</a></span></div>
+</footer>
+<script type="application/json" id="take-peaks">{"duration":48.0,"bars":240,"peaks":[0.948,0.572,0.656,0.678,0.696,1.0,0.82,0.852,0.762,0.469,0.722,0.435,0.584,0.529,0.328,0.912,0.555,0.611,0.651,0.597,0.7,0.701,0.849,0.785,0.485,0.72,0.435,0.584,0.529,0.328,0.951,0.605,0.641,0.667,0.601,0.754,0.753,0.872,0.775,0.476,0.712,0.737,0.728,0.702,0.603,0.915,0.554,0.792,0.85,0.769,0.974,0.835,0.882,0.776,0.473,0.592,0.584,0.606,0.61,0.631,0.952,0.598,0.646,0.664,0.698,1.0,0.82,0.861,0.738,0.445,0.953,0.596,0.837,0.782,0.485,0.912,0.555,0.611,0.651,0.597,0.7,0.701,0.849,0.785,0.485,0.923,0.759,0.854,0.82,0.699,0.953,0.605,0.641,0.667,0.601,0.927,0.818,0.888,0.775,0.476,0.712,0.737,0.881,0.888,0.687,0.967,0.602,0.81,0.835,0.748,0.867,0.753,0.89,0.782,0.485,0.3,0.185,0.429,0.401,0.247,0.948,0.572,0.656,0.678,0.696,1.0,0.82,0.852,0.762,0.469,0.722,0.435,0.584,0.529,0.328,0.912,0.555,0.611,0.651,0.597,0.7,0.701,0.849,0.785,0.485,0.72,0.435,0.584,0.529,0.328,0.951,0.605,0.641,0.667,0.601,0.754,0.753,0.872,0.775,0.476,0.712,0.737,0.728,0.702,0.603,0.915,0.554,0.792,0.85,0.769,0.974,0.835,0.882,0.776,0.473,0.592,0.584,0.606,0.61,0.631,0.952,0.598,0.646,0.664,0.698,1.0,0.82,0.861,0.738,0.445,0.953,0.596,0.837,0.782,0.485,0.912,0.555,0.611,0.651,0.597,0.7,0.701,0.849,0.785,0.485,0.923,0.759,0.854,0.82,0.699,0.953,0.605,0.641,0.667,0.601,0.927,0.818,0.888,0.775,0.476,0.712,0.737,0.881,0.888,0.687,0.967,0.602,0.81,0.835,0.748,0.867,0.753,0.89,0.782,0.485,0.3,0.185,0.429,0.401,0.247]}</script>
 </body>
 </html>
