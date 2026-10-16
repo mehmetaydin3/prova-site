@@ -1,0 +1,103 @@
+{
+  "report": [
+    {
+      "dir": "a",
+      "size": "desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": true,
+      "title": "The music continues — Prova"
+    },
+    {
+      "dir": "a",
+      "size": "desktop",
+      "dialog": true
+    },
+    {
+      "dir": "b",
+      "size": "desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "images": true,
+      "title": "The connected practice — Prova"
+    },
+    {
+      "dir": "b",
+      "size": "desktop",
+      "dialog": true
+    },
+    {
+      "dir": "a",
+      "size": "mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": true,
+      "title": "The music continues — Prova"
+    },
+    {
+      "dir": "a",
+      "size": "mobile",
+      "dialog": true
+    },
+    {
+      "dir": "b",
+      "size": "mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "images": true,
+      "title": "The connected practice — Prova"
+    },
+    {
+      "dir": "b",
+      "size": "mobile",
+      "dialog": true
+    },
+    {
+      "dir": "a",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "dir": "b",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "dir": "a",
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "dir": "b",
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "dir": "a",
+      "reduced": {
+        "position": "relative",
+        "staticSteps": null
+      }
+    },
+    {
+      "dir": "b",
+      "reduced": {
+        "position": "relative",
+        "staticSteps": "grid"
+      }
+    },
+    {
+      "path": "",
+      "status": 200
+    },
+    {
+      "path": "a/",
+      "status": 200
+    },
+    {
+      "path": "b/",
+      "status": 200
+    }
+  ],
+  "errors": []
+}
