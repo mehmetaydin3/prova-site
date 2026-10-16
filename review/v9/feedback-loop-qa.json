@@ -1,0 +1,126 @@
+[
+  {
+    "device": "desktop",
+    "stage": "response",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "pinTop": 0,
+    "chapter": "03 / RESPOND",
+    "trackHeight": 344,
+    "comment": "1",
+    "hasReadableSequence": true
+  },
+  {
+    "device": "desktop",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "filmHeight": 2496,
+    "pinTop": 0,
+    "chapter": "05 / PRACTICE",
+    "playhead": "457.875px",
+    "comment": "0",
+    "score": "0",
+    "phone": "1",
+    "allImages": true,
+    "hasReadableSequence": true
+  },
+  {
+    "device": "tablet",
+    "stage": "response",
+    "width": 768,
+    "scrollWidth": 768,
+    "pinTop": 0,
+    "chapter": "03 / RESPOND",
+    "trackHeight": 351,
+    "comment": "1",
+    "hasReadableSequence": true
+  },
+  {
+    "device": "tablet",
+    "width": 768,
+    "scrollWidth": 768,
+    "filmHeight": 2867,
+    "pinTop": 0,
+    "chapter": "03 / RESPOND",
+    "playhead": "258.938px",
+    "comment": "1",
+    "score": "0",
+    "phone": "0",
+    "allImages": true,
+    "hasReadableSequence": true
+  },
+  {
+    "device": "mobile",
+    "stage": "response",
+    "width": 390,
+    "scrollWidth": 390,
+    "pinTop": 0,
+    "chapter": "03 / RESPOND",
+    "trackHeight": 171,
+    "comment": "1",
+    "hasReadableSequence": true
+  },
+  {
+    "device": "mobile",
+    "width": 390,
+    "scrollWidth": 390,
+    "filmHeight": 2616,
+    "pinTop": 0,
+    "chapter": "04 / CONNECT TO THE SCORE",
+    "playhead": "211.344px",
+    "comment": "1",
+    "score": "0.943459",
+    "phone": "0",
+    "allImages": true,
+    "hasReadableSequence": true
+  },
+  {
+    "device": "small",
+    "stage": "response",
+    "width": 320,
+    "scrollWidth": 320,
+    "pinTop": 0,
+    "chapter": "03 / RESPOND",
+    "trackHeight": 146,
+    "comment": "1",
+    "hasReadableSequence": true
+  },
+  {
+    "device": "small",
+    "width": 320,
+    "scrollWidth": 320,
+    "filmHeight": 2232,
+    "pinTop": 0,
+    "chapter": "03 / RESPOND",
+    "playhead": "163.328px",
+    "comment": "1",
+    "score": "0",
+    "phone": "0",
+    "allImages": true,
+    "hasReadableSequence": true
+  },
+  {
+    "reduced": {
+      "matches": true,
+      "pinPosition": "relative",
+      "runHeight": 760,
+      "comment": "1",
+      "phone": "1"
+    }
+  },
+  {
+    "path": "/",
+    "status": 200
+  },
+  {
+    "path": "/explorations/a/",
+    "status": 200
+  },
+  {
+    "path": "/explorations/b/",
+    "status": 200
+  },
+  {
+    "errors": []
+  }
+]
