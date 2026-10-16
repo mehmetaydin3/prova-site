@@ -1,0 +1,70 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "title": "Prova — Great teaching stays with the music",
+    "images": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "cta": "mailto:hello@provamusic.app?subject=Prova%20beta",
+    "compare": true
+  },
+  {
+    "name": "tablet",
+    "width": 768,
+    "scrollWidth": 768,
+    "title": "Prova — Great teaching stays with the music",
+    "images": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "cta": "mailto:hello@provamusic.app?subject=Prova%20beta",
+    "compare": true
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "scrollWidth": 390,
+    "title": "Prova — Great teaching stays with the music",
+    "images": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "cta": "mailto:hello@provamusic.app?subject=Prova%20beta",
+    "compare": true
+  },
+  {
+    "reduced": {
+      "position": "relative",
+      "filmHeight": 790,
+      "screenVisible": "block"
+    }
+  },
+  {
+    "path": "/",
+    "status": 200
+  },
+  {
+    "path": "/explorations/",
+    "status": 200
+  },
+  {
+    "path": "/explorations/a/",
+    "status": 200
+  },
+  {
+    "path": "/explorations/b/",
+    "status": 200
+  },
+  {
+    "errors": []
+  }
+]
