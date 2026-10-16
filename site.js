@@ -59,15 +59,15 @@
   /* Where things sit inside a 402 × 874 pt capture (measured on the PNGs). */
   const PT = { w: 402, h: 874 };
   const WAVE = {                      // the waveform's bars in each screen
-    review: { x: 40, y: 236, w: 322, h: 65 },
-    take: { x: 40, y: 236, w: 322, h: 56 }
+    review: { x: 39, y: 227, w: 323, h: 64 },
+    take: { x: 47, y: 232, w: 308, h: 67 }
   };
   const PAGE = { x: 5, y: 212, w: 392, h: 507 };            // Mark up's page (Mine / Both)
   const PART = { w: 595.28, h: 770.36 };                     // the part page (assets/v10/minuet-part.svg)
   const VIEW = {                                             // the camera on the part page
     system3: { x: 16, y: 250, w: 552 },                      // bars 11–16, full width
     bars: { x: 143, y: 270, w: 432 },                        // bars 12–16
-    close: { x: 214, y: 276, w: 300 },                       // bars 13–15
+    close: { x: 202, y: 276, w: 306 },                       // bars 13–15
     tight: { x: 222, y: 280, w: 282 },                       // bars 13–15, closer
     page: { x: 0, y: 0, w: 595.28 }
   };
@@ -100,7 +100,7 @@
       const nl = clamp(pinX - 34, 0, ww - nw);
       W.style.setProperty('--nw', nw + 'px'); W.style.setProperty('--nl', nl + 'px'); W.style.setProperty('--notch', (pinX - nl) + 'px');
       const wH = W.offsetHeight, nH = note.offsetHeight + 18;
-      const wx = portrait ? 0 : Math.max(0, w * .03), wy = portrait ? 0 : Math.max(0, (h - wH - nH) / 2);
+      const wx = 0, wy = portrait ? 0 : Math.max(0, (h - wH - nH) / 2);
       // The teacher's device beside the stage, smaller: context for the magnified waveform.
       const tS = portrait ? clamp((h - wH - nH - 16) / dh, .3, .5) : .8, tx = portrait ? (w - dw * tS) / 2 : Math.min(w - dw * tS, wx + ww + w * .06), ty = portrait ? wH + nH + 12 : (h - dh * tS) / 2;
       // FLIP: the stage starts exactly over the device's waveform, uniform scale on its bars' width.
@@ -117,7 +117,7 @@
         S: [
           { p: 0, x: cx, y: cy, s: 1, o: 1 }, { p: .30, x: cx, y: cy, s: 1, o: 1 },
           { p: .36, ...sBack, o: portrait ? 0 : .3 }, { p: .42, ...sBack, o: 0 }, { p: .70, ...sBack, o: 0 },
-          { p: .77, x: cx, y: cy, s: 1, o: 1 }, { p: 1, x: cx, y: cy, s: 1, o: 1 }
+          { p: .75, x: cx, y: cy, s: 1, o: 1 }, { p: 1, x: cx, y: cy, s: 1, o: 1 }
         ],
         T: [
           { p: 0, x: w + 40, y: cy, s: 1, o: 0 }, { p: .30, x: w + 40, y: cy, s: 1, o: 0 },
@@ -128,7 +128,7 @@
         W: [
           { p: 0, ...wf1, o: 0 }, { p: .42, ...wf1, o: 0 }, { p: .435, ...wf1, o: 1, ease: lin },
           { p: .48, x: wx, y: wy, s: 1, o: 1 }, { p: .70, x: wx, y: wy, s: 1, o: 1 },
-          { p: .765, ...wf2, o: 1 }, { p: .785, ...wf2, o: 0, ease: lin }, { p: 1, ...wf2, o: 0 }
+          { p: .768, ...wf2, o: 1 }, { p: .79, ...wf2, o: 0, ease: lin }, { p: 1, ...wf2, o: 0 }
         ],
         share: (() => { const x = portrait ? (w - 200) / 2 : cx + dw + 18, y = portrait ? cy + dh * .12 : cy + dh * .3;
           return [{ p: 0, x, y: y + 10, s: 1, o: 0 }, { p: .215, x, y: y + 10, s: 1, o: 0 }, { p: .245, x, y, s: 1, o: 1, ease: out }, { p: .31, x, y, s: 1, o: 1 }, { p: .34, x, y: y - 8, s: 1, o: 0 }, { p: 1, x, y: y - 8, s: 1, o: 0 }]; })(),
@@ -141,7 +141,7 @@
     function render(p) {
       place(S, sample(g.S, p)); place(T, sample(g.T, p)); place(W, sample(g.W, p));
       place(share, sample(g.share, p)); place(next, sample(g.next, p));
-      layers(S, [['score', -1, .17], ['recorder', .17, .735], ['take', .735, .815], ['take-playing', .815, .895], ['score', .895, 2]], p);
+      layers(S, [['score', -1, .17], ['recorder', .17, .70], ['recordings', .70, .768], ['take', .768, .83], ['take-playing', .83, .895], ['score', .895, 2]], p);
       layers(T, [['inbox', -1, .385], ['review', .385, .58], ['compose', .58, .655], ['answered', .655, 2]], p);
       // The playhead runs the take from 0:00 to 0:18 and stops there: the moment.
       const prog = (AT / DUR) * clamp(seg(p, .465, .56));
@@ -152,7 +152,7 @@
       const pp = seg(p, .562, .585);
       pin.style.transform = `scaleY(${pop(pp).toFixed(3)})`; pin.style.opacity = pp > 0 ? 1 : 0;
       // The comment: Alex types it, then it is posted at 0:18.
-      note.style.opacity = seg(p, .575, .59).toFixed(3);
+      note.style.opacity = Math.min(seg(p, .575, .59), 1 - seg(p, .70, .735)).toFixed(3);
       const n = Math.round(full.length * seg(p, .59, .65));
       if (n !== shown) { shown = n; typed.textContent = full.slice(0, n); }
       note.style.setProperty('--caret', p > .585 && p < .655 ? 1 : 0);
@@ -184,15 +184,17 @@
       const f = frameOf(film, scene), w = f.iw, h = f.h, portrait = w < 720 || w / h < 1.05;
       // The sheet: the anchor. Landscape: the left two thirds. Portrait: across the top.
       aspect = portrait ? 2.0 : 3.0;
-      const sw = portrait ? w : Math.min(w * .64, (h - 64) * aspect, 900), sh = sw / aspect;
-      SH.style.setProperty('--sw', sw + 'px'); SH.style.setProperty('--sh', sh + 'px');
-      const tagsH = 52, sx = portrait ? 0 : 0, sy = portrait ? 0 : (h - sh - tagsH) / 2;
-      // The device: centred and large to open; beside (or under) the sheet afterwards.
+      // The device: centred and large to open; beside (or under) the sheet afterwards, at a fixed share
+      // of the frame, so the sheet takes the rest and the score anchors the composition.
       const dh = Math.min(h * .96, 760), dw = dh * PT.w / PT.h, k = dw / PT.w;
       scene.style.setProperty('--dw', dw + 'px');
-      const cx = (w - dw) / 2, cy = (h - dh) / 2;
-      const dS = portrait ? clamp((h - sh - tagsH - 12) / dh, .3, .62) : clamp(Math.min((w - sw - 48) / dw, .86), .45, .86);
-      const dx = portrait ? (w - dw * dS) / 2 : Math.max(sw + 40, w - dw * dS), dy = portrait ? sh + tagsH + 10 : (h - dh * dS) / 2;
+      const cx = (w - dw) / 2, cy = (h - dh) / 2, tagsH = 52, gap = 56;
+      const sideS = clamp(Math.min(.72, (w * .27) / dw), .45, .72);
+      const sw = portrait ? w : Math.min(w - dw * sideS - gap, (h - 64) * aspect, 960), sh = sw / aspect;
+      SH.style.setProperty('--sw', sw + 'px'); SH.style.setProperty('--sh', sh + 'px');
+      const sx = 0, sy = portrait ? 0 : (h - sh - tagsH) / 2;
+      const dS = portrait ? clamp((h - sh - tagsH - 12) / dh, .3, .62) : sideS;
+      const dx = portrait ? (w - dw * dS) / 2 : sw + gap, dy = portrait ? sh + tagsH + 10 : (h - dh * dS) / 2;
       // The dive: scale the device until system 3 of its page covers the sheet's rect exactly.
       const v = VIEW.system3, vh = v.w / aspect, vy = 315 - vh / 2;
       const pk = PAGE.w / PART.w;                            // capture pt per part unit
