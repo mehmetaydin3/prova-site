@@ -141,7 +141,7 @@
     function render(p) {
       place(S, sample(g.S, p)); place(T, sample(g.T, p)); place(W, sample(g.W, p));
       place(share, sample(g.share, p)); place(next, sample(g.next, p));
-      layers(S, [['score', -1, .17], ['recorder', .17, .70], ['recordings', .70, .768], ['take', .768, .83], ['take-playing', .83, .895], ['score', .895, 2]], p);
+      layers(S, [['score', -1, .17], ['recorder', .17, .70], ['recordings', .70, .768], ['take', .768, .895], ['score', .895, 2]], p);
       layers(T, [['inbox', -1, .385], ['review', .385, .58], ['compose', .58, .655], ['answered', .655, 2]], p);
       // The playhead runs the take from 0:00 to 0:18 and stops there: the moment.
       const prog = (AT / DUR) * clamp(seg(p, .465, .56));
