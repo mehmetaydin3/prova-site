@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "device": "desktop",
+      "name": "close",
+      "scale": 2.239508771929824,
+      "beat": "0"
+    },
+    {
+      "device": "desktop",
+      "name": "teacher",
+      "scale": 1.5199421164458684,
+      "beat": "2"
+    },
+    {
+      "device": "desktop",
+      "name": "wide",
+      "scale": 0.7998246316653358,
+      "beat": "4"
+    },
+    {
+      "device": "mobile",
+      "name": "close",
+      "scale": 1.6966609576334264,
+      "beat": "0"
+    },
+    {
+      "device": "mobile",
+      "name": "teacher",
+      "scale": 1.150363351142477,
+      "beat": "2"
+    },
+    {
+      "device": "mobile",
+      "name": "wide",
+      "scale": 0.6059504132231404,
+      "beat": "4"
+    }
+  ],
+  "errors": [],
+  "layers": "passed",
+  "reducedMotion": "passed",
+  "captures": [
+    "authentic-hero-desktop.png",
+    "authentic-recording-01-desktop.png",
+    "authentic-recording-02-desktop.png",
+    "authentic-recording-03-desktop.png",
+    "authentic-recording-04-desktop.png",
+    "authentic-recording-05-desktop.png",
+    "authentic-score-close-desktop.png",
+    "authentic-score-teacher-desktop.png",
+    "authentic-score-wide-desktop.png",
+    "authentic-closing-desktop.png",
+    "authentic-hero-mobile.png",
+    "authentic-recording-01-mobile.png",
+    "authentic-recording-02-mobile.png",
+    "authentic-recording-03-mobile.png",
+    "authentic-recording-04-mobile.png",
+    "authentic-recording-05-mobile.png",
+    "authentic-score-close-mobile.png",
+    "authentic-score-teacher-mobile.png",
+    "authentic-score-wide-mobile.png",
+    "authentic-closing-mobile.png"
+  ]
+}
