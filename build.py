@@ -31,7 +31,7 @@ OPEN_PROSE_RE = re.compile(r"\[(?:CONFIRM [^\]]*|COMPLETE IF [^\]]*)\]|\*\*CHECK
 SUPPORT_MD = """\
 # Support
 
-Email [SUPPORT EMAIL] with your device, what you were doing and what happened. A person reads every message.
+Email [SUPPORT EMAIL] with your device, what you were doing and what happened. Prova is made by a small team, and the founder reads every message.
 
 ## Password reset
 
@@ -47,7 +47,7 @@ Open **Profile**, then **Delete account**. It removes your account and what is a
 
 ## Privacy and safety
 
-Takes are private until you share them with your teacher. To report a message or comment, press and hold it and choose **Report**. You can block someone from the same menu. Privacy questions: privacy@provamusic.app. Read the [privacy policy](privacy) and the [terms of service](terms).
+Takes are private until you share them with your teacher. To report a message or comment, press and hold it and choose **Report**. You can block someone from the same menu. Privacy questions: [SUPPORT EMAIL]. Read the [privacy policy](privacy) and the [terms of service](terms).
 
 ## Beta access
 

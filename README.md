@@ -37,7 +37,7 @@ backup and log retention. `null` in `values.json` means not filled yet.
 
 ## Editing
 
-- `src/privacy-policy.md` (the founder's v2, verbatim), `src/terms-of-service.md` (the #295 draft, `docs/legal/terms-draft.md`, minus its banner and founder notes; every CHECK kept). See OPEN-BLANKS.md.
+- `src/privacy-policy.md` (the founder's v2, verbatim), `src/terms-of-service.md` (the #295 draft, `docs/legal/terms-draft.md`, minus its banner and founder notes; every CHECK kept). See BLANKS.md.
 - `values.json`: the placeholder values (`[ENTITY NAME]`, `[SUPPORT EMAIL]`,
   `[POSTAL ADDRESS]`, `[WEBSITE]`, `[REGION]`, `[BACKUP DAYS]`, `[REPORT DAYS]`,
   `[LOG DAYS]`, `[EMAIL PROVIDER]`, `[STATE]`, `[COPYRIGHT AGENT]`, `[DATE]`).

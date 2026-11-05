@@ -26,3 +26,13 @@ Every item below stays visible on the review build exactly as the source text ha
 | Where | Blank |
 |---|---|
 | Bottom | `TODO(founder): confirm these support instructions against the current build` |
+
+## Contact addresses (all pages: privacy § 16, terms §§ 3, 7, 16, support)
+| Key | Where | Who fills it |
+|---|---|---|
+| `[SUPPORT EMAIL]` | support, terms, privacy contact | founder (no address is invented; `values.json` is `null`). Note: the app privacy source says `support@provamusic.app`, `review/DEPLOYMENT.md` says `support@provamusic.com`. Pick one. |
+| `[GENERAL EMAIL]` | support, "General enquiries" | founder, or delete the line |
+
+## Other keys that gate `build.py --publish` (`values.json`)
+`ENTITY NAME`, `POSTAL ADDRESS`, `STATE`, `REPORT DAYS`, `DATE`, `EMAIL PROVIDER`, `BACKUP DAYS`, `LOG DAYS` (all `null`).
+Also: privacy § 9 "Manual backups ... within 30 days" is new in the app's v2 source; counsel should confirm it.

@@ -18,7 +18,7 @@ Prova is intended for individuals aged 13 and older.
 
 We do not knowingly permit children younger than 13 to create accounts. During registration, we request a date of birth to determine eligibility and enforce our minimum age requirement.
 
-If we discover that an account was created by a child under 13, we will disable the account and delete associated personal information in accordance with applicable law, subject to legally required retention.
+If we discover that an account was created by a child under 13, we will disable the account and delete associated personal information in accordance with applicable law, subject to legally required retention. If the date of birth entered at registration shows that a person is under 13, the registration is refused. They can delete the partly created account straight away on that screen; if they do not, we automatically delete it within 7 days, as we do any account that is never completed (no role confirmed).
 
 If you believe a child under 13 has created an account, please contact us at privacy@provamusic.app.
 
@@ -82,10 +82,11 @@ We use personal information to:
 5. Record and manage performances.
 6. Deliver assignments, annotations and feedback.
 7. Track practice activity and provide related functionality.
-8. Send essential service communications.
-9. Investigate reports, prevent abuse, and protect users.
-10. Maintain, troubleshoot and secure the service.
-11. Comply with applicable legal obligations.
+8. Understand, in aggregate, how Prova is used, such as weekly activity; never for advertising.
+9. Send essential service communications.
+10. Investigate reports, prevent abuse, and protect users.
+11. Maintain, troubleshoot and secure the service.
+12. Comply with applicable legal obligations.
 
 We limit our use of personal information to these purposes and other purposes that are appropriately disclosed and permitted by law.
 
@@ -187,7 +188,7 @@ When an account is deleted, associated personal information and user-generated c
 
 Residual copies may remain temporarily in backups or protected operational systems before expiration or deletion under the applicable retention schedule.
 
-**Backup retention:** We do not currently keep scheduled database backups. If we add them, deleted information will expire from backups within [7] days.
+**Backup retention:** We do not currently keep scheduled database backups. Manual backups taken before maintenance are deleted within 30 days. If we add scheduled backups, deleted information will expire from them within [7] days.
 
 **Account deletion completion period:** When you delete your account in the app, your profile, recordings, sheet-music files and related content are removed from our active systems right away.
 
