@@ -30,7 +30,7 @@ Every item below stays visible on the review build exactly as the source text ha
 ## Contact addresses (all pages: privacy § 16, terms §§ 3, 7, 16, support)
 | Key | Where | Who fills it |
 |---|---|---|
-| `[SUPPORT EMAIL]` | support, terms, privacy contact | founder (no address is invented; `values.json` is `null`). Note: the app privacy source says `support@provamusic.app`, `review/DEPLOYMENT.md` says `support@provamusic.com`. Pick one. |
+| `[SUPPORT EMAIL]` | support, terms, privacy contact | filled: support@provamusic.app (founder decision, in values.json). |
 | `[GENERAL EMAIL]` | support, "General enquiries" | founder, or delete the line |
 
 ## Other keys that gate `build.py --publish` (`values.json`)
