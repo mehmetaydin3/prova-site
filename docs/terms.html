@@ -34,26 +34,208 @@ th:first-child,td:first-child{width:36%}
 footer{color:var(--text2);padding-bottom:48px;margin-top:48px}
 footer a{color:var(--text2)}
 footer p{font-size:.9em;margin:0;padding-top:24px;border-top:1px solid var(--rule)}
+.toc{border:1px solid var(--rule);border-radius:12px;padding:12px 16px;margin:24px 0}
+.toc summary{font-weight:600;cursor:pointer}
+.toc ul{margin:8px 0 0;padding:0;list-style:none}.toc li{padding:2px 0}
+.toc a{color:var(--link)}
+h2 .anchor,h3 .anchor{margin-left:.4em;text-decoration:none;color:var(--text2);opacity:0;font-weight:400}
+h2:hover .anchor,h3:hover .anchor,h2 .anchor:focus,h3 .anchor:focus{opacity:1}
+h2[id],h3[id]{scroll-margin-top:16px}
+@media print{:root{--bg:#fff;--text:#000;--text2:#333;--link:#000}.draft{border:1px solid #000;background:#fff;color:#000}.toc,.anchor{display:none}a{text-decoration:underline}a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em}header img{width:40px;height:40px}footer{padding-bottom:0}h2,h3{break-after:avoid}table,li{break-inside:avoid}}
 .draft{background:var(--draft-bg);color:var(--draft-text);border-bottom:1px solid var(--draft-rule);padding:10px 16px;text-align:center;font-weight:600}
 </style>
 <link rel="canonical" href="https://provamusic.app/terms">
 <meta name="robots" content="noindex">
 </head>
 <body>
-<div class="draft">Draft — not published</div>
+<div class="draft" role="note">Draft for review. Not yet in effect.</div>
 <header><a href="./"><img src="icon.png" alt="" width="64" height="64">Prova</a></header>
 <main>
-<h1>Terms of service</h1>
-<p>Draft template — not published.</p>
-<h2>Operator</h2>
-<p>TODO(founder): supply [ENTITY NAME], [POSTAL ADDRESS] and governing [STATE].</p>
-<h2>The beta</h2>
-<p>Prova connects independent music teachers and students on iPhone and iPad. The beta is for students 13 and older.</p>
-<p>Free during the beta. When pricing arrives, teachers pay; students and parents never do.</p>
-<h2>Terms to complete</h2>
-<p>TODO(founder): obtain legal review of account eligibility, guardian consent, acceptable use, music rights, service changes, termination, liability and dispute terms before publication.</p>
-<p>Contact: <a href="mailto:support@provamusic.app">support@provamusic.app</a>.</p>
-<p>TODO(founder): set the effective date [DATE].</p>
+<h1 id="terms-of-service">Terms of service</h1>
+<details class="toc" open><summary>Contents</summary><ul><li><a href="#1-the-short-version">1. The short version</a></li><li><a href="#2-who-we-are-and-who-can-use-prova">2. Who we are and who can use Prova</a></li><li><a href="#3-your-account">3. Your account</a></li><li><a href="#4-teachers">4. Teachers</a></li><li><a href="#5-what-prova-costs">5. What Prova costs</a></li><li><a href="#6-recordings-and-messages-what-we-do-and-do-not-do">6. Recordings and messages: what we do and do not do</a></li><li><a href="#7-reports-and-what-we-do-about-them">7. Reports and what we do about them</a></li><li><a href="#8-how-to-behave">8. How to behave</a></li><li><a href="#9-your-content">9. Your content</a></li><li><a href="#10-other-services">10. Other services</a></li><li><a href="#11-deleting-your-account">11. Deleting your account</a></li><li><a href="#12-changes">12. Changes</a></li><li><a href="#13-ending-your-use">13. Ending your use</a></li><li><a href="#14-if-you-got-prova-from-the-app-store">14. If you got Prova from the App Store</a></li><li><a href="#15-promises-limits-and-the-law">15. Promises, limits and the law</a></li><li><a href="#16-contact">16. Contact</a></li></ul></details>
+<p><em>Last updated: [DATE]</em></p>
+<h2 id="1-the-short-version">1. The short version<a class="anchor" href="#1-the-short-version" title="Link to this section">#</a></h2>
+<ul>
+<li>Prova helps music students practice and helps their teachers guide them.</li>
+<li>You must be 13 or older. Prova is not for anyone younger yet.</li>
+<li>Teachers will pay for Prova. We will tell you before anything is charged. Students and parents
+  never pay.</li>
+<li>Your recordings and messages are yours. We use them to run Prova for you, and for nothing else.</li>
+<li>Be kind. If something is wrong, report it. A person at Prova reads every report.</li>
+<li>You can delete your account whenever you like.</li>
+</ul>
+<p>The rest of this page says the same things in full. If a short line and a long line ever seem to
+disagree, the long line wins.</p>
+<h2 id="2-who-we-are-and-who-can-use-prova">2. Who we are and who can use Prova<a class="anchor" href="#2-who-we-are-and-who-can-use-prova" title="Link to this section">#</a></h2>
+<p>These terms are between you and [NAME / ENTITY] ("Prova", "we", "us"). <strong>CHECK:</strong> the legal entity
+and postal address do not exist in the repo yet (privacy facts, "What needs counsel", item 1).</p>
+<ul>
+<li><strong>You must be at least 13.</strong> Prova is in a 13+ beta. We do not allow anyone under 13 to have an
+  account. When you sign up we ask your date of birth. If it says you are under 13, you cannot
+  continue and you can delete the account on the spot. We delete any account we learn belongs to a
+  child under 13.</li>
+<li><strong>CHECK (counsel):</strong> in the code, the account, email, name and password exist <em>before</em> the date of
+  birth is asked (privacy facts § k). Does a lawyer accept that order for a 13+ rule, and what must
+  this section say about an under-13 who signs up and then deletes?</li>
+<li><strong>If you are under 18,</strong> you need a parent or guardian's permission to use Prova.
+  <strong>CHECK:</strong> whether a teen's parent must also accept these terms, and how that is shown. No
+  parent role or consent step is reachable in this build (privacy facts § k).</li>
+<li>Give us your real date of birth and accurate details. Do not use Prova if we have closed your
+  account for breaking these terms.</li>
+</ul>
+<h2 id="3-your-account">3. Your account<a class="anchor" href="#3-your-account" title="Link to this section">#</a></h2>
+<p>You are responsible for what happens in your account. Keep your password private. Use one account
+per person. Tell us at <a href="mailto:support@provamusic.app">support@provamusic.app</a> if you think someone else got in.
+In this beta you sign in with an email and a password. Nothing else.</p>
+<h2 id="4-teachers">4. Teachers<a class="anchor" href="#4-teachers" title="Link to this section">#</a></h2>
+<p>If you use Prova as a teacher:</p>
+<ul>
+<li>You are an independent teacher. You are not an employee or agent of Prova. Lessons, and any
+  payment between you and your students, are between you and them. Prova is not a party to them.</li>
+<li>Many students are teenagers. Talk to them through Prova the way a teacher should, and follow the
+  laws and safeguarding rules that apply to you. <strong>CHECK:</strong> whether a teacher needs to confirm
+  anything about background checks or local rules, and whether we state that here.</li>
+<li>Only invite people you teach. Share your class code only with them. You approve each request to
+  join.</li>
+<li>You are responsible for what you attach, such as sheet music and videos (see section 8).</li>
+</ul>
+<h2 id="5-what-prova-costs">5. What Prova costs<a class="anchor" href="#5-what-prova-costs" title="Link to this section">#</a></h2>
+<ul>
+<li><strong>Right now Prova is free.</strong></li>
+<li><strong>Teachers will pay for Prova.</strong> We will tell you before anything is charged. We will not charge
+  you without your clear yes.</li>
+<li><strong>Students and parents never pay</strong> to use Prova.</li>
+<li><strong>CHECK:</strong> price, billing, refund and tax terms do not exist yet. This section needs a rewrite
+  before any charge. If the app sells a subscription through Apple, Apple's rules apply and
+  section 14 must match.</li>
+</ul>
+<h2 id="6-recordings-and-messages-what-we-do-and-do-not-do">6. Recordings and messages: what we do and do not do<a class="anchor" href="#6-recordings-and-messages-what-we-do-and-do-not-do" title="Link to this section">#</a></h2>
+<p>This is the plain-English version. The Privacy Policy is the full version. <strong>CHECK:</strong> the policy
+draft must say the same thing in every line below.</p>
+<p><strong>What we do</strong></p>
+<ul>
+<li>We store your takes (recordings), practice notes, messages, comments, sheet music and score marks
+  so Prova works for you.</li>
+<li>We show a take to your teacher only if you choose to share it. A take you do not share stays
+  private to you. (Privacy facts § g: a teacher can read only takes marked shared with the teacher.)</li>
+<li>Your teacher can see your practice log, your assignments, and the pieces you add yourself. Prova
+  tells students this in the app.</li>
+<li>A take waits on your phone, marked "Not saved yet", until you save it. Nothing uploads until you do.</li>
+<li>We scan messages for language that does not belong and flag it for review (privacy facts § f).</li>
+<li>Your teacher gets a notification when something needs them, and so do you. A notification can
+  show the first part of a message. <strong>CHECK:</strong> what a notification may show on a lock screen for a
+  teen (privacy facts, item 9).</li>
+</ul>
+<p><strong>What we do not do</strong></p>
+<ul>
+<li>We do not sell your recordings or messages.</li>
+<li>We do not use them for ads, and we do not track you across other apps or sites.</li>
+<li>We do not use them to train AI models. <strong>CHECK:</strong> nothing in the code does, but the founder must
+  confirm this is a promise he wants to make in a contract.</li>
+<li>We do not show your takes or messages to other students. In this beta there is no feed and no
+  way for students to see each other.</li>
+<li>We do not read your private takes as a matter of routine. <strong>CHECK:</strong> who at Prova can technically
+  open a recording or message (the founder, through the database), and when, for example to review
+  a report. Counsel decides how this is worded.</li>
+</ul>
+<p><strong>How long we keep them.</strong> Until you delete them or your account. <strong>CHECK:</strong> the code has no
+automatic expiry for takes, messages or notes (privacy facts § f). The founder may decide a rule.</p>
+<h2 id="7-reports-and-what-we-do-about-them">7. Reports and what we do about them<a class="anchor" href="#7-reports-and-what-we-do-about-them" title="Link to this section">#</a></h2>
+<p>Report anything that breaks these rules or makes you feel unsafe. In the app, press and hold a
+message or comment and choose <strong>Report</strong>, or use the ... menu on a conversation. You can also
+write to <a href="mailto:support@provamusic.app">support@provamusic.app</a>. If someone is in immediate danger, call emergency services first.</p>
+<ul>
+<li><strong>A person at Prova reads every report.</strong> Reports come to us, not to the person you reported.
+  Your teacher does not review reports. <strong>CHECK:</strong> the founder decided on 2026-10-30 that he
+  reviews every report. The code for the email alert and review list is written
+  (<code>docs/plans/founder-reviews-reports.md</code>) but the alert needs two settings before it works
+  (<code>docs/runbook-report-email-alerts.md</code>).</li>
+<li><strong>CHECK (counsel and founder):</strong> the existing Terms, the app's report sheet and the Review notes
+  say "within 24 hours". Keep a number of hours only if the founder will meet it on a bad day;
+  otherwise write "as soon as we can". All places must match.</li>
+<li>When something breaks these rules we may hide it, warn you, pause your account or close it. For
+  serious breaches we may do this at once.</li>
+<li>We may keep a copy of a reported message, and who sent it, for a short time so we can look into it,
+  even if the sender deletes their account. <strong>CHECK:</strong> how many days; the policy draft has the
+  placeholder [REPORT DAYS] (privacy facts § e).</li>
+<li>You can <strong>block</strong> someone from the same menu. That ends your link with them in Prova.</li>
+<li>We report anything that sexualizes a child to the National Center for Missing &amp; Exploited Children
+  and to the police. <strong>CHECK:</strong> the exact legal duty, which a lawyer must word.</li>
+</ul>
+<h2 id="8-how-to-behave">8. How to behave<a class="anchor" href="#8-how-to-behave" title="Link to this section">#</a></h2>
+<p>Do not use Prova to send or share anything that:</p>
+<ul>
+<li>harasses, bullies, threatens or demeans anyone;</li>
+<li>is sexual or nude, or that sexualizes a minor in any way;</li>
+<li>promotes violence, self-harm or hatred;</li>
+<li>shares someone's private information without their permission;</li>
+<li>pretends to be someone else;</li>
+<li>is spam or an advertisement, or tries to move a student to another service for a bad reason;</li>
+<li>breaks the law or someone else's rights.</li>
+</ul>
+<p>Do not try to get around the age rule, get into accounts or data that are not yours, break the
+service or its security, or copy, scrape, reverse-engineer or resell the app.</p>
+<p><strong>Other people's music.</strong> Sheet music, scans and recordings of other people's work can be protected
+by copyright. Only upload what you have the right to share for teaching and practice. Do not share
+someone else's music with people who have no right to it.</p>
+<p><strong>Copyright complaints (DMCA).</strong> If you think something in Prova copies your work without
+permission, send a notice to our copyright agent at <a href="mailto:support@provamusic.app">support@provamusic.app</a>. We will remove material that
+breaks copyright and close the accounts of repeat offenders. <strong>CHECK:</strong> the DMCA agent is not
+registered yet; it is a pre-release task (<code>docs/orchestrator-board.md</code>). A lawyer must word this
+section, and the agent must be registered with the US Copyright Office before this goes live.</p>
+<h2 id="9-your-content">9. Your content<a class="anchor" href="#9-your-content" title="Link to this section">#</a></h2>
+<p>"Your content" is everything you put into Prova: takes, practice notes, messages, comments,
+assignments, sheet music, score marks and your profile.</p>
+<ul>
+<li><strong>You own it.</strong></li>
+<li>You give us a limited licence to store, copy and show it, only to run Prova for you. For
+  example, to keep a take safe and play it to the teacher you shared it with.</li>
+<li>The licence ends when you delete the content or your account. <strong>CHECK:</strong> copies in backups. The
+  Free plan has none (launch memory, 2026-09-30); counsel decides what to say.</li>
+<li>Teachers: your assignments, notes and sheet music are your content too. Students may see them.</li>
+</ul>
+<h2 id="10-other-services">10. Other services<a class="anchor" href="#10-other-services" title="Link to this section">#</a></h2>
+<p>Teachers can attach YouTube videos. Playing one uses YouTube's service and is covered by
+YouTube's Terms. <strong>CHECK:</strong> the privacy policy should say that a video loads YouTube's player
+(privacy facts, item 8). We are not responsible for services we do not control.</p>
+<h2 id="11-deleting-your-account">11. Deleting your account<a class="anchor" href="#11-deleting-your-account" title="Link to this section">#</a></h2>
+<p>You can delete your account at any time: <strong>Profile, then Delete account</strong>.</p>
+<ul>
+<li>It deletes your account and the things attached to it, including your takes and sheet music
+  files, and clears the copies kept on your phone (privacy facts § e).</li>
+<li><strong>What can remain:</strong> a copy of a reported message, for the short time in section 7. <strong>CHECK:</strong>
+  other leftovers the code review listed as unconfirmed: notifications that quote a deleted
+  person's message, anonymous sign-in rows, a teacher's records about a deleted student, and
+  copies held by Supabase or Apple (privacy facts § e). Counsel must decide what is promised.</li>
+<li>A deleted account cannot be restored.</li>
+</ul>
+<h2 id="12-changes">12. Changes<a class="anchor" href="#12-changes" title="Link to this section">#</a></h2>
+<p>Prova will change. Features may change or go. If we change these terms in a way that matters, we
+will tell you in the app before it takes effect. If you keep using Prova, the new terms apply. If
+you do not agree, delete your account.</p>
+<h2 id="13-ending-your-use">13. Ending your use<a class="anchor" href="#13-ending-your-use" title="Link to this section">#</a></h2>
+<p>You can stop any time. We may pause or close your account if you break these terms, if the law
+requires it, or if we stop offering Prova. The parts about your content, liability and governing
+law carry on after that.</p>
+<h2 id="14-if-you-got-prova-from-the-app-store">14. If you got Prova from the App Store<a class="anchor" href="#14-if-you-got-prova-from-the-app-store" title="Link to this section">#</a></h2>
+<p><strong>CHECK:</strong> copy section 13 of <code>docs/legal/terms-of-service.md</code> (Apple's minimum terms) unchanged
+once a lawyer has read it. In short: the agreement is between you and us, not Apple; Apple has no
+duty to support Prova; we handle claims; and Apple can enforce these terms against you.</p>
+<h2 id="15-promises-limits-and-the-law">15. Promises, limits and the law<a class="anchor" href="#15-promises-limits-and-the-law" title="Link to this section">#</a></h2>
+<p>These are the lawyer's. They are placeholders, not advice.</p>
+<ul>
+<li><strong>No promises beyond the law.</strong> <strong>CHECK:</strong> wording of the "as is" disclaimer, and which rights
+  cannot be waived for teens and for people in other states.</li>
+<li><strong>Limit on what we owe.</strong> <strong>CHECK:</strong> the cap amount. The existing draft says US $100. Counsel
+  decides if that is fair and lawful, and whether teachers who pay need a different cap.</li>
+<li><strong>Practice tool, not a teacher.</strong> Prova does not replace a qualified teacher's judgment.</li>
+<li><strong>Governing law and courts.</strong> <strong>CHECK:</strong> the state [STATE]. Whether disputes go to court or
+  arbitration, and whether a class-action waiver is wanted, are counsel's decisions.</li>
+<li><strong>Children's privacy law.</strong> <strong>CHECK:</strong> US-first launch, single age threshold of 13
+  (<code>CLAUDE.md</code>). Counsel confirms nothing else applies.</li>
+</ul>
+<h2 id="16-contact">16. Contact<a class="anchor" href="#16-contact" title="Link to this section">#</a></h2>
+<p>[NAME / ENTITY] · [POSTAL ADDRESS] · <a href="mailto:support@provamusic.app">support@provamusic.app</a> · <a href="https://provamusic.app/support">https://provamusic.app/support</a></p>
 </main>
 <footer>
 <p><a href="privacy">Privacy policy</a> · <a href="terms">Terms of service</a> · <a href="support">Support</a><br>
