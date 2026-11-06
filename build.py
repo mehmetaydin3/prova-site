@@ -135,12 +135,14 @@ DOCUMENT = """<!doctype html>
 </html>
 """
 
+BETA_NOTE = "These are the terms for the Prova beta. They will be replaced by the full terms before Prova is on the App Store."
+
 PAGES = [
     # (output name, source, H1, <title>, description)
     ("privacy.html", "privacy-policy.md", "Privacy policy", "Prova privacy policy",
      "What information Prova collects, who can see it, and how to delete it."),
-    ("terms.html", "terms-of-service.md", "Terms of service", "Prova terms of service",
-     "The agreement between you and Prova."),
+    ("terms.html", "terms-of-service.md", "Beta terms", "Prova beta terms",
+     "The terms for the Prova beta."),
     ("support.html", None, None, "Prova support", "How to get help with Prova."),
     ("index.html", None, None, "Prova", "Prova, the music-practice app for students and teachers."),
 ]
@@ -220,6 +222,8 @@ def main():
             md = pathlib.Path(a.src, src).read_text()
             md = re.sub(r"<!--.*?-->", "", md, flags=re.S)  # never publish review notes
             md = re.sub(r"^# .*$", f"# {h1}", md, count=1, flags=re.M)
+            if name == "terms.html":
+                md = md.replace(f"# {h1}\n", f"# {h1}\n\n{BETA_NOTE}\n", 1)
         else:
             md = SUPPORT_MD if name == "support.html" else INDEX_MD
         md, missing = fill(md, values)
