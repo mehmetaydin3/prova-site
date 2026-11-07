@@ -34,28 +34,38 @@ th:first-child,td:first-child{width:36%}
 footer{color:var(--text2);padding-bottom:48px;margin-top:48px}
 footer a{color:var(--text2)}
 footer p{font-size:.9em;margin:0;padding-top:24px;border-top:1px solid var(--rule)}
+.toc{border:1px solid var(--rule);border-radius:12px;padding:12px 16px;margin:24px 0}
+.toc summary{font-weight:600;cursor:pointer}
+.toc ul{margin:8px 0 0;padding:0;list-style:none}.toc li{padding:2px 0}
+.toc a{color:var(--link)}
+h2 .anchor,h3 .anchor{margin-left:.4em;text-decoration:none;color:var(--text2);opacity:0;font-weight:400}
+h2:hover .anchor,h3:hover .anchor,h2 .anchor:focus,h3 .anchor:focus{opacity:1}
+h2[id],h3[id]{scroll-margin-top:16px}
+@media print{:root{--bg:#fff;--text:#000;--text2:#333;--link:#000}.draft{border:1px solid #000;background:#fff;color:#000}.toc,.anchor{display:none}a{text-decoration:underline}a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em}header img{width:40px;height:40px}footer{padding-bottom:0}h2,h3{break-after:avoid}table,li{break-inside:avoid}}
 .draft{background:var(--draft-bg);color:var(--draft-text);border-bottom:1px solid var(--draft-rule);padding:10px 16px;text-align:center;font-weight:600}
 </style>
 <link rel="canonical" href="https://provamusic.app/support">
 <meta name="robots" content="noindex">
 </head>
 <body>
-<div class="draft">Draft — not published</div>
+<div class="draft" role="note">Draft for review. Not yet in effect.</div>
 <header><a href="./"><img src="icon.png" alt="" width="64" height="64">Prova</a></header>
 <main>
-<h1>Support</h1>
-<p>Email <a href="mailto:support@provamusic.app">support@provamusic.app</a> with your device and a description of what happened.</p>
-<h2>Password reset</h2>
-<p>Request a password reset from sign-in. Prova emails you a code.</p>
-<h2>Join your teacher</h2>
-<p>Tap an invite link or enter your teacher's code, then wait for approval.</p>
-<h2>Privacy and safety</h2>
-<p>Takes are private unless shared with your teacher. Report and block tools are available in the app.</p>
-<h2>Beta access</h2>
+<h1 id="support">Support</h1>
+<p>Email <a href="mailto:support@provamusic.app">support@provamusic.app</a> with your device, what you were doing and what happened. Prova is made by a small team, and the founder reads every message.</p>
+<h2 id="password-reset">Password reset<a class="anchor" href="#password-reset" title="Link to this section">#</a></h2>
+<p>Choose <strong>Forgot your password?</strong> on sign-in. Prova emails you a code; enter it in the app to set a new password.</p>
+<h2 id="join-your-teacher">Join your teacher<a class="anchor" href="#join-your-teacher" title="Link to this section">#</a></h2>
+<p>Tap your teacher's invite link, or enter your teacher's class code, then wait for your teacher to approve you.</p>
+<h2 id="deleting-your-account">Deleting your account<a class="anchor" href="#deleting-your-account" title="Link to this section">#</a></h2>
+<p>Open <strong>Profile</strong>, then <strong>Delete account</strong>. It removes your account and what is attached to it, including your takes and sheet-music files. A deleted account can't be restored.</p>
+<h2 id="privacy-and-safety">Privacy and safety<a class="anchor" href="#privacy-and-safety" title="Link to this section">#</a></h2>
+<p>Takes are private until you share them with your teacher. To report a message or comment, press and hold it and choose <strong>Report</strong>. You can block someone from the same menu. Privacy questions: <a href="mailto:support@provamusic.app">support@provamusic.app</a>. Read the <a href="privacy">privacy policy</a> and the <a href="terms">terms of service</a>.</p>
+<h2 id="beta-access">Beta access<a class="anchor" href="#beta-access" title="Link to this section">#</a></h2>
 <p>The beta is for students 13 and older, on iPhone and iPad through TestFlight.
 Free during the beta. When pricing arrives, teachers pay; students and parents never do.</p>
-<p>General enquiries: <a href="mailto:hello@provamusic.app">hello@provamusic.app</a>.</p>
-<p>TODO(founder): confirm support instructions against the current build before publication.</p>
+<p>General enquiries: [GENERAL EMAIL].</p>
+<p>TODO(founder): confirm these support instructions against the current build before publication.</p>
 </main>
 <footer>
 <p><a href="privacy">Privacy policy</a> · <a href="terms">Terms of service</a> · <a href="support">Support</a><br>

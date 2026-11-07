@@ -37,9 +37,7 @@ backup and log retention. `null` in `values.json` means not filled yet.
 
 ## Editing
 
-- `src/privacy-policy.md`, `src/terms-of-service.md`: the legal text. The
-  canonical copies, with review notes, live in the app repo under `docs/legal/`;
-  these copies have the notes removed. Keep the two in step.
+- `src/privacy-policy.md` (the founder's v2, verbatim), `src/terms-of-service.md` (the #295 draft, `docs/legal/terms-draft.md`, minus its banner and founder notes; every CHECK kept). See BLANKS.md.
 - `values.json`: the placeholder values (`[ENTITY NAME]`, `[SUPPORT EMAIL]`,
   `[POSTAL ADDRESS]`, `[WEBSITE]`, `[REGION]`, `[BACKUP DAYS]`, `[REPORT DAYS]`,
   `[LOG DAYS]`, `[EMAIL PROVIDER]`, `[STATE]`, `[COPYRIGHT AGENT]`, `[DATE]`).
@@ -49,8 +47,8 @@ backup and log retention. `null` in `values.json` means not filled yet.
 
 ```sh
 python3 -m venv .venv && .venv/bin/pip install markdown
-.venv/bin/python build.py --out docs            # draft: banner, placeholders visible
+.venv/bin/python build.py --out docs            # THE SWITCH: draft by default ("Draft for review" banner + noindex, no sitemap/robots/CNAME)
 .venv/bin/python build.py --out docs --publish  # refuses while any placeholder is unfilled
 ```
 
-Domain/contact preparation and exact dashboard steps: [review/DEPLOYMENT.md](review/DEPLOYMENT.md). Hosting remains disabled until the publication gate passes. General contact: hello@provamusic.com; support: support@provamusic.com.
+Domain/contact preparation and exact dashboard steps: [review/DEPLOYMENT.md](review/DEPLOYMENT.md). Hosting remains disabled until the publication gate passes. General contact: hello@provamusic.app; support: support@provamusic.app; privacy: privacy@provamusic.app.

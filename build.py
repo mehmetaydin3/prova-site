@@ -21,27 +21,33 @@ import argparse, html, json, pathlib, re, shutil, sys
 import markdown
 
 HERE = pathlib.Path(__file__).resolve().parent
-PLACEHOLDERS = ["ENTITY NAME", "SUPPORT EMAIL", "GENERAL EMAIL", "POSTAL ADDRESS", "WEBSITE", "REGION",
+PLACEHOLDERS = ["NAME / ENTITY", "ENTITY NAME", "SUPPORT EMAIL", "GENERAL EMAIL", "POSTAL ADDRESS", "WEBSITE", "REGION",
                 "BACKUP DAYS", "REPORT DAYS", "LOG DAYS", "EMAIL PROVIDER", "STATE",
                 "COPYRIGHT AGENT", "DATE"]
 PLACEHOLDER_RE = re.compile(r"\[(" + "|".join(re.escape(p) for p in PLACEHOLDERS) + r")\]")
+# Open blanks written in prose, not as [KEY]: they stay visible exactly as written and block --publish.
+OPEN_PROSE_RE = re.compile(r"\[(?:CONFIRM [^\]]*|COMPLETE IF [^\]]*)\]|\*\*CHECK(?: \([a-z ]+\))?:\*\*")
 
 SUPPORT_MD = """\
 # Support
 
-Email [SUPPORT EMAIL] with your device and a description of what happened.
+Email [SUPPORT EMAIL] with your device, what you were doing and what happened. Prova is made by a small team, and the founder reads every message.
 
 ## Password reset
 
-Request a password reset from sign-in. Prova emails you a code.
+Choose **Forgot your password?** on sign-in. Prova emails you a code; enter it in the app to set a new password.
 
 ## Join your teacher
 
-Tap an invite link or enter your teacher's code, then wait for approval.
+Tap your teacher's invite link, or enter your teacher's class code, then wait for your teacher to approve you.
+
+## Deleting your account
+
+Open **Profile**, then **Delete account**. It removes your account and what is attached to it, including your takes and sheet-music files. A deleted account can't be restored.
 
 ## Privacy and safety
 
-Takes are private unless shared with your teacher. Report and block tools are available in the app.
+Takes are private until you share them with your teacher. To report a message or comment, press and hold it and choose **Report**. You can block someone from the same menu. Privacy questions: [SUPPORT EMAIL]. Read the [privacy policy](privacy) and the [terms of service](terms).
 
 ## Beta access
 
@@ -50,7 +56,7 @@ Free during the beta. When pricing arrives, teachers pay; students and parents n
 
 General enquiries: [GENERAL EMAIL].
 
-TODO(founder): confirm support instructions against the current build before publication.
+TODO(founder): confirm these support instructions against the current build before publication.
 """
 
 INDEX_MD = """\
@@ -93,6 +99,14 @@ th:first-child,td:first-child{width:36%%}
 footer{color:var(--text2);padding-bottom:48px;margin-top:48px}
 footer a{color:var(--text2)}
 footer p{font-size:.9em;margin:0;padding-top:24px;border-top:1px solid var(--rule)}
+.toc{border:1px solid var(--rule);border-radius:12px;padding:12px 16px;margin:24px 0}
+.toc summary{font-weight:600;cursor:pointer}
+.toc ul{margin:8px 0 0;padding:0;list-style:none}.toc li{padding:2px 0}
+.toc a{color:var(--link)}
+h2 .anchor,h3 .anchor{margin-left:.4em;text-decoration:none;color:var(--text2);opacity:0;font-weight:400}
+h2:hover .anchor,h3:hover .anchor,h2 .anchor:focus,h3 .anchor:focus{opacity:1}
+h2[id],h3[id]{scroll-margin-top:16px}
+@media print{:root{--bg:#fff;--text:#000;--text2:#333;--link:#000}.draft{border:1px solid #000;background:#fff;color:#000}.toc,.anchor{display:none}a{text-decoration:underline}a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em}header img{width:40px;height:40px}footer{padding-bottom:0}h2,h3{break-after:avoid}table,li{break-inside:avoid}}
 .draft{background:var(--draft-bg);color:var(--draft-text);border-bottom:1px solid var(--draft-rule);padding:10px 16px;text-align:center;font-weight:600}
 """ % {"dark": DARK}
 
@@ -121,12 +135,14 @@ DOCUMENT = """<!doctype html>
 </html>
 """
 
+BETA_NOTE = "These are the terms for the Prova beta. They will be replaced by the full terms before Prova is on the App Store."
+
 PAGES = [
     # (output name, source, H1, <title>, description)
     ("privacy.html", "privacy-policy.md", "Privacy policy", "Prova privacy policy",
      "What information Prova collects, who can see it, and how to delete it."),
-    ("terms.html", "terms-of-service.md", "Terms of service", "Prova terms of service",
-     "The agreement between you and Prova."),
+    ("terms.html", "terms-of-service.md", "Beta terms", "Prova beta terms",
+     "The terms for the Prova beta."),
     ("support.html", None, None, "Prova support", "How to get help with Prova."),
     ("index.html", None, None, "Prova", "Prova, the music-practice app for students and teachers."),
 ]
@@ -147,12 +163,40 @@ def fill(md, values):
     for key, val in values.items():
         if key not in ("WEBSITE", "SUPPORT EMAIL", "GENERAL EMAIL"):
             md = md.replace(f"[{key}]", html.escape(str(val)))
-    return md, sorted(set(PLACEHOLDER_RE.findall(md)))
+    return md, sorted(set(PLACEHOLDER_RE.findall(md)) | set(m.group(0).strip("*") for m in OPEN_PROSE_RE.finditer(md)))
 
 
-def render(md):
-    out = markdown.markdown(md, extensions=["tables", "sane_lists"], output_format="html")
-    return out.replace("<table>", '<div class="table"><table>').replace("</table>", "</table></div>")
+def slug(value, sep):
+    value = re.sub(r"[^\w\s-]", "", value.lower()).strip()
+    return re.sub(r"[\s_-]+", sep, value)
+
+
+def list_gaps(md):
+    """python-markdown needs a blank line before a list; the source text omits it after a bold lead-in."""
+    out, prev = [], ""
+    for line in md.split("\n"):
+        if re.match(r"\s*[-*] ", line) and prev.strip() and not re.match(r"\s*([-*] |\d+\. )", prev) and not prev.startswith(" "):
+            out.append("")
+        out.append(line)
+        prev = line
+    return "\n".join(out)
+
+
+def render(md, toc=False):
+    md = list_gaps(md)
+    md_ = markdown.Markdown(extensions=["tables", "sane_lists", "toc"], output_format="html",
+                            extension_configs={"toc": {"slugify": slug, "anchorlink": False,
+                                                       "permalink": "#", "permalink_title": "Link to this section",
+                                                       "toc_depth": "2-2"}})
+    out = md_.convert(md)
+    out = out.replace('class="headerlink"', 'class="anchor"')
+    out = re.sub(r'(<h1[^>]*>.*?)<a class="anchor"[^>]*>#</a>', r'\1', out, count=1)
+    out = out.replace("<table>", '<div class="table"><table>').replace("</table>", "</table></div>")
+    if toc and md_.toc_tokens:
+        items = "".join(f'<li><a href="#{t["id"]}">{html.escape(t["name"])}</a></li>' for t in md_.toc_tokens)
+        block = f'<details class="toc" open><summary>Contents</summary><ul>{items}</ul></details>'
+        out = out.replace("</h1>", "</h1>\n" + block, 1)
+    return out
 
 
 def main():
@@ -178,18 +222,20 @@ def main():
             md = pathlib.Path(a.src, src).read_text()
             md = re.sub(r"<!--.*?-->", "", md, flags=re.S)  # never publish review notes
             md = re.sub(r"^# .*$", f"# {h1}", md, count=1, flags=re.M)
+            if name == "terms.html":
+                md = md.replace(f"# {h1}\n", f"# {h1}\n\n{BETA_NOTE}\n", 1)
         else:
             md = SUPPORT_MD if name == "support.html" else INDEX_MD
         md, missing = fill(md, values)
         all_missing |= set(missing)
-        pages.append((name, title, desc, render(md)))
+        pages.append((name, title, desc, render(md, toc=bool(src))))
 
     if a.publish and (all_missing or any("TODO(founder):" in body for _, _, _, body in pages) or "TODO(founder):" in (HERE / "index.html").read_text()):
         sys.exit(f"refusing to publish, unfilled: {', '.join(sorted(all_missing))}; founder TODOs require review")
 
     out = pathlib.Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    draft = "" if a.publish else '<div class="draft">Draft — not published</div>\n'
+    draft = "" if a.publish else '<div class="draft" role="note">Draft for review. Not yet in effect.</div>\n'
     for name, title, desc, body in pages:
         if a.preview and name == "index.html":
             title = "Prova legal site"
