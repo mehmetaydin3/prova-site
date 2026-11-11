@@ -1,8 +1,8 @@
 # Prova Privacy Policy
 
-**Effective date:** November 5, 2026
+**Effective date:** [DATE]
 
-**Last updated:** November 4, 2026
+**Last updated:** [DATE]
 
 Prova ("Prova," "we," "us," or "our") is an iPhone and iPad music education application, operated by Mehmet Aydin, an individual based in California, United States. It helps teachers and students organize music, practice, record performances, and exchange feedback.
 
