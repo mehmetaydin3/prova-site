@@ -6,7 +6,7 @@ Draft template — not published.
 
 Prova is operated by [ENTITY NAME], based in [STATE], United States.
 
-TODO(founder): choose the governing law and dispute venue (not decided; not filled in here).
+These terms are governed by the laws of the State of California.
 
 ## The beta
 
