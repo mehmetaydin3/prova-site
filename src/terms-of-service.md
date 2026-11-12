@@ -4,7 +4,9 @@ Draft template — not published.
 
 ## Operator
 
-TODO(founder): supply [ENTITY NAME], [POSTAL ADDRESS] and governing [STATE].
+Prova is operated by [ENTITY NAME], based in [STATE], United States.
+
+These terms are governed by the laws of the State of California.
 
 ## The beta
 
@@ -18,4 +20,4 @@ TODO(founder): obtain legal review of account eligibility, guardian consent, acc
 
 Contact: [SUPPORT EMAIL].
 
-TODO(founder): set the effective date [DATE].
+Effective date: [DATE].

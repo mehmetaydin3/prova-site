@@ -48,7 +48,7 @@ Takes are private unless shared with your teacher. Report and block tools are av
 The beta is for students 13 and older, on iPhone and iPad through TestFlight.
 Free during the beta. When pricing arrives, teachers pay; students and parents never do.
 
-General enquiries: [GENERAL EMAIL].
+General inquiries: [GENERAL EMAIL].
 
 TODO(founder): confirm support instructions against the current build before publication.
 """
@@ -56,7 +56,7 @@ TODO(founder): confirm support instructions against the current build before pub
 INDEX_MD = """\
 # The week between lessons
 
-Prova helps music students practise and helps their teachers guide them.
+Prova helps music students practice and helps their teachers guide them.
 
 - [Privacy policy](privacy)
 - [Terms of service](terms)

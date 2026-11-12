@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects (published from the repo root).
+# The app opens https://provamusic.app/privacy, /terms and /support (AppLinks.website); the pages live under /docs/.
+# 301 so the same short URLs work in the app and in App Store Connect.
+/privacy /docs/privacy 301
+/terms /docs/terms 301
+/support /docs/support 301
